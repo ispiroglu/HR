@@ -3,7 +3,7 @@ create type address as (
   zip_code integer,
   country varchar,
   city varchar,
-  street varchar,
+  street varchar
 );
 
 create table candidates (
@@ -16,7 +16,7 @@ create table candidates (
   gender varchar(255),
   my_adress address,
   birth_date date not null,
-  application_date date not null,
+  application_date date not null
 );
 
 
@@ -33,5 +33,5 @@ create table employees (
   application_date date not null,
   salary integer,
   paid_leave integer,
-  absent_day integer,
+  absent_day integer
 );
