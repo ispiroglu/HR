@@ -13,6 +13,7 @@ public class Employee extends Candidate {
     protected Integer salary;
     protected Integer paidLeave; // Bu degeler belki baska bir class icine alinabilir.
     protected Integer absentDay; // Bu degeler belki baska bir class icine alinabilir.
+    protected Position position;
 
     public Employee(Integer candidateID, Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date bornDate, Date applicationDate, Integer employeeID) {
         super(candidateID, citizenID, phoneNumber, firstName, lastName, email, gender, address, bornDate, applicationDate);
@@ -39,7 +40,7 @@ public class Employee extends Candidate {
         super(candidate);
         this.employeeID = employeeID;
     }
-    
+
     public Integer getEmployeeID() {
         return employeeID;
     }
@@ -68,4 +69,11 @@ public class Employee extends Candidate {
         this.absentDay = absentDay;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
