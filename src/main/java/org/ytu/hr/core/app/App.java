@@ -20,7 +20,7 @@ public class App {
 
         try {
             Candidate can = new Candidate(
-                    1, 69, 532,
+                    2, 69, 532,
                     "Evren", "Ispiroglu",
                     "ispiroglu@ispiroglu", Gender.Male,
                     new Address(), new Date(2022,05, 01),  new Date(2020,06, 05)

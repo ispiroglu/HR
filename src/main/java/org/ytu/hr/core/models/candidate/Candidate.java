@@ -26,7 +26,7 @@ public class Candidate {
     @Column
     protected final Gender gender;
     //@Column(name = "my_adress")
-    // protected Address address;
+    protected Address address;
     @Column(name = "birth_date")
     protected final Date birthDate;
     @Column(name = "application_date")
@@ -44,7 +44,7 @@ public class Candidate {
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
-        // this.address = address;
+        this.address = address;
         this.birthDate = birthDate;
         this.applicationDate = applicationDate;
     }
@@ -59,7 +59,7 @@ public class Candidate {
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
-        // this.address = address;
+        this.address = address;
         this.birthDate = birthDate;
         this.applicationDate = applicationDate;
     }
@@ -72,7 +72,7 @@ public class Candidate {
         this.lastName = candidate.lastName;
         this.email = candidate.email;
         this.gender = candidate.gender;
-        // this.address = candidate.address;
+        this.address = candidate.address;
         this.birthDate = candidate.birthDate;
         this.applicationDate = candidate.applicationDate;
     }
@@ -105,11 +105,11 @@ public class Candidate {
         return gender;
     }
 
-    /*
+
     public Address getAddress() {
         return address;
     }
-    */
+
 
     public Date getBirthDate() {
         return birthDate;
@@ -127,11 +127,9 @@ public class Candidate {
         this.email = email;
     }
 
-    /*
     public void setAddress(Address address) {
         this.address = address;
     }
-    */
 
     @Override
     public String toString() {
@@ -143,7 +141,7 @@ public class Candidate {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", gender=" + gender +
-                ", address=" + //address +
+                ", address=" + address +
                 ", birthDate=" + birthDate +
                 ", applicationDate=" + applicationDate +
                 '}';
