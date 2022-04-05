@@ -1,3 +1,3 @@
-package org.ytu.hr.util.employee.gender;
+package org.ytu.hr.util.gender;
 
 public enum Gender {Male, Female, Other}
