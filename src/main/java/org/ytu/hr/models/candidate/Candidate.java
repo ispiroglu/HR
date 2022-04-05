@@ -1,23 +1,28 @@
-package org.ytu.hr.util.employee.candidate;
+package org.ytu.hr.models.candidate;
 
-import org.ytu.hr.util.employee.adress.Address;
-import org.ytu.hr.util.employee.gender.Gender;
+import org.ytu.hr.util.adress.Address;
+import org.ytu.hr.util.gender.Gender;
 
 import java.util.Date;
 
 public class Candidate {
-    protected final Integer citizenID;;
+    private final Integer candidateID;
+    protected final Integer citizenID;
     protected Integer phoneNumber;
     protected final String firstName;
     protected final String lastName;
     protected String email;
     protected final Gender gender;
     protected Address address;
-    protected final Date bornDate;
+    protected final Date birthDate;
     protected final Date applicationDate;
 
 
-    public Candidate(Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date bornDate, Date applicationDate) {
+
+    public Candidate(Integer candidateID, Integer citizenID, Integer phoneNumber,
+                     String firstName, String lastName, String email,
+                     Gender gender, Address address, Date birthDate, Date applicationDate) {
+        this.candidateID = candidateID;
         this.citizenID = citizenID;
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
@@ -25,8 +30,25 @@ public class Candidate {
         this.email = email;
         this.gender = gender;
         this.address = address;
-        this.bornDate = bornDate;
+        this.birthDate = birthDate;
         this.applicationDate = applicationDate;
+    }
+
+    public Candidate (Candidate candidate) {
+        this.candidateID = candidate.candidateID;
+        this.citizenID = candidate.citizenID;
+        this.phoneNumber = candidate.phoneNumber;
+        this.firstName = candidate.firstName;
+        this.lastName = candidate.lastName;
+        this.email = candidate.email;
+        this.gender = candidate.gender;
+        this.address = candidate.address;
+        this.birthDate = candidate.birthDate;
+        this.applicationDate = candidate.applicationDate;
+    }
+
+    public Integer getCandidateID() {
+        return candidateID;
     }
 
     public Integer getCitizenID() {
@@ -57,8 +79,8 @@ public class Candidate {
         return address;
     }
 
-    public Date getBornDate() {
-        return bornDate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
     public Date getApplicationDate() {

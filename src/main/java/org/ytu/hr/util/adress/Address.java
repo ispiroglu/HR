@@ -1,4 +1,4 @@
-package org.ytu.hr.util.employee.adress;
+package org.ytu.hr.util.adress;
 
 public class Address {
     public Integer zipCode;
@@ -46,5 +46,15 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "zipCode=" + zipCode +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                '}';
     }
 }
