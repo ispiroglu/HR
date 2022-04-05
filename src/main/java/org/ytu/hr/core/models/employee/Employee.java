@@ -1,9 +1,9 @@
-package org.ytu.hr.models.employee;
+package org.ytu.hr.core.models.employee;
 
-import org.ytu.hr.util.adress.Address;
-import org.ytu.hr.models.candidate.Candidate;
-import org.ytu.hr.util.gender.Gender;
-import org.ytu.hr.util.position.Position;
+import org.ytu.hr.core.util.adress.Address;
+import org.ytu.hr.core.models.candidate.Candidate;
+import org.ytu.hr.core.util.gender.Gender;
+import org.ytu.hr.core.util.position.Position;
 
 import java.util.Date;
 

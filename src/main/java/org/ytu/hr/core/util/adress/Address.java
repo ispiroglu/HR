@@ -1,4 +1,4 @@
-package org.ytu.hr.util.adress;
+package org.ytu.hr.core.util.adress;
 
 public class Address {
     public Integer zipCode;

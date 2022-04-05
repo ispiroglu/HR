@@ -1,12 +1,10 @@
-package org.ytu.hr.app;
+package org.ytu.hr.core.app;
 
 import org.hibernate.SessionFactory;
-import org.ytu.hr.models.candidate.Candidate;
-import org.ytu.hr.models.employee.Employee;
-import org.ytu.hr.util.adress.Address;
-import org.ytu.hr.util.gender.Gender;
+import org.ytu.hr.core.models.candidate.Candidate;
+import org.ytu.hr.core.util.adress.Address;
+import org.ytu.hr.core.util.gender.Gender;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Date;

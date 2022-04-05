@@ -1,7 +1,7 @@
-package org.ytu.hr.models.candidate;
+package org.ytu.hr.core.models.candidate;
 
-import org.ytu.hr.util.adress.Address;
-import org.ytu.hr.util.gender.Gender;
+import org.ytu.hr.core.util.adress.Address;
+import org.ytu.hr.core.util.gender.Gender;
 
 import javax.persistence.*;
 import java.util.Date;
