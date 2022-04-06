@@ -25,7 +25,7 @@ public class Candidate {
     protected String email;
     @Column
     protected final Gender gender;
-    //@Column(name = "my_adress")
+    // @Column(name = "my_adress")
     // protected Address address;
     @Column(name = "birth_date")
     protected final Date birthDate;
@@ -105,11 +105,11 @@ public class Candidate {
         return gender;
     }
 
-    /*
+/*
     public Address getAddress() {
         return address;
     }
-    */
+*/
 
     public Date getBirthDate() {
         return birthDate;
@@ -131,7 +131,7 @@ public class Candidate {
     public void setAddress(Address address) {
         this.address = address;
     }
-    */
+     */
 
     @Override
     public String toString() {
@@ -143,7 +143,7 @@ public class Candidate {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", gender=" + gender +
-                ", address=" + //address +
+               // ", address=" + address +
                 ", birthDate=" + birthDate +
                 ", applicationDate=" + applicationDate +
                 '}';
