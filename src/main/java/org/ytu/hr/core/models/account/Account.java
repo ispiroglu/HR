@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name="accounts")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "accound_id") // should change it to account id
+    private Integer accountID;
     @Column(name = "candidate_id")
     private final Integer candidateID;
     @Column(name = "username")

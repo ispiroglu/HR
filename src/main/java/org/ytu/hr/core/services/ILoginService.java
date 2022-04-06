@@ -1,7 +1,7 @@
 package org.ytu.hr.core.services;
 
 public interface ILoginService {
-    String getEmployeeID();
+    Integer getEmployeeID();
     String getUsername();
     String getPassword();
 

@@ -18,6 +18,12 @@ public class SignUp implements ISignUpService {
     public SignUp()
     {
         kb = new Scanner(System.in);
+
+        // Signup nesnesini olustururkenki olusturulan candidate bilgilerinin alinmasi
+        // Arayuz eklendiginde arayuz formu tamamlanip gonderildiginde yapilcaktir.
+        // Signup form'u gonderilince signup nesnesi calistirilacak ve
+        // signup nesnesinin paramtreleri formdan okunacak.
+
         candidate = new Candidate(getCandidateID(), getCitizenID(), getPhoneNumber(),
                 getFirstName(), getLastName(), getEmail(), getGender(), new Address(),
                 getBirthDate(), getApplicationDate());
@@ -36,15 +42,10 @@ public class SignUp implements ISignUpService {
             Account acc = new Account(candidate.getCandidateID(),
                     this.getUsername(), this.getPassword());
 
-            System.out.println(candidate);
             session.beginTransaction();
             session.save(candidate);
-            session.getTransaction().commit();
-            session = sf.getCurrentSession();
-            session.beginTransaction();
             session.save(acc);
             session.getTransaction().commit();
-            System.out.println("Allam oldu");
         } finally {
             sf.close();
         }
