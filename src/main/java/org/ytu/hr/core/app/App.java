@@ -19,6 +19,8 @@ public class App {
         Login login = new Login();
         System.out.println("Login basarili");
         System.out.println("Login -> " + login.getEmployeeID());
+
+        System.out.println("I'm mehmet");
     }
 
 }
