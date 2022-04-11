@@ -3,18 +3,23 @@ package org.ytu.hr.core.models.account;
 import javax.persistence.*;
 
 @Entity
-@Table(name="accounts")
+@Table(name="account")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "accound_id") // should change it to account id
+    @Column(name = "account_id")
     private Integer accountID;
     @Column(name = "candidate_id")
-    private final Integer candidateID;
+    private Integer candidateID;
     @Column(name = "username")
-    private final String username;
+    private String username;
     @Column(name = "password")
     private String password;
+
+    public Account()
+    {
+
+    }
 
     public Account(Integer employeeID, String username, String password) {
         this.candidateID = employeeID;
