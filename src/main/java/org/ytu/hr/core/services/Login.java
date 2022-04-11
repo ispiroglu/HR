@@ -3,6 +3,8 @@ package org.ytu.hr.core.services;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+import org.ytu.hr.core.models.account.Account;
 
 
 import java.util.Objects;
@@ -32,14 +34,6 @@ public class Login implements ILoginService {
             System.out.println("Sifreniz yanlis.");
             return null;
         }
-        Integer employeeID;
-        try {
-            session.beginTransaction();
-            employeeID = session.get(Login.class, username).getEmployeeID();
-            // session.getTransaction().commit();
-        } finally {
-            session.close();
-        }
         return employeeID;
     }
 
@@ -57,17 +51,33 @@ public class Login implements ILoginService {
 
     @Override
     public Boolean isCorrectUser() {
+        /*
+        * .addAnnotatedClass(Login.class)
+        * */
         boolean isOK = false;
         sessionFactory = new Configuration()
                         .configure()
-                        .addAnnotatedClass(Login.class)
+                        .addAnnotatedClass(Account.class)
                         .buildSessionFactory();
-        session = sessionFactory.getCurrentSession();
+        session = sessionFactory.openSession();
 
         try {
             session.beginTransaction();
-            if (Objects.equals(session.get(SignUp.class, username).getPassword(), password))
+            Query query1 = session.createQuery("from Account where username=:username and password=:password");
+            query1.setParameter("username", username);
+            query1.setParameter("password", password);
+
+            System.out.println("----------------------------------");
+
+            Account acc = (Account) query1.uniqueResult();
+
+
+            if (acc != null) {
                 isOK = true;
+                employeeID = acc.getCandidateID();
+            }
+
+
             // session.getTransaction().commit();
         } finally {
             session.close();

@@ -8,9 +8,12 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class.class">com.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/ytuhr?useSSL=false&amp;serverTimezone=UTCu</property>
-        <property name="connection.username">ytuhr_user</property>
-        <property name="connection.password">ytuhr</property>
+<!--        <property name="connection.url">jdbc:postgresql://localhost:5432/ytuhr?useSSL=false&amp;serverTimezone=UTCu</property>-->
+<!--        <property name="connection.username">ytuhr_user</property>-->
+<!--        <property name="connection.password">ytuhr</property>-->
+        <property name="connection.url">jdbc:postgresql://ec2-52-212-228-71.eu-west-1.compute.amazonaws.com:5432/dmdip3abvihcu</property>
+        <property name="connection.username">airiwykspylour</property>
+        <property name="connection.password">fad950ca251a17ebc63320cfd5c6b3de7b5adc66ca048c8a4bf0dcd2a3cd6c1e</property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
 

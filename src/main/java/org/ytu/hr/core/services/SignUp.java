@@ -57,7 +57,7 @@ public class SignUp implements ISignUpService {
     @Override
     public Integer getCandidateID() {
         // CandidateID hesaplmamasi yapilacak.
-        return null;
+        return candidate.getCandidateID();
     }
 
     @Override
