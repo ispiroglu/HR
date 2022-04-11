@@ -6,8 +6,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.ytu.hr.core.models.account.Account;
 
-
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Login implements ILoginService {
@@ -51,9 +49,6 @@ public class Login implements ILoginService {
 
     @Override
     public Boolean isCorrectUser() {
-        /*
-        * .addAnnotatedClass(Login.class)
-        * */
         boolean isOK = false;
         sessionFactory = new Configuration()
                         .configure()
@@ -67,8 +62,6 @@ public class Login implements ILoginService {
             query1.setParameter("username", username);
             query1.setParameter("password", password);
 
-            System.out.println("----------------------------------");
-
             Account acc = (Account) query1.uniqueResult();
 
 
@@ -77,8 +70,6 @@ public class Login implements ILoginService {
                 employeeID = acc.getCandidateID();
             }
 
-
-            // session.getTransaction().commit();
         } finally {
             session.close();
         }

@@ -14,7 +14,7 @@ public class Candidate {
     @Column(name = "candidate_id")
     private final Integer candidateID;
     @Column(name = "citizen_id")
-    protected final Integer citizenID;
+    protected final Long citizenID;
     @Column(name = "phone_number")
     protected Integer phoneNumber;
     @Column(name = "first_name")
@@ -34,7 +34,7 @@ public class Candidate {
 
 
 
-    public Candidate(Integer candidateID, Integer citizenID, Integer phoneNumber,
+    public Candidate(Integer candidateID, Long citizenID, Integer phoneNumber,
                      String firstName, String lastName, String email,
                      Gender gender, Address address, Date birthDate, Date applicationDate) {
         this.candidateID = candidateID;
@@ -49,7 +49,7 @@ public class Candidate {
         this.applicationDate = applicationDate;
     }
 
-    public Candidate(int candidateID, int citizenID, int phoneNumber,
+    public Candidate(int candidateID, Long citizenID, int phoneNumber,
                      String firstName, String lastName, String email,
                      Gender gender, Address address, Date birthDate, Date applicationDate) {
         this.candidateID = candidateID;
@@ -81,7 +81,7 @@ public class Candidate {
         return candidateID;
     }
 
-    public Integer getCitizenID() {
+    public Long getCitizenID() {
         return citizenID;
     }
 

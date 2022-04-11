@@ -8,6 +8,8 @@ import org.ytu.hr.core.models.candidate.Candidate;
 import org.ytu.hr.core.util.adress.Address;
 import org.ytu.hr.core.util.gender.Gender;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -52,18 +54,16 @@ public class SignUp implements ISignUpService {
 
     }
 
-
-
     @Override
     public Integer getCandidateID() {
-        // CandidateID hesaplmamasi yapilacak.
-        return candidate.getCandidateID();
+
+        return candidate != null ? candidate.getCandidateID() : null ;
     }
 
     @Override
-    public Integer getCitizenID() {
+    public Long getCitizenID() {
         System.out.println("Lutfen 11 Haneli TC kimlik numaranizi giriniz. ");
-        return Integer.parseInt(kb.nextLine());
+        return Long.parseLong(kb.nextLine());
     }
 
     @Override
@@ -92,21 +92,37 @@ public class SignUp implements ISignUpService {
 
     @Override
     public Gender getGender() {
-        System.out.println("Lutfen cinsiyetinizi giriniz" +
-                "0 -> Erkek" +
-                "1 -> Kadin");
-        return Gender.Male ; // Mock implementation
+        System.out.println("Lutfen cinsiyetinizi giriniz - Kadin(1) | Erkek(2)");
+        return switch (Integer.parseInt(kb.nextLine())) {
+            case 1 -> Gender.Female;
+            case 2 -> Gender.Male;
+            default -> null;
+        };
     }
 
     @Override
     public Date getBirthDate() {
         System.out.println("Dogum tarihinizi giriniz");
-        return new Date(); // Implementation yanlis olabilir.
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(kb.nextLine());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
     }
 
     @Override
     public Date getApplicationDate() {
-        return new Date(); // Sanirim su anki tarih ile bir nesne olusturuyor.
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        long millis=System.currentTimeMillis();
+
+        // creating a new object of the class Date
+
+        return new java.sql.Date(millis);
     }
 
     @Override
