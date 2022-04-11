@@ -15,12 +15,12 @@ public class Employee extends Candidate {
     protected Integer absentDay; // Bu degeler belki baska bir class icine alinabilir.
     protected Position position;
 
-    public Employee(Integer candidateID, Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date bornDate, Date applicationDate, Integer employeeID) {
+    public Employee(Integer candidateID, Long citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date bornDate, Date applicationDate, Integer employeeID) {
         super(candidateID, citizenID, phoneNumber, firstName, lastName, email, gender, address, bornDate, applicationDate);
         this.employeeID = employeeID;
     }
 
-    public Employee(Integer candidateID, Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date birthDate, Date applicationDate, Integer employeeID, Integer salary, Integer paidLeave, Integer absentDay) {
+    public Employee(Integer candidateID, Long citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date birthDate, Date applicationDate, Integer employeeID, Integer salary, Integer paidLeave, Integer absentDay) {
         super(candidateID, citizenID, phoneNumber, firstName, lastName, email, gender, address, birthDate, applicationDate);
         this.employeeID = employeeID;
         this.salary = salary;

@@ -7,7 +7,7 @@ import java.util.Date;
 
 public interface ISignUpService {
     Integer getCandidateID();
-    Integer getCitizenID();
+    Long getCitizenID();
     Integer getPhoneNumber();
     String getFirstName();
     String getLastName();
