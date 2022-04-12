@@ -7,6 +7,7 @@ import org.ytu.hr.core.models.account.Account;
 import org.ytu.hr.core.models.candidate.Candidate;
 import org.ytu.hr.core.util.adress.Address;
 import org.ytu.hr.core.util.gender.Gender;
+import static org.ytu.hr.core.util.stringUtil.Hash.hashString;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -57,7 +58,7 @@ public class SignUp implements ISignUpService {
     @Override
     public Integer getCandidateID() {
         // CandidateID hesaplmamasi yapilacak.
-        return candidate.getCandidateID();
+        return candidate != null ? candidate.getCandidateID() : null ;
     }
 
     @Override
@@ -117,7 +118,8 @@ public class SignUp implements ISignUpService {
     @Override
     public String getPassword() {
         System.out.println("Sifreniz ne olsun?");
-        return kb.nextLine();
+        String password = kb.nextLine();
+        return hashString(password);
     }
 
     @Override

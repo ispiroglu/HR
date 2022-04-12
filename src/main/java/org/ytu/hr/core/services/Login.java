@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.ytu.hr.core.models.account.Account;
+import static org.ytu.hr.core.util.stringUtil.Hash.hashString;
 
 
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class Login implements ILoginService {
         kb = new Scanner(System.in);
 
         username = getUsername();
-        password = getPassword();
+        password = hashString(getPassword());
         loggedIn = isCorrectUser();
     }
 
