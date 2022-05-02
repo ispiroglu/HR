@@ -8,6 +8,7 @@ import org.ytu.hr.core.models.account.Account;
 import static org.ytu.hr.core.util.stringUtil.Hash.hashString;
 
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -67,7 +68,10 @@ public class Login implements ILoginService {
             Query query1 = session.createQuery("from Account where username=:username and password=:password");
             query1.setParameter("username", username);
             query1.setParameter("password", password);
+            Query query2 = session.createQuery("from Account select *");
 
+            ArrayList<Account> list = new ArrayList<>();
+            list = (ArrayList<Account>) query2.uniqueResult();
             System.out.println("----------------------------------");
 
             Account acc = (Account) query1.uniqueResult();
