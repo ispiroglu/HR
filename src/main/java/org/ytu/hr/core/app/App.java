@@ -1,16 +1,18 @@
 package org.ytu.hr.core.app;
 
-import org.ytu.hr.core.services.Login;
-import org.ytu.hr.core.services.SignUp;
+import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
+import org.ytu.hr.frontend.loginPage.LoginPage;
+import org.ytu.hr.frontend.mainPage.MainPage;
+
+import javax.swing.*;
 
 public class App {
     public static void main(String[] args) {
-        SignUp sp = new SignUp();
-        System.out.println("SignUp basarili.");
-
-
-        Login login = new Login();
-        System.out.println("Login basarili");
-        System.out.println("Login -> " + login.getEmployeeID());
+        JFrame frame = new JFrame("loginPage");
+        frame.setContentPane(new MainPage());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setResizable(false);
     }
 }

@@ -1,12 +1,11 @@
 package org.ytu.hr.frontend.loginPage;
 
 import org.ytu.hr.core.services.Login;
+import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import org.ytu.hr.core.services.Login;
 
 public class LoginPage {
     private Login login;
@@ -19,20 +18,23 @@ public class LoginPage {
     private JLabel usernameLabel;
     private JButton loginButton;
     private JTextField usernameField;
-
+    private MainPage mainPage;
     public LoginPage() {
+        mainPage = new MainPage();
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = getUsername();
-                String password = getPassword();
+//                String username = getUsername();
+//                String password = getPassword();
 
-                login = new Login(username, password);
+                login = new Login("Evren_Ispir", "12345");
 
-                if(login.isCorrectUser())
+                if(!login.isCorrectUser())
                     JOptionPane.showMessageDialog(null, "Kullanici adi veya sifre yanlis!");
-                else
+                else {
                     JOptionPane.showMessageDialog(null, "Basarili bir sekilde giris yaptiniz.");
+                    mainPage.setVisible(true);
+                }
             }
         });
     }
