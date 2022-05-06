@@ -1,5 +1,7 @@
 
 package org.ytu.hr.frontend.login_UI;
+import org.hibernate.annotations.common.util.impl.Log;
+
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import java.awt.LayoutManager;
@@ -70,8 +72,6 @@ public class LoginFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(final ActionEvent actionEvent) {
         if (actionEvent.getSource() == this.loginButton) {
-            System.out.println(this.userTextField.getText());
-            System.out.println(this.passwordField.getPassword());
         }
         if (actionEvent.getSource() == this.showPassword) {
             if (this.showPassword.isSelected()) {
@@ -81,5 +81,6 @@ public class LoginFrame extends JFrame implements ActionListener
                 this.passwordField.setEchoChar('*');
             }
         }
+
     }
 }

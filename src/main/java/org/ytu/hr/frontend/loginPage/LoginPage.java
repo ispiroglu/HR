@@ -1,5 +1,7 @@
 
 package org.ytu.hr.frontend.loginPage;
+import com.sun.tools.javac.Main;
+import org.ytu.hr.frontend.mainPage.MainPage;
 
 
 /**
@@ -163,6 +165,9 @@ public class LoginPage extends javax.swing.JFrame {
         
          if(evt.getSource() == this.jButton1){ // if statementine ihtiyac yoktur herhalde 
             //burda login butonu basilmis
+             this.setVisible(false);
+             MainPage mainFrame = new MainPage();
+             mainFrame.setVisible(true);
             // this.usernameTextField.getText(); bu username i ceker
             //this.jPasswordField1.getPassword(); bu da sifreyi ceker
         }
