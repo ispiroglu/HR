@@ -1,48 +1,125 @@
 package org.ytu.hr.core.models.employee;
 
-import org.ytu.hr.core.util.adress.Address;
-import org.ytu.hr.core.models.candidate.Candidate;
 import org.ytu.hr.core.util.gender.Gender;
-import org.ytu.hr.core.util.position.Position;
-
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity(name = "Employee")
+@Table(name = "employees")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
+    private  Integer employeeID;
+    @Column(name = "citizen_id")
+    private  Long citizenID;
+    @Column(name = "phone_number")
+    private Integer phoneNumber;
+    @Column(name = "first_name")
+    private  String firstName;
+    @Column(name = "last_name")
+    private  String lastName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "gender")
+    private String  gender;
+    @Column(name = "province")
+    private String province;
+    @Column(name = "district")
+    private String district;
+    @Column(name = "birth_date")
+    private  Date birthDate;
+    @Column(name = "application_date")
+    private  Date applicationDate;
+    @Column(name = "salary")
+    private Integer salary;
+    @Column(name = "paid_leave")
+    private Integer paidLeave;
+    @Column(name = "absent_day")
+    private Integer absentDay;
+    @Column(name = "position")
+    private String position;
 
-public class Employee extends Candidate {
-    protected final Integer employeeID;
-    protected Integer salary;
-    protected Integer paidLeave; // Bu degeler belki baska bir class icine alinabilir.
-    protected Integer absentDay; // Bu degeler belki baska bir class icine alinabilir.
-    protected Position position;
+    public Employee() {
 
-    public Employee(Integer candidateID, Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date bornDate, Date applicationDate, Integer employeeID) {
-        super(candidateID, citizenID, phoneNumber, firstName, lastName, email, gender, address, bornDate, applicationDate);
-        this.employeeID = employeeID;
     }
 
-    public Employee(Integer candidateID, Integer citizenID, Integer phoneNumber, String firstName, String lastName, String email, Gender gender, Address address, Date birthDate, Date applicationDate, Integer employeeID, Integer salary, Integer paidLeave, Integer absentDay) {
-        super(candidateID, citizenID, phoneNumber, firstName, lastName, email, gender, address, birthDate, applicationDate);
-        this.employeeID = employeeID;
+    public Employee(Integer candidateID, Long citizenID, Integer phoneNumber, String firstName, String lastName, String email, String gender, String province, String district, Date birthDate, Date applicationDate, Integer salary, Integer paidLeave, Integer absentDay, String position) {
+        this.employeeID = candidateID;
+        this.citizenID = citizenID;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.province = province;
+        this.district = district;
+        this.birthDate = birthDate;
+        this.applicationDate = applicationDate;
         this.salary = salary;
         this.paidLeave = paidLeave;
         this.absentDay = absentDay;
-    }
-
-    public Employee(Candidate candidate, Integer employeeID, Integer salary, Integer paidLeave, Integer absentDay) {
-        super(candidate);
-        this.employeeID = employeeID;
-        this.salary = salary;
-        this.paidLeave = paidLeave;
-        this.absentDay = absentDay;
-    }
-
-    public Employee(Candidate candidate, Integer employeeID) {
-        super(candidate);
-        this.employeeID = employeeID;
+        this.position = position;
     }
 
     public Integer getEmployeeID() {
         return employeeID;
+    }
+
+    public Long getCitizenID() {
+        return citizenID;
+    }
+
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public Date getApplicationDate() {
+        return applicationDate;
     }
 
     public Integer getSalary() {
@@ -69,11 +146,44 @@ public class Employee extends Candidate {
         this.absentDay = absentDay;
     }
 
-    public Position getPosition() {
+    public String getPosition() {
         return position;
     }
 
-    public void setPosition(Position position) {
+    public void setPosition(String position) {
         this.position = position;
+    }
+
+    public Employee(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+
+        employeeID = 1;
+        citizenID = 1L;
+        gender = "Male";
+        birthDate = new Date();
+        applicationDate = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "candidateID=" + employeeID +
+                ", citizenID=" + citizenID +
+                ", phoneNumber=" + phoneNumber +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", province='" + province + '\'' +
+                ", district='" + district + '\'' +
+                ", birthDate=" + birthDate +
+                ", applicationDate=" + applicationDate +
+                ", salary=" + salary +
+                ", paidLeave=" + paidLeave +
+                ", absentDay=" + absentDay +
+                ", position='" + position + '\'' +
+                '}';
     }
 }

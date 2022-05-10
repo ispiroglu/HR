@@ -5,57 +5,35 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.ytu.hr.core.models.account.Account;
-import static org.ytu.hr.core.util.stringUtil.Hash.hashString;
-
-
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import org.ytu.hr.core.util.stringUtil.Hash;
 
 public class Login implements ILoginService {
     private SessionFactory sessionFactory;
     private Session session;
-    private final Scanner kb;
     private Integer employeeID;
     private final String username;
     private final String password;
     public final boolean loggedIn;
 
-    public Login()
-    {
-        kb = new Scanner(System.in);
 
-        username = getUsername();
-        password = hashString(getPassword());
+    public Login(String username, String password) {
+        this.username = username;
+        this.password = Hash.hashString(password);
         loggedIn = isCorrectUser();
     }
 
     @Override
-    public Integer getEmployeeID() {
-        if (!loggedIn) {
-            System.out.println("Sifreniz yanlis.");
-            return null;
-        }
-        return employeeID;
-    }
-
-    @Override
     public String getUsername() {
-        System.out.println("Username girin");
-        return kb.nextLine();
+        return username;
     }
 
     @Override
     public String getPassword() {
-        System.out.println("Sifre girin");
-        return kb.nextLine();
+        return password;
     }
 
     @Override
     public Boolean isCorrectUser() {
-        /*
-        * .addAnnotatedClass(Login.class)
-        * */
         boolean isOK = false;
         sessionFactory = new Configuration()
                         .configure()
@@ -68,26 +46,15 @@ public class Login implements ILoginService {
             Query query1 = session.createQuery("from Account where username=:username and password=:password");
             query1.setParameter("username", username);
             query1.setParameter("password", password);
-            Query query2 = session.createQuery("from Account select *");
-
-            ArrayList<Account> list = new ArrayList<>();
-            list = (ArrayList<Account>) query2.uniqueResult();
-            System.out.println("----------------------------------");
-
             Account acc = (Account) query1.uniqueResult();
-
 
             if (acc != null) {
                 isOK = true;
-                employeeID = acc.getCandidateID();
             }
-
-
-            // session.getTransaction().commit();
-        } finally {
+        }
+        finally {
             session.close();
         }
-
         return isOK;
     }
 }
