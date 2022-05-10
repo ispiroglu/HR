@@ -57,6 +57,10 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(66, 76, 97));
         jLabel2.setText("PASSWORD:");
 
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(true);
+        jButton1.setBackground(new java.awt.Color(51,67,100));
+
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameTextFieldActionPerformed(evt);
