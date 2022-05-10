@@ -6,3 +6,5 @@ hr.eml
 hr.iml
 hrrr.userlibraries
 src/main/resources/hibernate.cfg.xml
+.vscode
+.DS_Store
