@@ -8,7 +8,6 @@ import org.ytu.hr.core.models.account.Account;
 import org.ytu.hr.core.util.stringUtil.Hash;
 
 public class Login implements ILoginService {
-    private SessionFactory sessionFactory;
     private Session session;
     private Integer employeeID;
     private final String username;
@@ -35,11 +34,6 @@ public class Login implements ILoginService {
     @Override
     public Boolean isCorrectUser() {
         boolean isOK = false;
-        sessionFactory = new Configuration()
-                        .configure()
-                        .addAnnotatedClass(Account.class)
-                        .buildSessionFactory();
-        session = sessionFactory.openSession();
 
         try {
             session.beginTransaction();
