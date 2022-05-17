@@ -2,7 +2,7 @@ package org.ytu.hr.core.models.account;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Account")
 @Table(name="account")
 public class Account {
     @Id

@@ -1,6 +1,6 @@
 
 package org.ytu.hr.frontend.loginPage;
-import com.sun.tools.javac.Main;
+import org.ytu.hr.core.login.Login;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
 
@@ -167,13 +167,18 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-         if(evt.getSource() == this.jButton1){ // if statementine ihtiyac yoktur herhalde 
-            //burda login butonu basilmis
-             this.setVisible(false);
-             MainPage mainFrame = new MainPage();
-             mainFrame.setVisible(true);
-            // this.usernameTextField.getText(); bu username i ceker
-            //this.jPasswordField1.getPassword(); bu da sifreyi ceker
+         if(evt.getSource() == this.jButton1){ // if statementine ihtiyac yoktur herhalde
+             Login login = new Login(usernameTextField.getText(), new String(jPasswordField1.getPassword()));
+
+             if (login.isCorrectUser()) {
+                 this.setVisible(false);
+                 MainPage mainFrame = new MainPage();
+                 mainFrame.setVisible(true);
+             } else {
+                 System.out.println("Yanlis kullanici");
+                 // Tekrar deneyiniz uyarisi
+             }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
