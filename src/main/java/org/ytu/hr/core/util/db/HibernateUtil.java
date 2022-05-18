@@ -3,6 +3,7 @@ package org.ytu.hr.core.util.db;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.ytu.hr.core.models.account.Account;
+import org.ytu.hr.core.models.employee.Employee;
 
 public class HibernateUtil {
     private static class NewThread extends Thread {
@@ -10,6 +11,7 @@ public class HibernateUtil {
             sessionFactory = new Configuration()
                     .configure()
                     .addAnnotatedClass(Account.class)
+                    .addAnnotatedClass(Employee.class)
                     .buildSessionFactory();
         }
     }

@@ -1,20 +1,18 @@
 package org.ytu.hr.core.models.employee;
 
-import org.ytu.hr.core.util.gender.Gender;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity(name = "Employee")
 @Table(name = "employees")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
-    private  Integer employeeID;
-    @Column(name = "citizen_id")
-    private  Long citizenID;
+    @Column(name = "employee_ID")
+    private Integer employeeID;
+    @Column(name = "citizen_ID")
+    private Long citizenID;
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private Long phoneNumber;
     @Column(name = "first_name")
     private  String firstName;
     @Column(name = "last_name")
@@ -28,9 +26,9 @@ public class Employee {
     @Column(name = "district")
     private String district;
     @Column(name = "birth_date")
-    private  Date birthDate;
+    private Date birthDate;
     @Column(name = "application_date")
-    private  Date applicationDate;
+    private Date applicationDate;
     @Column(name = "salary")
     private Integer salary;
     @Column(name = "paid_leave")
@@ -40,41 +38,28 @@ public class Employee {
     @Column(name = "position")
     private String position;
 
-    public Employee() {
-
-    }
-
-    public Employee(Integer candidateID, Long citizenID, Integer phoneNumber, String firstName, String lastName, String email, String gender, String province, String district, Date birthDate, Date applicationDate, Integer salary, Integer paidLeave, Integer absentDay, String position) {
-        this.employeeID = candidateID;
-        this.citizenID = citizenID;
-        this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-        this.province = province;
-        this.district = district;
-        this.birthDate = birthDate;
-        this.applicationDate = applicationDate;
-        this.salary = salary;
-        this.paidLeave = paidLeave;
-        this.absentDay = absentDay;
-        this.position = position;
-    }
 
     public Integer getEmployeeID() {
         return employeeID;
+    }
+
+    public void setEmployeeID(Integer employeeID) {
+        this.employeeID = employeeID;
     }
 
     public Long getCitizenID() {
         return citizenID;
     }
 
-    public Integer getPhoneNumber() {
+    public void setCitizenID(Long citizenID) {
+        this.citizenID = citizenID;
+    }
+
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -82,8 +67,16 @@ public class Employee {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -96,6 +89,10 @@ public class Employee {
 
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getProvince() {
@@ -118,8 +115,16 @@ public class Employee {
         return birthDate;
     }
 
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public Date getApplicationDate() {
         return applicationDate;
+    }
+
+    public void setApplicationDate(Date applicationDate) {
+        this.applicationDate = applicationDate;
     }
 
     public Integer getSalary() {
@@ -154,28 +159,16 @@ public class Employee {
         this.position = position;
     }
 
-    public Employee(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-
-        employeeID = 1;
-        citizenID = 1L;
-        gender = "Male";
-        birthDate = new Date();
-        applicationDate = new Date();
-    }
-
     @Override
     public String toString() {
         return "Employee{" +
-                "candidateID=" + employeeID +
+                "employeeID=" + employeeID +
                 ", citizenID=" + citizenID +
                 ", phoneNumber=" + phoneNumber +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", province='" + province + '\'' +
                 ", district='" + district + '\'' +
                 ", birthDate=" + birthDate +

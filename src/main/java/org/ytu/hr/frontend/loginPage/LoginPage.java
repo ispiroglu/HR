@@ -168,7 +168,9 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
          if(evt.getSource() == this.jButton1){ // if statementine ihtiyac yoktur herhalde
-             Login login = new Login(usernameTextField.getText(), new String(jPasswordField1.getPassword()));
+//             Login login = new Login(usernameTextField.getText(), new String(jPasswordField1.getPassword()));
+
+             Login login = new Login("Evren_Ispir","1234");
 
              if (login.isCorrectUser()) {
                  this.setVisible(false);

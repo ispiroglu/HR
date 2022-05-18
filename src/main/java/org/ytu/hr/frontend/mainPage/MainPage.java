@@ -4,6 +4,8 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
+import org.ytu.hr.core.models.employee.Employee;
+import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 
 /**
@@ -17,6 +19,7 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+//        EmployeeUtil.adar();
     }
 
     /**
@@ -41,9 +44,8 @@ public class MainPage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
+             EmployeeUtil.getAllEmployeesToSimpleMatrix(),
+//                new Object[][]{},
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
