@@ -3,6 +3,8 @@ package org.ytu.hr.frontend.loginPage;
 import com.sun.tools.javac.Main;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
+import java.awt.*;
+
 
 /**
  *
@@ -18,6 +20,10 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage()
     {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
+
     }
 
     /**

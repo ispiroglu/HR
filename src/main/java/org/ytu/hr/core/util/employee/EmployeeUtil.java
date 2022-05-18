@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.ytu.hr.core.models.employee.Employee;
 
+
 import java.util.Arrays;
 import java.util.List;
 
