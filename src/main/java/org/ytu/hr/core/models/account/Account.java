@@ -2,8 +2,8 @@ package org.ytu.hr.core.models.account;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="account")
+@Entity(name = "Account")
+@Table(name="accounts")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

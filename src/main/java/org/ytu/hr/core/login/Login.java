@@ -1,16 +1,15 @@
-package org.ytu.hr.core.services;
+package org.ytu.hr.core.login;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.ytu.hr.core.models.account.Account;
+import org.ytu.hr.core.services.ILoginService;
+import org.ytu.hr.core.util.db.HibernateUtil;
 import org.ytu.hr.core.util.stringUtil.Hash;
 
 public class Login implements ILoginService {
-    private SessionFactory sessionFactory;
-    private Session session;
-    private Integer employeeID;
     private final String username;
     private final String password;
     public final boolean loggedIn;
@@ -18,7 +17,7 @@ public class Login implements ILoginService {
 
     public Login(String username, String password) {
         this.username = username;
-        this.password = Hash.hashString(password);
+        this.password = password;
         loggedIn = isCorrectUser();
     }
 
@@ -35,12 +34,7 @@ public class Login implements ILoginService {
     @Override
     public Boolean isCorrectUser() {
         boolean isOK = false;
-        sessionFactory = new Configuration()
-                        .configure()
-                        .addAnnotatedClass(Account.class)
-                        .buildSessionFactory();
-        session = sessionFactory.openSession();
-
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             Query query1 = session.createQuery("from Account where username=:username and password=:password");
