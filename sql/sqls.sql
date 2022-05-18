@@ -15,3 +15,9 @@ create table employees (
   absent_day integer,
   position varchar (255)
 );
+
+create table accounts (
+  account_id serial primary key,
+  username varchar (255),
+  password varchar (255)
+);

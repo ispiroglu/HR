@@ -1,24 +1,28 @@
 package org.ytu.hr.core.util.employee;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.ytu.hr.core.models.employee.Employee;
+import org.ytu.hr.core.util.db.HibernateUtil;
 
 
 import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeUtil {
-    private static final SessionFactory sessionFactory = new Configuration()
-                        .configure()
-                        .addAnnotatedClass(Employee.class)
-                        .buildSessionFactory();
-    private static Session session;
-
     public static List<Employee> getAllEmployees() {
-        session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         return session.createQuery("select a FROM Employee a", Employee.class).getResultList();
+    }
+    public static void adar() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        String firstName = "Evren";
+        Query query1 = session.createQuery("from Employee where firstName=:first_name");
+        query1.setParameter("first_name", firstName);
+
+        Employee e = (Employee)query1.uniqueResult();
+
+        System.out.println(e.toString());
     }
     public static Object[][] getAllEmployeesToSimpleMatrix() {
         List<Employee> list = getAllEmployees();
