@@ -5,10 +5,8 @@ import org.ytu.hr.frontend.loginPage.LoginPage;
 
 public class App {
     public static void main(String[] args) {
-
         HibernateUtil.setup();
         LoginPage frame = new LoginPage();
-
         frame.setVisible(true);
     }
 }
