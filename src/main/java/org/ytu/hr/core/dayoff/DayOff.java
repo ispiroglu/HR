@@ -21,38 +21,33 @@ public class DayOff {
 
 
 
-
-
     }
     public static void updateEmployee(Integer EmployeeID, int salary){
 
-        SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+         //Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            //transaction = session.beginTransaction();
+            Employee employee = (Employee)session.get(Employee.class, EmployeeID);
+
+            employee.setSalary( salary );
+            session.update(employee);
+            //transaction.commit();
+        }catch (HibernateException e) {
+           // if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+       /* SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
         Session session=sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Employee employee = (Employee)session.get(Employee.class, EmployeeID);
         employee.setSalary( salary );
         session.update(employee);
 
-        transaction.commit();
-
-
-
-        /* Transaction transaction = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
-            transaction = session.beginTransaction();
-            Employee employee = (Employee)session.get(Employee.class, EmployeeID);
-
-            employee.setSalary( salary );
-            session.update(employee);
-            transaction.commit();
-        }catch (HibernateException e) {
-           // if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }*/
-
+        transaction.commit();*/
 
     }
 
