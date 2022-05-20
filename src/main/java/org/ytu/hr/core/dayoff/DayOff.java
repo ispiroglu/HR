@@ -12,21 +12,29 @@ import java.text.Annotation;
 public class DayOff {
     private static final int maxPaidLeave=30;
 
-    public static void addPaidLeave(Employee employee){
+    public static boolean addPaidLeave(Employee employee){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction().begin();
             //Employee employee = session.get(Employee.class, EmployeeID);
             if(employee.getPaidLeave()+1 <= maxPaidLeave ){
                 employee.setPaidLeave(employee.getPaidLeave()+1);
+                session.saveOrUpdate(employee);
+                session.getTransaction().commit();
+                return true;
             }
-            session.saveOrUpdate(employee);
-            session.getTransaction().commit();
+            else{
+                session.saveOrUpdate(employee);
+                session.getTransaction().commit();
+                return false;
+            }
         } catch (HibernateException e) {
             e.printStackTrace();
+            return false;
         }
+
     }
-    public static void addAbsentDay(Employee employee){
+    public static boolean addAbsentDay(Employee employee){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction().begin();
@@ -34,8 +42,12 @@ public class DayOff {
             employee.setAbsentDay(employee.getAbsentDay()+1);
             session.saveOrUpdate(employee);
             session.getTransaction().commit();
+            return true;
+
         } catch (HibernateException e) {
             e.printStackTrace();
+            return false;
         }
+
     }
 }

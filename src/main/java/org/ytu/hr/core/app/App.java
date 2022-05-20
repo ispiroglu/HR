@@ -12,10 +12,10 @@ public class App {
         HibernateUtil.setup();
         LoginPage frame = new LoginPage();
         frame.setVisible(true);
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
+       // session.getTransaction().begin();
         Employee testEmployee = session.get(Employee.class,1);
 
         addAbsentDay(testEmployee);
@@ -23,7 +23,7 @@ public class App {
 
 
         session.saveOrUpdate(testEmployee);
-        session.getTransaction().commit();
+       // session.getTransaction().commit();
 
 
     }
