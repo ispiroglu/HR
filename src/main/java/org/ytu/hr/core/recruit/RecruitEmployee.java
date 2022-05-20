@@ -34,7 +34,7 @@ public class RecruitEmployee{
 
     public static int RecordEmployeeToDB( String CitizenID, String PhoneNumber, String FirstName,
                                       String LastName, String eMail, String Gender, String BirthDate, String ApplicationDate,
-                                      String Salary, String Position){
+                                      String Salary, String Position,String Province,String District){
         Employee e;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
@@ -74,8 +74,8 @@ public class RecruitEmployee{
             e.setPaidLeave(0);
             e.setSalary(Integer.parseInt(Salary));
             e.setPosition(Position);
-
-
+            e.setProvince(Province);
+            e.setDistrict(District);
 
 
             session.saveOrUpdate(e);
