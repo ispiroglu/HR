@@ -1,4 +1,6 @@
 package  org.ytu.hr.frontend.addEmployeePage;
+import org.ytu.hr.core.util.validators.email.EmailValidator;
+
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
@@ -217,16 +219,12 @@ public class AddEmployePage extends javax.swing.JFrame {
 
     private void onaylaButonuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onaylaButonuActionPerformed
         // TODO add your handling code here:
-        
-              if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText()))) 
-{
-            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-              
 
-            
+
+        if (!new EmailValidator().validate(emailTextField.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
         if(evt.getSource() == this.onaylaButonu){
 //            this.isimTextField.getText(); // isim e girilen bilgiyi getirir
 //            this.soyisimTextField.getText(); // soyisme "" "" "" "" "" " 
@@ -238,7 +236,7 @@ public class AddEmployePage extends javax.swing.JFrame {
             
             }
         }
-    }//GEN-LAST:event_onaylaButonuActionPerformed
+    }
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
