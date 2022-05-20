@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EmployeeUtil {
     private static final Session session = HibernateUtil.getSessionFactory().openSession();
-    private static List<Employee> allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();;
+    private static List<Employee> allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();
     private static void updateEmployeeList() {
         allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();
     }
