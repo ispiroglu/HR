@@ -4,6 +4,7 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
+import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
@@ -19,7 +20,6 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-//        EmployeeUtil.adar();
     }
 
     /**
