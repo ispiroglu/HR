@@ -45,13 +45,12 @@ public class MainPage extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
              EmployeeUtil.getAllEmployeesToSimpleMatrix(),
-//                new Object[][]{},
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+            final boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
