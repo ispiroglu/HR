@@ -39,6 +39,7 @@ public class AddEmployePage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+
         isimTextField = new javax.swing.JTextField();
         soyisimTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
@@ -46,6 +47,7 @@ public class AddEmployePage extends javax.swing.JFrame {
         maasTextField = new javax.swing.JTextField();
         onaylaButonu = new javax.swing.JButton();
         iptalButonu = new javax.swing.JButton();
+
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -54,7 +56,7 @@ public class AddEmployePage extends javax.swing.JFrame {
         adresTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+       // setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(236, 254, 255));
 
         jPanel1.setBackground(new java.awt.Color(236, 254, 255));

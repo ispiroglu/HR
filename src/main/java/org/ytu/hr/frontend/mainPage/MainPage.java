@@ -3,15 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package org.ytu.hr.frontend.mainPage;
-<<<<<<< HEAD
-=======
 
->>>>>>> master
+import org.hibernate.resource.transaction.backend.jta.internal.JtaIsolationDelegate;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**int printNodesAtDistance(struct Bstnode*, int);
@@ -25,13 +26,12 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-<<<<<<< HEAD
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-=======
+
 //        EmployeeUtil.adar();
->>>>>>> master
+
     }
 
     /**
@@ -54,14 +54,24 @@ public class MainPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
+    jTable1.addMouseListener(new MouseAdapter() {
+        public void mouseClicked(MouseEvent e){
+            if(e.getClickCount() == 2){
+                JTable target = (JTable) e.getSource();
+                int row = target.getSelectedRow();
+                int column = target.getSelectedColumn();
+                System.out.println("Row -> "+ row + " column -> "+ column);
 
+                target.getValueAt(row,column).toString();
+            }
+        }
+    });
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-<<<<<<< HEAD
+
             EmployeeUtil.getAllEmployeesToSimpleMatrix(),
-=======
-             EmployeeUtil.getAllEmployeesToSimpleMatrix(),
+
 //                new Object[][]{},
->>>>>>> master
+
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
@@ -80,6 +90,8 @@ public class MainPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Çalışanlar");
 
+        calisanEkleButonu.setBorderPainted(false);
+        calisanEkleButonu.setOpaque(true);
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         calisanEkleButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -90,6 +102,8 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(true);
         jButton1.setBackground(new java.awt.Color(51, 67, 100));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));
@@ -161,6 +175,7 @@ public class MainPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calisanEkleButonuActionPerformed
             // TODO add your handling code here:
