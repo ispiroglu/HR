@@ -9,37 +9,32 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeUtil {
-    public static List<Employee> getAllEmployees() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return session.createQuery("select a FROM Employee a", Employee.class).getResultList();
+    private static final Session session = HibernateUtil.getSessionFactory().openSession();
+    private static List<Employee> allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();;
+    private static void updateEmployeeList() {
+        allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();
     }
-    public static void adar() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String firstName = "Evren";
-        Query query1 = session.createQuery("from Employee where firstName=:first_name");
-        query1.setParameter("first_name", firstName);
-
-        Employee e = (Employee)query1.uniqueResult();
-
-        System.out.println(e.toString());
+    public static List<Employee> getAllEmployees() {
+        if (allEmployees == null)
+            updateEmployeeList();
+        return allEmployees;
     }
     public static Object[][] getAllEmployeesToSimpleMatrix() {
-        List<Employee> list = getAllEmployees();
-        System.out.println("list + " + list);
-        Object[][] matrix = new Object[5][15];
-        for (int i = 0; i < 5; i++)
+        if (allEmployees == null)
+            updateEmployeeList();
+        Object[][] matrix = new Object[5][allEmployees.size()];
+        for (int i = 0; i < allEmployees.size(); i++)
             matrix[i] = new Object[15];
 
-        for(int i = 0; i < list.size(); i++) {
+        for(int i = 0; i < allEmployees.size(); i++) {
 
-            System.out.println(i + " + " + list.get(i));
-            matrix[i][0] = list.get(i).getFirstName();
-            matrix[i][1] = list.get(i).getLastName();
-            matrix[i][2] = list.get(i).getEmail();
-            matrix[i][3] = list.get(i).getGender();
-            matrix[i][4] = list.get(i).getSalary();
+            System.out.println(i + " + " + allEmployees.get(i));
+            matrix[i][0] = allEmployees.get(i).getFirstName();
+            matrix[i][1] = allEmployees.get(i).getLastName();
+            matrix[i][2] = allEmployees.get(i).getEmail();
+            matrix[i][3] = allEmployees.get(i).getGender();
+            matrix[i][4] = allEmployees.get(i).getSalary();
         }
-        System.out.println(Arrays.deepToString(matrix));
         return matrix;
     }
 }
