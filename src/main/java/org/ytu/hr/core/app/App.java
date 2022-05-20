@@ -8,7 +8,7 @@ public class App {
         HibernateUtil.setup();
         LoginPage frame = new LoginPage();
         frame.setVisible(true);
-        Thread.sleep(10000);
+        Thread.sleep(6000);
 
     }
 }
