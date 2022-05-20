@@ -8,7 +8,7 @@ import org.ytu.hr.core.util.db.HibernateUtil;
 
 import java.text.Annotation;
 
-
+// izin günü dolduysa addPaidLeave false döner.
 public class DayOff {
     private static final int maxPaidLeave=30;
 
@@ -21,11 +21,14 @@ public class DayOff {
                 employee.setPaidLeave(employee.getPaidLeave()+1);
                 session.saveOrUpdate(employee);
                 session.getTransaction().commit();
+                session.close();
+
                 return true;
             }
             else{
                 session.saveOrUpdate(employee);
                 session.getTransaction().commit();
+                session.close();
                 return false;
             }
         } catch (HibernateException e) {
@@ -42,6 +45,8 @@ public class DayOff {
             employee.setAbsentDay(employee.getAbsentDay()+1);
             session.saveOrUpdate(employee);
             session.getTransaction().commit();
+            session.close();
+
             return true;
 
         } catch (HibernateException e) {
