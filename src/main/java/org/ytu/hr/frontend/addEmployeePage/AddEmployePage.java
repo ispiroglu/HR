@@ -1,14 +1,18 @@
 package org.ytu.hr.frontend.addEmployeePage;
 
-import org.ytu.hr.frontend.mainPage.MainPage;
+import org.ytu.hr.core.recruit.RecruitEmployee;
+import org.ytu.hr.core.util.db.HibernateUtil;
+import org.ytu.hr.core.util.employee.EmployeeUtil;
+import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
+import org.ytu.hr.core.util.validators.email.EmailValidator;
+import org.ytu.hr.core.util.validators.name.NameValidator;
+import org.ytu.hr.core.util.validators.TCKN.TCKNValidator;
+import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
+import org.ytu.hr.core.util.validators.salary.SalaryValidator;
 
-import java.awt.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Pattern;
 import javax.swing.*;
+import java.sql.Date;
+import java.util.Enumeration;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -38,6 +42,7 @@ import javax.swing.*;
  * @author baselkelziye
  */
 public class AddEmployePage extends javax.swing.JFrame {
+    ButtonGroup group = new ButtonGroup();
 
     /**
      * Creates new form AddEmploye2Page
@@ -54,6 +59,7 @@ public class AddEmployePage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+
 
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
@@ -160,7 +166,7 @@ public class AddEmployePage extends javax.swing.JFrame {
         DigerRadioButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         DigerRadioButton.setText("Diğer");
 
-        ButtonGroup group = new ButtonGroup();
+
         group.add(ErkekRadioButton);
         group.add(KadinRadioButton);
         group.add(DigerRadioButton);
@@ -204,6 +210,7 @@ public class AddEmployePage extends javax.swing.JFrame {
                 dogumTarihiTextFieldActionPerformed(evt);
             }
         });
+        dogumTarihiTextField.setText("YYYY-AA-GG");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -379,26 +386,65 @@ public class AddEmployePage extends javax.swing.JFrame {
 
     private void onaylaButonuActionPerformed(java.awt.event.ActionEvent evt) {
 
-        if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText())))
-        {
-            JOptionPane.showMessageDialog(null, "Geçersiz Bir E-Posta Adresi", "Hata", JOptionPane.ERROR_MESSAGE);
+        boolean isCorrect = true;
+
+        String name = isimTextField.getText();
+        if (! new NameValidator().validate(name)) {
+            JOptionPane.showMessageDialog(null, "Geçersiz Bir İsim", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
         }
+        String surname = soyisimTextField.getText();
+        if (isCorrect && ! new NameValidator().validate(surname)) {
+            JOptionPane.showMessageDialog(null, "Geçersiz Bir Soyisim", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+
+        }
+        String citizenID = TCTextField.getText();
+        if (isCorrect &&! new TCKNValidator().validate(citizenID)) {
+            JOptionPane.showMessageDialog(null, "Geçersiz Bir TC Kimlik Numarası", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }
+        String email = emailTextField.getText();
+        if (isCorrect &&! new EmailValidator().validate(email)) {
+            JOptionPane.showMessageDialog(null, "Geçersiz Bir E-Posta Adresi", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+
+        }
+        String gender = getSelectedButtonText(group);
+        System.out.println("Gender = " + gender);
+        if (isCorrect && gender == null) {
+            JOptionPane.showMessageDialog(null, "Lütfen bir cinsiyet seçiniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }
+        String birthDateText = dogumTarihiTextField.getText();
+        if (isCorrect &&! new BornDateValidator().validate(birthDateText)) {
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir doğum tarihi giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }
+        String phoneNumber = telefonNoTextField.getText();
+       /* if (isCorrect) {
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }*/
+        String salary = maasTextField.getText();
+        if (isCorrect &&! new SalaryValidator().validate(salary)) {
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }
+        // District province position will turn into combo box;
 
 
-        else
+        String position = pozisyonTextField.getText(); // Validation req
+        String province = ilTextField.getText(); // Validation req
+        String district = ilceTextField.getText(); // Validation req
+
+        if (isCorrect)
         {
-
-
-
             if(evt.getSource() == this.onaylaButonu){
-//            this.isimTextField.getText(); // isim e girilen bilgiyi getirir
-//            this.soyisimTextField.getText(); // soyisme "" "" "" "" "" "
-//            this.emailTextField.getText();  // emaile girilen bilgi "" " " "
-//            this.cinsiyetTextField.getText();cinsiyete """"""""""""
-//            this.maasTextField.getText(); maas """"""""
-//            this.adresTextField.getText(); adrese """ " " " " " " ""
+                int res = RecruitEmployee.RecordEmployeeToDB(citizenID, phoneNumber, name, surname, email, gender, birthDateText,
+                        new Date(System.currentTimeMillis()).toString(), salary, position, province, district);
+                System.out.println("RES = " + res);
                 this.setVisible(false);
-
             }
         }
     }
@@ -444,6 +490,16 @@ public class AddEmployePage extends javax.swing.JFrame {
                 new AddEmployePage().setVisible(true);
             }
         });
+    }
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            JRadioButton button = (JRadioButton) buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
     }
 
     // Variables declaration - do not modify

@@ -9,6 +9,8 @@ import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 
+import javax.swing.*;
+
 /**
  *
  * @author baselkelziye
@@ -46,7 +48,6 @@ public class MainPage extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
              EmployeeUtil.getAllEmployeesToSimpleMatrix(),
-//                new Object[][]{},
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
@@ -147,11 +148,10 @@ public class MainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calisanEkleButonuActionPerformed
-            // TODO add your handling code here:
+    private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {
         AddEmployePage addEmployee = new AddEmployePage();
         addEmployee.setVisible(true);
-    }//GEN-LAST:event_calisanEkleButonuActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -184,6 +184,23 @@ public class MainPage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainPage().setVisible(true);
+            }
+        });
+    }
+
+    public void updatejTable1() {
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                EmployeeUtil.getAllEmployeesToSimpleMatrix(),
+                new String [] {
+                        "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
     }
