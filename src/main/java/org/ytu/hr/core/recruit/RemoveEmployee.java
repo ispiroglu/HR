@@ -20,6 +20,7 @@ public class RemoveEmployee {
             if(e.getEmployeeID() == EmployeeID){
                 session.remove(e);
                 session.getTransaction().commit();
+                session.close();
                 return true;
             }
         }
