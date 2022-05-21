@@ -1,19 +1,15 @@
 package org.ytu.hr.frontend.addEmployeePage;
 
-import org.ytu.hr.core.recruit.RecruitEmployee;
-import org.ytu.hr.core.util.db.HibernateUtil;
-import org.ytu.hr.core.util.employee.EmployeeUtil;
-import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
-import org.ytu.hr.core.util.validators.email.EmailValidator;
-import org.ytu.hr.core.util.validators.name.NameValidator;
-import org.ytu.hr.core.util.validators.TCKN.TCKNValidator;
-import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
-import org.ytu.hr.core.util.validators.salary.SalaryValidator;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Pattern;
 import javax.swing.*;
-import java.sql.Date;
-import java.util.Enumeration;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,7 +39,6 @@ import java.util.Enumeration;
  * @author baselkelziye
  */
 public class AddEmployePage extends javax.swing.JFrame {
-    ButtonGroup group = new ButtonGroup();
 
     /**
      * Creates new form AddEmploye2Page
@@ -60,7 +55,6 @@ public class AddEmployePage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
 
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
@@ -82,8 +76,6 @@ public class AddEmployePage extends javax.swing.JFrame {
         DigerRadioButton = new javax.swing.JRadioButton();
         ilLabel = new javax.swing.JLabel();
         ilceLabel = new javax.swing.JLabel();
-        ilTextField = new javax.swing.JTextField();
-        ilceTextField = new javax.swing.JTextField();
         TCLabel = new javax.swing.JLabel();
         TCTextField = new javax.swing.JTextField();
         telefonNoLabel = new javax.swing.JLabel();
@@ -94,6 +86,8 @@ public class AddEmployePage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dogumTarihiTextField = new javax.swing.JFormattedTextField();
+        ilComboBox = new javax.swing.JComboBox<>();
+        ilceComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         jPasswordField1.setText("jPasswordField1");
@@ -167,11 +161,6 @@ public class AddEmployePage extends javax.swing.JFrame {
         DigerRadioButton.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         DigerRadioButton.setText("Diğer");
 
-
-        group.add(ErkekRadioButton);
-        group.add(KadinRadioButton);
-        group.add(DigerRadioButton);
-
         ilLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         ilLabel.setForeground(new java.awt.Color(66, 76, 97));
         ilLabel.setText("il");
@@ -179,12 +168,6 @@ public class AddEmployePage extends javax.swing.JFrame {
         ilceLabel.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         ilceLabel.setForeground(new java.awt.Color(66, 76, 97));
         ilceLabel.setText("ilçe");
-
-        ilTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ilTextFieldActionPerformed(evt);
-            }
-        });
 
         TCLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         TCLabel.setForeground(new java.awt.Color(66, 76, 97));
@@ -211,22 +194,37 @@ public class AddEmployePage extends javax.swing.JFrame {
                 dogumTarihiTextFieldActionPerformed(evt);
             }
         });
-        dogumTarihiTextField.setText("YYYY-AA-GG");
+
+        ilComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkâri", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kilis", "Kırıkkale", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Şanlıurfa", "Siirt", "Sinop", "Sivas", "Şırnak", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak" }));
+        ilComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ilComboBoxActionPerformed(evt);
+            }
+        });
+
+        ilceComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ilceComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ilLabel)
-                                        .addComponent(ilTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(64, 64, 64)
+                                                .addComponent(ilLabel))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(80, 80, 80)
+                                                .addComponent(ilComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(ilceLabel)
-                                        .addComponent(ilceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20))
+                                        .addComponent(ilceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(59, 59, 59))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,8 +309,8 @@ public class AddEmployePage extends javax.swing.JFrame {
                                         .addComponent(ilceLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(ilTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ilceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(ilComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ilceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(telefonNoLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -337,22 +335,18 @@ public class AddEmployePage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(181, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(165, 165, 165))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(276, 276, 276))))
+                                .addGap(341, 341, 341)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(181, 181, 181)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))
+                                .addGap(6, 6, 6)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,9 +363,1175 @@ public class AddEmployePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void ilTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+
+    private void ilComboBoxActionPerformed(ActionEvent evt) {
+        if(ilComboBox.getSelectedItem().equals("Adana")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Aladağ");
+            ilceComboBox.addItem("Ceyhan");
+            ilceComboBox.addItem("Çukurova");
+            ilceComboBox.addItem("Feke");
+            ilceComboBox.addItem("İmamoğlu");
+            ilceComboBox.addItem("Karaisalı");
+            ilceComboBox.addItem("Karataş");
+            ilceComboBox.addItem("Kozan");
+            ilceComboBox.addItem("Pozantı");
+            ilceComboBox.addItem("Saimbeyli");
+            ilceComboBox.addItem("Sarıçam");
+            ilceComboBox.addItem("Seyhan");
+            ilceComboBox.addItem("Tufanbeyli");
+            ilceComboBox.addItem("Yumurtalık");
+            ilceComboBox.addItem("Yüreğir");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Adıyaman")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Adıyaman (İl merkezi)");
+            ilceComboBox.addItem("Besni");
+            ilceComboBox.addItem("Çelikhan");
+            ilceComboBox.addItem("Gerger");
+            ilceComboBox.addItem("Gölbaşı");
+            ilceComboBox.addItem("Kâhta");
+            ilceComboBox.addItem("Samsat");
+            ilceComboBox.addItem("Sincik");
+            ilceComboBox.addItem("Tut");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Afyonkarahisar")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Afyonkarahisar (İl merkezi)");
+            ilceComboBox.addItem("Başmakçı");
+            ilceComboBox.addItem("Bayat");
+            ilceComboBox.addItem("Bolvadin");
+            ilceComboBox.addItem("Çay");
+            ilceComboBox.addItem("Çobanlar");
+            ilceComboBox.addItem("Dazkırı");
+            ilceComboBox.addItem("Dinar");
+            ilceComboBox.addItem("Emirdağ");
+            ilceComboBox.addItem("Evciler");
+            ilceComboBox.addItem("Hocalar");
+            ilceComboBox.addItem("İhsaniye");
+            ilceComboBox.addItem("İscehisar");
+            ilceComboBox.addItem("Kızılören");
+            ilceComboBox.addItem("Sandıklı");
+            ilceComboBox.addItem("Sinanpaşa");
+            ilceComboBox.addItem("Sultandağı");
+            ilceComboBox.addItem("Şuhut");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Ağrı")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Ağrı (İl merkezi)");
+            ilceComboBox.addItem("Diyadin");
+            ilceComboBox.addItem("Doğubayazıt");
+            ilceComboBox.addItem("Eleşkirt");
+            ilceComboBox.addItem("Hamur");
+            ilceComboBox.addItem("Patnos");
+            ilceComboBox.addItem("Taşlıçay");
+            ilceComboBox.addItem("Tutak");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Aksaray")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Aksaray (İl merkezi)");
+            ilceComboBox.addItem("Ağaçören");
+            ilceComboBox.addItem("Eskil");
+            ilceComboBox.addItem("Gülağaç");
+            ilceComboBox.addItem("Güzelyurt");
+            ilceComboBox.addItem("Ortaköy");
+            ilceComboBox.addItem("Sarıyahşi");
+            ilceComboBox.addItem("Sultanhanı");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Amasya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Amasya (İl merkezi)");
+            ilceComboBox.addItem("Göynücek");
+            ilceComboBox.addItem("Gümüşhacıköy");
+            ilceComboBox.addItem("Hamamözü");
+            ilceComboBox.addItem("Merzifon");
+            ilceComboBox.addItem("Suluova");
+            ilceComboBox.addItem("Taşova");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Ankara")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Akyurt");
+            ilceComboBox.addItem("Altındağ");
+            ilceComboBox.addItem("Ayaş");
+            ilceComboBox.addItem("Balâ");
+            ilceComboBox.addItem("Beypazarı");
+            ilceComboBox.addItem("Çamlıdere");
+            ilceComboBox.addItem("Çankaya");
+            ilceComboBox.addItem("Çubuk");
+            ilceComboBox.addItem("Elmadağ");
+            ilceComboBox.addItem("Etimesgut");
+            ilceComboBox.addItem("Evren");
+            ilceComboBox.addItem("Gölbaşı");
+            ilceComboBox.addItem("Güdül");
+            ilceComboBox.addItem("Haymana");
+            ilceComboBox.addItem("Kalecik");
+            ilceComboBox.addItem("Kahramankazan");
+            ilceComboBox.addItem("Keçiören");
+            ilceComboBox.addItem("Kızılcahamam");
+            ilceComboBox.addItem("Mamak");
+            ilceComboBox.addItem("Nallıhan");
+            ilceComboBox.addItem("Polatlı");
+            ilceComboBox.addItem("Pursaklar");
+            ilceComboBox.addItem("Sincan");
+            ilceComboBox.addItem("Şereflikoçhisar");
+            ilceComboBox.addItem("Yenimahalle");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Antalya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Akseski");
+            ilceComboBox.addItem("Aksu");
+            ilceComboBox.addItem("Alanya");
+            ilceComboBox.addItem("Demre");
+            ilceComboBox.addItem("Döşemealtı");
+            ilceComboBox.addItem("Elmalı");
+            ilceComboBox.addItem("Finike");
+            ilceComboBox.addItem("Gazipaşa");
+            ilceComboBox.addItem("Gündoğmuş");
+            ilceComboBox.addItem("İbradı");
+            ilceComboBox.addItem("Kaş");
+            ilceComboBox.addItem("Gölbaşı");
+            ilceComboBox.addItem("Kemer");
+            ilceComboBox.addItem("Kepez");
+            ilceComboBox.addItem("Konyaaltı");
+            ilceComboBox.addItem("Korkuteli");
+            ilceComboBox.addItem("Kumluca");
+            ilceComboBox.addItem("Manavgat");
+            ilceComboBox.addItem("Muratpaşa");
+            ilceComboBox.addItem("Serik");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Ardahan")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Ardahan (İl merkezi)");
+            ilceComboBox.addItem("Çıldr");
+            ilceComboBox.addItem("Damal");
+            ilceComboBox.addItem("Göle");
+            ilceComboBox.addItem("Hanak");
+            ilceComboBox.addItem("Posof");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Artvin")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Artvin (İl merkezi)");
+            ilceComboBox.addItem("Ardanuç");
+            ilceComboBox.addItem("Arhavi");
+            ilceComboBox.addItem("Borçka");
+            ilceComboBox.addItem("Hopa");
+            ilceComboBox.addItem("Kemalpaşa");
+            ilceComboBox.addItem("Murgul");
+            ilceComboBox.addItem("Şavşat");
+            ilceComboBox.addItem("Yusufeli");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Aydın")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bozdoğan");
+            ilceComboBox.addItem("Buharkent");
+            ilceComboBox.addItem("Çine");
+            ilceComboBox.addItem("Didim");
+            ilceComboBox.addItem("Efeler");
+            ilceComboBox.addItem("Germencik");
+            ilceComboBox.addItem("İncirliova");
+            ilceComboBox.addItem("Karacasu");
+            ilceComboBox.addItem("Karpuzlu");
+            ilceComboBox.addItem("Koçarlı");
+            ilceComboBox.addItem("Köşk");
+            ilceComboBox.addItem("Kuşadası");
+            ilceComboBox.addItem("Kuyucak");
+            ilceComboBox.addItem("Nazilli");
+            ilceComboBox.addItem("Söke");
+            ilceComboBox.addItem("Sultanhisar");
+            ilceComboBox.addItem("Yenipazar");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Balıkesir")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Altıeylül");
+            ilceComboBox.addItem("Ayvalık");
+            ilceComboBox.addItem("Balya");
+            ilceComboBox.addItem("Bandırma");
+            ilceComboBox.addItem("Bigadiç");
+            ilceComboBox.addItem("Burhaniye");
+            ilceComboBox.addItem("Dursunbey");
+            ilceComboBox.addItem("Erdemit");
+            ilceComboBox.addItem("Erdek");
+            ilceComboBox.addItem("Gömeç");
+            ilceComboBox.addItem("Gönen");
+            ilceComboBox.addItem("Havran");
+            ilceComboBox.addItem("İvrindi");
+            ilceComboBox.addItem("Karesi");
+            ilceComboBox.addItem("Kepsut");
+            ilceComboBox.addItem("Manyas");
+            ilceComboBox.addItem("Marmara");
+            ilceComboBox.addItem("Savaştepe");
+            ilceComboBox.addItem("Sındırgı");
+            ilceComboBox.addItem("Susurluk");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Bartın")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bartın (İl merkezi)");
+            ilceComboBox.addItem("Amasra");
+            ilceComboBox.addItem("Kurucaşile");
+            ilceComboBox.addItem("Ulus");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Batman")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Batman (İl merkezi)");
+            ilceComboBox.addItem("Beşiri");
+            ilceComboBox.addItem("Gerçüş");
+            ilceComboBox.addItem("Hasankeyf");
+            ilceComboBox.addItem("Kozluk");
+            ilceComboBox.addItem("Sason");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Bayburt")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bayburt (İl merkezi)");
+            ilceComboBox.addItem("Aydıntepe");
+            ilceComboBox.addItem("Demirözü");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Bilecik")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bilecik (İl merkezi)");
+            ilceComboBox.addItem("Bozüyük");
+            ilceComboBox.addItem("Gölpazar");
+            ilceComboBox.addItem("İnhisr");
+            ilceComboBox.addItem("Osmaneli");
+            ilceComboBox.addItem("Pazaryeri");
+            ilceComboBox.addItem("Söğüt");
+            ilceComboBox.addItem("Yenipazar");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Bingöl")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bingöl (İl merkezi)");
+            ilceComboBox.addItem("Adaklı");
+            ilceComboBox.addItem("Genç");
+            ilceComboBox.addItem("Karlıova");
+            ilceComboBox.addItem("Kiğı");
+            ilceComboBox.addItem("Solhan");
+            ilceComboBox.addItem("Yayladere");
+            ilceComboBox.addItem("Yedisı");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Bitlis")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bitlis (İl merkezi)");
+            ilceComboBox.addItem("Adilcevaz");
+            ilceComboBox.addItem("Ahlat");
+            ilceComboBox.addItem("Güroymak");
+            ilceComboBox.addItem("Hizan");
+            ilceComboBox.addItem("Mutki");
+            ilceComboBox.addItem("Tatvan");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Bolu")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bolu (İl merkezi)");
+            ilceComboBox.addItem("Dörtdivan");
+            ilceComboBox.addItem("Gerede");
+            ilceComboBox.addItem("Göynük");
+            ilceComboBox.addItem("Kıbrıscık");
+            ilceComboBox.addItem("Mengen");
+            ilceComboBox.addItem("Mudurnu");
+            ilceComboBox.addItem("Seben");
+            ilceComboBox.addItem("Yeniçağa");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Burdur")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Burdur (İl merkezi)");
+            ilceComboBox.addItem("Ağlasun");
+            ilceComboBox.addItem("Altınyayla");
+            ilceComboBox.addItem("Bucak");
+            ilceComboBox.addItem("Çavdır");
+            ilceComboBox.addItem("Çeltikçi");
+            ilceComboBox.addItem("Gölhisar");
+            ilceComboBox.addItem("Karamanlı");
+            ilceComboBox.addItem("Kemer");
+            ilceComboBox.addItem("Tefenni");
+            ilceComboBox.addItem("Yeşilova");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Bursa")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Büyükırhan");
+            ilceComboBox.addItem("Gemlik");
+            ilceComboBox.addItem("Gürsu");
+            ilceComboBox.addItem("Harmancık");
+            ilceComboBox.addItem("İnegöl");
+            ilceComboBox.addItem("İznik");
+            ilceComboBox.addItem("Karacabey");
+            ilceComboBox.addItem("Keles");
+            ilceComboBox.addItem("Kestel");
+            ilceComboBox.addItem("Mudanya");
+            ilceComboBox.addItem("Mustafakemalpaşa");
+            ilceComboBox.addItem("Nilüfer");
+            ilceComboBox.addItem("Orhaneli");
+            ilceComboBox.addItem("Orhangazi");
+            ilceComboBox.addItem("Osmangazi");
+            ilceComboBox.addItem("Yenişehir");
+            ilceComboBox.addItem("Yıldırım");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Çanakkale")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Çanakkale (İl merkezi)");
+            ilceComboBox.addItem("Ayvacık");
+            ilceComboBox.addItem("Bayramiç");
+            ilceComboBox.addItem("Biga");
+            ilceComboBox.addItem("Bozcaada");
+            ilceComboBox.addItem("Çan");
+            ilceComboBox.addItem("Eceabat");
+            ilceComboBox.addItem("Ezine");
+            ilceComboBox.addItem("Gelibolu");
+            ilceComboBox.addItem("Gökçeada");
+            ilceComboBox.addItem("Lapseki");
+            ilceComboBox.addItem("Yenice");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Çankırı")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Çankırı (İl merkezi)");
+            ilceComboBox.addItem("Atkaracalar");
+            ilceComboBox.addItem("Bayramören");
+            ilceComboBox.addItem("Çerkeş");
+            ilceComboBox.addItem("Eldivan");
+            ilceComboBox.addItem("Ilgaz");
+            ilceComboBox.addItem("Kızılırmak");
+            ilceComboBox.addItem("Korgun");
+            ilceComboBox.addItem("Kurşunlu");
+            ilceComboBox.addItem("Orta");
+            ilceComboBox.addItem("Şabanözü");
+            ilceComboBox.addItem("Yapraklı");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Çorum")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Çorum (İl merkezi)");
+            ilceComboBox.addItem("Alaca");
+            ilceComboBox.addItem("Bayat");
+            ilceComboBox.addItem("Boğazkale");
+            ilceComboBox.addItem("Dodurga");
+            ilceComboBox.addItem("İskilip");
+            ilceComboBox.addItem("Kargı");
+            ilceComboBox.addItem("Laçin");
+            ilceComboBox.addItem("Mecitözü");
+            ilceComboBox.addItem("Oğuzlar");
+            ilceComboBox.addItem("Ortaköy");
+            ilceComboBox.addItem("Osmancık");
+            ilceComboBox.addItem("Sungurlu");
+            ilceComboBox.addItem("Uğurludağ");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Denizli")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Acıpayam");
+            ilceComboBox.addItem("Babadağ");
+            ilceComboBox.addItem("Baklan");
+            ilceComboBox.addItem("Bekilli");
+            ilceComboBox.addItem("Beyağaç");
+            ilceComboBox.addItem("Bozkurt");
+            ilceComboBox.addItem("Buldan");
+            ilceComboBox.addItem("Çal");
+            ilceComboBox.addItem("Çameli");
+            ilceComboBox.addItem("Çardak");
+            ilceComboBox.addItem("Çivril");
+            ilceComboBox.addItem("Güney");
+            ilceComboBox.addItem("Honaz");
+            ilceComboBox.addItem("Kale");
+            ilceComboBox.addItem("Merkezefendi");
+            ilceComboBox.addItem("Pamukkale");
+            ilceComboBox.addItem("Sarayköy");
+            ilceComboBox.addItem("Serinhisar");
+            ilceComboBox.addItem("Tavas");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Diyarbakır")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Bağlar");
+            ilceComboBox.addItem("Bismil");
+            ilceComboBox.addItem("Çermik");
+            ilceComboBox.addItem("Çınar");
+            ilceComboBox.addItem("Çüngüş");
+            ilceComboBox.addItem("Dicle");
+            ilceComboBox.addItem("Eğil");
+            ilceComboBox.addItem("Ergani");
+            ilceComboBox.addItem("Hani");
+            ilceComboBox.addItem("Hazro");
+            ilceComboBox.addItem("Kayapınar");
+            ilceComboBox.addItem("Kocaköy");
+            ilceComboBox.addItem("Kulp");
+            ilceComboBox.addItem("Lice");
+            ilceComboBox.addItem("Silvan");
+            ilceComboBox.addItem("Sur");
+            ilceComboBox.addItem("Yenişehir");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Düzce")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Düzce (İl merkezi)");
+            ilceComboBox.addItem("Akçakoca");
+            ilceComboBox.addItem("Cumayeri");
+            ilceComboBox.addItem("Çilimli");
+            ilceComboBox.addItem("Gölyaka");
+            ilceComboBox.addItem("Gümüşova");
+            ilceComboBox.addItem("Kaynaşlı");
+            ilceComboBox.addItem("Yığılca");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Edirne")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Edirne (İl merkezi)");
+            ilceComboBox.addItem("Enez");
+            ilceComboBox.addItem("Havsa");
+            ilceComboBox.addItem("İspala");
+            ilceComboBox.addItem("Keşan");
+            ilceComboBox.addItem("Lalapaşa");
+            ilceComboBox.addItem("Meriç");
+            ilceComboBox.addItem("Süloğlu");
+            ilceComboBox.addItem("Uzunköprü");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Elazığ")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Elazığ (İl merkezi)");
+            ilceComboBox.addItem("Ağın");
+            ilceComboBox.addItem("Alacakay");
+            ilceComboBox.addItem("Arıcak");
+            ilceComboBox.addItem("Baskil");
+            ilceComboBox.addItem("Karakoçan");
+            ilceComboBox.addItem("Keban");
+            ilceComboBox.addItem("Kovancılar");
+            ilceComboBox.addItem("Maden");
+            ilceComboBox.addItem("Palu");
+            ilceComboBox.addItem("Sivrice");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Erzincan")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Erzincan (İl merkezi)");
+            ilceComboBox.addItem("Çayırlı");
+            ilceComboBox.addItem("İliç");
+            ilceComboBox.addItem("Kemah");
+            ilceComboBox.addItem("Kemaliye");
+            ilceComboBox.addItem("Otlukbeli");
+            ilceComboBox.addItem("Refahiye");
+            ilceComboBox.addItem("Tercan");
+            ilceComboBox.addItem("Üzümlü");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Erzurum")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Aşkale");
+            ilceComboBox.addItem("Aziziye");
+            ilceComboBox.addItem("Çat");
+            ilceComboBox.addItem("Hınıs");
+            ilceComboBox.addItem("Horasan");
+            ilceComboBox.addItem("İspir");
+            ilceComboBox.addItem("Karaçoban");
+            ilceComboBox.addItem("Karayazı");
+            ilceComboBox.addItem("Köprüköy");
+
+            ilceComboBox.addItem("Narman");
+            ilceComboBox.addItem("Otlu");
+            ilceComboBox.addItem("Olur");
+            ilceComboBox.addItem("Palandöken");
+            ilceComboBox.addItem("Pasinler");
+            ilceComboBox.addItem("Pazaryolu");
+            ilceComboBox.addItem("Şenkaya");
+            ilceComboBox.addItem("Tekman");
+            ilceComboBox.addItem("Tortum");
+
+            ilceComboBox.addItem("Uzundere");
+            ilceComboBox.addItem("Yakutiye");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Eskişehir")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Alpu");
+            ilceComboBox.addItem("Beylikova");
+            ilceComboBox.addItem("Çifteler");
+            ilceComboBox.addItem("Günuüzü");
+            ilceComboBox.addItem("Han");
+            ilceComboBox.addItem("İnönü");
+            ilceComboBox.addItem("Mahmudiye");
+            ilceComboBox.addItem("Mihalgazi");
+            ilceComboBox.addItem("Mihalıççık");
+            ilceComboBox.addItem("Odunpazarı");
+            ilceComboBox.addItem("Sarıcakaya");
+            ilceComboBox.addItem("Seyitgazi");
+            ilceComboBox.addItem("Sivrihisar");
+            ilceComboBox.addItem("Tepebaşı");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Gaziantep")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Araban");
+            ilceComboBox.addItem("İslahiye");
+            ilceComboBox.addItem("Karkamış");
+            ilceComboBox.addItem("Nizip");
+            ilceComboBox.addItem("Nurdağı");
+            ilceComboBox.addItem("Oğuzeli");
+            ilceComboBox.addItem("Şahinbey");
+            ilceComboBox.addItem("Şehitkamil");
+            ilceComboBox.addItem("Yavuzeli");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Giresun")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Giresun (İl merkezi)");
+            ilceComboBox.addItem("Alacura");
+            ilceComboBox.addItem("Bulancak");
+            ilceComboBox.addItem("Çamoluk");
+            ilceComboBox.addItem("Çanakçı");
+            ilceComboBox.addItem("Dereli");
+            ilceComboBox.addItem("Doğankent");
+            ilceComboBox.addItem("Espiye");
+            ilceComboBox.addItem("Eynesil");
+            ilceComboBox.addItem("Görele");
+            ilceComboBox.addItem("Güce");
+            ilceComboBox.addItem("Keşap");
+            ilceComboBox.addItem("Piraziz");
+            ilceComboBox.addItem("Şebinkarahisar");
+            ilceComboBox.addItem("Tirebolu");
+            ilceComboBox.addItem("Yağlıdere");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Gümüşhane")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Gümüşhane (İl merkezi)");
+            ilceComboBox.addItem("Kelkit");
+            ilceComboBox.addItem("Köse");
+            ilceComboBox.addItem("Kürtün");
+            ilceComboBox.addItem("Şiran");
+            ilceComboBox.addItem("Torul");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Hakkâri")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Hakkâri (İl merkezi)");
+            ilceComboBox.addItem("Çukurca");
+            ilceComboBox.addItem("Derecik");
+            ilceComboBox.addItem("Şemdinli");
+            ilceComboBox.addItem("Yüksekova");
+        }
+
+
+        else if(ilComboBox.getSelectedItem().equals("Hatay")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Altınözü");
+            ilceComboBox.addItem("Antakya");
+            ilceComboBox.addItem("Arsuz");
+            ilceComboBox.addItem("Belen");
+            ilceComboBox.addItem("Defne");
+            ilceComboBox.addItem("Dörtyol");
+            ilceComboBox.addItem("Erzin");
+            ilceComboBox.addItem("Hassa");
+            ilceComboBox.addItem("İskenderun");
+
+            ilceComboBox.addItem("Kırıkhan");
+            ilceComboBox.addItem("Kumlu");
+            ilceComboBox.addItem("Payas");
+            ilceComboBox.addItem("Reyhanlı");
+            ilceComboBox.addItem("Samandağ");
+            ilceComboBox.addItem("Yalyadağı");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Iğdır")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Iğdır (İl merkezi)");
+            ilceComboBox.addItem("Aralık");
+            ilceComboBox.addItem("Karakoyunlu");
+            ilceComboBox.addItem("Tuzluca");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Isparta")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Isparta (İl merkezi)");
+            ilceComboBox.addItem("Aksu");
+            ilceComboBox.addItem("Atabey");
+            ilceComboBox.addItem("Eğridir");
+            ilceComboBox.addItem("Gelendost");
+            ilceComboBox.addItem("Gönen");
+
+            ilceComboBox.addItem("Keçiborlu");
+            ilceComboBox.addItem("Senirkent");
+            ilceComboBox.addItem("Sütçüler");
+            ilceComboBox.addItem("Şarkikaraağaç");
+            ilceComboBox.addItem("Uluborlu");
+
+            ilceComboBox.addItem("Yalvaç");
+            ilceComboBox.addItem("Yenişarbademli");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("İstanbul")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Adalr");
+            ilceComboBox.addItem("Arnavutköy");
+            ilceComboBox.addItem("Ataşehir");
+            ilceComboBox.addItem("Avcılar");
+            ilceComboBox.addItem("Bağcılar");
+            ilceComboBox.addItem("Bahçelievler");
+
+            ilceComboBox.addItem("Bakırköy");
+            ilceComboBox.addItem("Başakşehir");
+            ilceComboBox.addItem("Bayrampaşa");
+            ilceComboBox.addItem("Şarkikaraağaç");
+            ilceComboBox.addItem("Beşiktaş");
+            ilceComboBox.addItem("Beykoz");
+            ilceComboBox.addItem("Beylikdüzü");
+
+            ilceComboBox.addItem("Beyoğlu");
+            ilceComboBox.addItem("Büyükçekmece");
+            ilceComboBox.addItem("Çatalca");
+            ilceComboBox.addItem("Çekmeköy");
+            ilceComboBox.addItem("Esenler");
+            ilceComboBox.addItem("Esenyurt");
+            ilceComboBox.addItem("Eyüpsultan");
+            ilceComboBox.addItem("Fatih");
+            ilceComboBox.addItem("Gaziosmanpaşa");
+            ilceComboBox.addItem("Güngören");
+            ilceComboBox.addItem("Kadıköy");
+            ilceComboBox.addItem("Kâğıthane");
+            ilceComboBox.addItem("Kartal");
+
+
+            ilceComboBox.addItem("Küçükçekmece");
+            ilceComboBox.addItem("Maltepe");
+            ilceComboBox.addItem("Pendik");
+            ilceComboBox.addItem("Sancaktepe");
+            ilceComboBox.addItem("Sarıyer");
+            ilceComboBox.addItem("Silivri");
+            ilceComboBox.addItem("Sultanbeyli");
+            ilceComboBox.addItem("Sultangazi");
+            ilceComboBox.addItem("Şile");
+            ilceComboBox.addItem("Şişli");
+            ilceComboBox.addItem("Tuzla");
+            ilceComboBox.addItem("Ümraniye");
+            ilceComboBox.addItem("Üsküdar");
+            ilceComboBox.addItem("Zeytinburnu");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("İzmir")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Aliağa");
+            ilceComboBox.addItem("Balçova");
+            ilceComboBox.addItem("Bayındır");
+            ilceComboBox.addItem("Bayraklı");
+            ilceComboBox.addItem("Bergama");
+            ilceComboBox.addItem("Beydağ");
+
+            ilceComboBox.addItem("Bornova");
+            ilceComboBox.addItem("Buca");
+            ilceComboBox.addItem("Çeşme");
+            ilceComboBox.addItem("Çiğli");
+            ilceComboBox.addItem("Dikili");
+            ilceComboBox.addItem("Foça");
+            ilceComboBox.addItem("Gaziemir");
+
+            ilceComboBox.addItem("Güzelbahçe");
+            ilceComboBox.addItem("Karabağlar");
+            ilceComboBox.addItem("Karaburun");
+            ilceComboBox.addItem("Karşıyaka");
+            ilceComboBox.addItem("Kemalpaşa");
+            ilceComboBox.addItem("Kınık");
+            ilceComboBox.addItem("Kiraz");
+            ilceComboBox.addItem("Konak");
+            ilceComboBox.addItem("Menderes");
+            ilceComboBox.addItem("Menemen");
+            ilceComboBox.addItem("Narlıdere");
+            ilceComboBox.addItem("Ödemiş");
+            ilceComboBox.addItem("Seferihisar");
+
+
+            ilceComboBox.addItem("Selçuk");
+            ilceComboBox.addItem("Tire");
+            ilceComboBox.addItem("Torbalı");
+            ilceComboBox.addItem("Urla");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kahramanmaraş")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Afşin");
+            ilceComboBox.addItem("Andırın");
+            ilceComboBox.addItem("Çağlayancerit");
+            ilceComboBox.addItem("Dulkadiroğlu");
+            ilceComboBox.addItem("Ekinözü");
+            ilceComboBox.addItem("Elbistan");
+            ilceComboBox.addItem("Göksun");
+            ilceComboBox.addItem("Nurhak");
+            ilceComboBox.addItem("Onikişubat");
+            ilceComboBox.addItem("Pazarcık");
+            ilceComboBox.addItem("Türkoğlu");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Karabük")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Karabük (İl merkezi)");
+            ilceComboBox.addItem("Elfani");
+            ilceComboBox.addItem("Eskipazar");
+            ilceComboBox.addItem("Ovacık");
+            ilceComboBox.addItem("Safranbolu");
+            ilceComboBox.addItem("Yenice");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Karaman")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Karaman (İl merkezi)");
+            ilceComboBox.addItem("Ayrancı");
+            ilceComboBox.addItem("Başyayla");
+            ilceComboBox.addItem("Ermenek");
+            ilceComboBox.addItem("Kazımkarabekir");
+            ilceComboBox.addItem("Sarıveliler");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Kars")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kars (İl merkezi)");
+            ilceComboBox.addItem("Akyaka");
+            ilceComboBox.addItem("Arpaçay");
+            ilceComboBox.addItem("Digor");
+            ilceComboBox.addItem("Kağızman");
+            ilceComboBox.addItem("Sarıkamış");
+            ilceComboBox.addItem("Selim");
+            ilceComboBox.addItem("Susuz");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Kastamonu")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kastamonu (İl merkezi)");
+            ilceComboBox.addItem("Abana");
+            ilceComboBox.addItem("Ağlı");
+            ilceComboBox.addItem("Araç");
+            ilceComboBox.addItem("Azdavay");
+            ilceComboBox.addItem("Bozkurt");
+            ilceComboBox.addItem("Cide");
+            ilceComboBox.addItem("Çatalzeytin");
+
+            ilceComboBox.addItem("Daday");
+            ilceComboBox.addItem("Devrekani");
+            ilceComboBox.addItem("Doğanyurt");
+            ilceComboBox.addItem("Hanönü");
+            ilceComboBox.addItem("İhsangazi");
+            ilceComboBox.addItem("İnebolu");
+            ilceComboBox.addItem("Küre");
+            ilceComboBox.addItem("Pınarbaşı");
+
+            ilceComboBox.addItem("Seydiler");
+            ilceComboBox.addItem("Şenpazar");
+            ilceComboBox.addItem("Taşköprü");
+            ilceComboBox.addItem("Tosya");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kayseri")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Akkışla");
+            ilceComboBox.addItem("Bünyan");
+            ilceComboBox.addItem("Develi");
+            ilceComboBox.addItem("Felahiye");
+            ilceComboBox.addItem("Hacılar");
+            ilceComboBox.addItem("İncesu");
+            ilceComboBox.addItem("Kocasinan");
+            ilceComboBox.addItem("Melikgazi");
+
+            ilceComboBox.addItem("Özvatan");
+            ilceComboBox.addItem("Pınarbaşı");
+            ilceComboBox.addItem("Sarıoğlan");
+            ilceComboBox.addItem("Sarız");
+            ilceComboBox.addItem("Talas");
+            ilceComboBox.addItem("Tomarza");
+            ilceComboBox.addItem("Yahyalı");
+            ilceComboBox.addItem("Yeşilhisar");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kırkkale")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kırkkale (İl merkezi)");
+            ilceComboBox.addItem("Bahşılı");
+            ilceComboBox.addItem("Çelebi");
+            ilceComboBox.addItem("Delice");
+            ilceComboBox.addItem("Karakeçili");
+            ilceComboBox.addItem("Keskin");
+            ilceComboBox.addItem("Sulakyurt");
+            ilceComboBox.addItem("Yahşihan");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kırklareli")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kırklareli (İl merkezi)");
+            ilceComboBox.addItem("Babaeski");
+            ilceComboBox.addItem("Demirköy");
+            ilceComboBox.addItem("Kofçaz");
+            ilceComboBox.addItem("Lüleburgaz");
+            ilceComboBox.addItem("Pehlivanköy");
+            ilceComboBox.addItem("Pınarhisar");
+            ilceComboBox.addItem("Vize");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kırşehir")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kırşehir (İl merkezi)");
+            ilceComboBox.addItem("Akçakent");
+            ilceComboBox.addItem("Akpınar");
+            ilceComboBox.addItem("Boztepe");
+            ilceComboBox.addItem("Çiçekdağı");
+            ilceComboBox.addItem("Kaman");
+            ilceComboBox.addItem("Mucur");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Kilis")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Kilis (İl merkezi)");
+            ilceComboBox.addItem("Elbeyli");
+            ilceComboBox.addItem("Musabeyli");
+            ilceComboBox.addItem("Polateli");
+        }
+        else if(ilComboBox.getSelectedItem().equals("Kocaeli")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Başiskele");
+            ilceComboBox.addItem("Çayırova");
+            ilceComboBox.addItem("Darıca");
+            ilceComboBox.addItem("Derince");
+
+            ilceComboBox.addItem("Dilovası");
+            ilceComboBox.addItem("Gebze");
+            ilceComboBox.addItem("Gölcük");
+            ilceComboBox.addItem("İzmit");
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Konya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            ilceComboBox.addItem("Ahırlı");
+            ilceComboBox.addItem("Akören");
+            ilceComboBox.addItem("Akşehir");
+            ilceComboBox.addItem("Altınekin");
+            ilceComboBox.addItem("Beyşehir");
+            ilceComboBox.addItem("Bozkır");
+            ilceComboBox.addItem("Cihanbeyli");
+            ilceComboBox.addItem("Çetlik");
+            ilceComboBox.addItem("Çumra");
+            ilceComboBox.addItem("Derbent");
+            ilceComboBox.addItem("Derebucak");
+            ilceComboBox.addItem("Doğanhisar");
+            ilceComboBox.addItem("Emirgazi");
+            ilceComboBox.addItem("Ereğli");
+            ilceComboBox.addItem("Güneysınır");
+            ilceComboBox.addItem("Hadim");
+
+            ilceComboBox.addItem("Halkpınar");
+            ilceComboBox.addItem("Hüyük");
+            ilceComboBox.addItem("Ilgın");
+            ilceComboBox.addItem("Kadınhanı");
+            ilceComboBox.addItem("Karapınar");
+            ilceComboBox.addItem("Karatay");
+            ilceComboBox.addItem("Kulu");
+            ilceComboBox.addItem("Meram");
+            ilceComboBox.addItem("Sarayönü");
+            ilceComboBox.addItem("Selçuklu");
+            ilceComboBox.addItem("Seydişehir");
+            ilceComboBox.addItem("Taşkent");
+            ilceComboBox.addItem("Tuzlukçu");
+            ilceComboBox.addItem("Yalıhüyük");
+            ilceComboBox.addItem("Yunak");
+
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Kütahya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Altıntaş", "Domaniç", "Dumlupınar", "Emet", "Gediz", "Merkez", "Pazarlar", "Simav", "Tavşanlı"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Malatya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Akçadağ", "Arapkır", "Arguvan", "Battalgazi", "Darende", "Doğanşehir", "Hekimhan", "Merkez", "Pötürge", "Yazıhan", "Yeşilhan"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Manisa")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Ahmetli", "Akhisar", "Alaşehir", "Demirci", "Gölmarmara", "Gördes", "Kırkağaç", "Kula", "Merkez", "Salihli", "Sarıhanlı", "Soma", "Turgutlu"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Mardin")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Derik", "Kızıltepe", "Mazıdağı", "Merkez", "Midyat", "Nusaybin", "Ömerli", "Savur"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Mersin")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Anamur", "Bozyazı", "Çamlıyayla", "Erdemli", "Gülnar", "Merkez", "Mut", "Silifke", "Tarsus"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+        else if(ilComboBox.getSelectedItem().equals("Muğla")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Bodrum", "Datça", "Fathiye", "Kavaklıdere", "Köyceğiz", "Marmaris", "Merkez", "Milas", "Ortaca", "Ula", "Yatağan"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Muş")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Bulanık", "Korkut", "Malazgirt", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Nevşehir")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Avanos", "Derinkuyu", "Gülşehir", "Hacıbektaş", "Kozaklı", "Merkez", "Ürgüp"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Niğde")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Altunhisar", "Bor", "Çamardı", "Çiftlik", "Ulukışla"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Ordu")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Akkuş", "Fatsa", "Görköy", "Kabadüz", "Merkez", "Mesudiye", "Perşembe", "Ulubey", "Ünye"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Osmaniye")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Bahçe", "Kadirli", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Rize")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Ardeşen", "Çayeli", "Fındıklı", "Merkez", "Pazar", "Çamlıhemşin"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Sakarya")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Akyazı", "Geyve", "Hendek", "Karasu", "Kaynarca", "Merkez", "Sapanca", "Taraklı"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Şanlıurfa")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Alaçam", "Bafra", "Çarşamba", "Havza", "Kavak", "Ladik", "Merkez", "Salıpazarı", "Tekkeköy", "Terme", "Vezirköprü"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Siirt")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Aydınlar", "Baykan", "Eruh", "Kurtalan", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Sinop")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Ayancık", "Boyabat", "Durağan", "Elfelek", "Gerze", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Şırnak")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Cizre", "İdil", "Merkez", "Silopi"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Sivas")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Altınyayla", "Divriği", "Doğansar", "Gemerek", "Hafik", "Kangal", "Merkez", "Şarkışla", "Suşehri", "Yılızeli", "Zara"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Tekirdağ")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Çerkezköy", "Çorlu", "Hayrabolu", "Malkara", "MarmaraEreğlisi", "Merkez", "Muratlı", "Saray", "Şarköy"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Tokat")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Almuz", "Erbaa", "Merkez", "Niksar", "Pazar", "Reşadiye", "Sulusaray", "Turhal", "Zile"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Trabzon")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Akçabat", "Araklı", "Arşin", "Beşikdüzü", "Çarşıbaşı", "Çaykara", "Dernekpazarı", "Maçka", "Merkez", "Of", "Sürmene", "Tonya", "Vakfıkebir", "Yomra"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Tunceli")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Çemişgezek", "Hozat", "Mazgirt", "Merkez", "Nazimiye", "Pertek"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Uşak")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Banaz", "Eşme", "Merkez", "Sivaslı", "Ulubey"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Van")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Başkale", "Çaldıran", "Çatak", "Erciş", "Gevaş", "Gürpınar", "Merkez", "Muradiye", "Özalp"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Yalova")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Altınova", "Armutlu", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Yozgat")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Boğazlıyan", "Çandır", "Çayıralan", "Merkez", "Sarıkaya", "Sefaatli", "Sorgun", "Yenifakili", "Yerköy"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+        else if(ilComboBox.getSelectedItem().equals("Zonguldak")){
+            ilceComboBox.removeAllItems();
+            ilceComboBox.setSelectedItem(null);
+            String[] items =  new String[]{"Araplı", "Çaycuma", "Devrek", "Ereğli", "Merkez"};
+            for(String itm:items){
+                ilceComboBox.addItem(itm);
+            }
+        }
+
+
+
+
+
+
+
+
+    }
+
+    private void ilceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+
+
 
     private void KadinRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -387,66 +1547,26 @@ public class AddEmployePage extends javax.swing.JFrame {
 
     private void onaylaButonuActionPerformed(java.awt.event.ActionEvent evt) {
 
-        boolean isCorrect = true;
-
-        String name = isimTextField.getText();
-        if (! new NameValidator().validate(name)) {
-            JOptionPane.showMessageDialog(null, "Geçersiz Bir İsim", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }
-        String surname = soyisimTextField.getText();
-        if (isCorrect && ! new NameValidator().validate(surname)) {
-            JOptionPane.showMessageDialog(null, "Geçersiz Bir Soyisim", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-
-        }
-        String citizenID = TCTextField.getText();
-        if (isCorrect &&! new TCKNValidator().validate(citizenID)) {
-            JOptionPane.showMessageDialog(null, "Geçersiz Bir TC Kimlik Numarası", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }
-        String email = emailTextField.getText();
-        if (isCorrect &&! new EmailValidator().validate(email)) {
-            JOptionPane.showMessageDialog(null, "Geçersiz Bir E-Posta Adresi", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-
-        }
-        String gender = getSelectedButtonText(group);
-        System.out.println("Gender = " + gender);
-        if (isCorrect && gender == null) {
-            JOptionPane.showMessageDialog(null, "Lütfen bir cinsiyet seçiniz.", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }
-        String birthDateText = dogumTarihiTextField.getText();
-        if (isCorrect &&! new BornDateValidator().validate(birthDateText)) {
-            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir doğum tarihi giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }
-        String phoneNumber = telefonNoTextField.getText();
-       /* if (isCorrect) {
-            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }*/
-        String salary = maasTextField.getText();
-        if (isCorrect &&! new SalaryValidator().validate(salary)) {
-            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
-            isCorrect = false;
-        }
-        // District province position will turn into combo box;
-
-
-        String position = pozisyonTextField.getText(); // Validation req
-        String province = ilTextField.getText(); // Validation req
-        String district = ilceTextField.getText(); // Validation req
-
-        if (isCorrect)
+        if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailTextField.getText())))
         {
+            JOptionPane.showMessageDialog(null, "Geçersiz Bir E-Posta Adresi", "Hata", JOptionPane.ERROR_MESSAGE);
+        }// burayi guncelledim masterden merge ederken dikkat et.
+
+
+        else
+        {
+
+
+
             if(evt.getSource() == this.onaylaButonu){
-                int res = RecruitEmployee.RecordEmployeeToDB(citizenID, phoneNumber, name, surname, email, gender, birthDateText,
-                        new Date(System.currentTimeMillis()).toString(), salary, position, province, district);
-                if (res == -1)
-                    MainPage.updatejTable1();
+//            this.isimTextField.getText(); // isim e girilen bilgiyi getirir
+//            this.soyisimTextField.getText(); // soyisme "" "" "" "" "" "
+//            this.emailTextField.getText();  // emaile girilen bilgi "" " " "
+//            this.cinsiyetTextField.getText();cinsiyete """"""""""""
+//            this.maasTextField.getText(); maas """"""""
+//            this.adresTextField.getText(); adrese """ " " " " " " ""
                 this.setVisible(false);
+
             }
         }
     }
@@ -493,16 +1613,6 @@ public class AddEmployePage extends javax.swing.JFrame {
             }
         });
     }
-    public String getSelectedButtonText(ButtonGroup buttonGroup) {
-        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-            JRadioButton button = (JRadioButton) buttons.nextElement();
-            if (button.isSelected()) {
-                return button.getText();
-            }
-        }
-
-        return null;
-    }
 
     // Variables declaration - do not modify
     private javax.swing.JRadioButton DigerRadioButton;
@@ -513,10 +1623,10 @@ public class AddEmployePage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JFormattedTextField dogumTarihiTextField;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JComboBox<String> ilComboBox;
     private javax.swing.JLabel ilLabel;
-    private javax.swing.JTextField ilTextField;
+    private javax.swing.JComboBox<String> ilceComboBox;
     private javax.swing.JLabel ilceLabel;
-    private javax.swing.JTextField ilceTextField;
     private javax.swing.JButton iptalButonu;
     private javax.swing.JTextField isimTextField;
     private javax.swing.JLabel jLabel1;
@@ -538,5 +1648,4 @@ public class AddEmployePage extends javax.swing.JFrame {
     private javax.swing.JTextField soyisimTextField;
     private javax.swing.JLabel telefonNoLabel;
     private javax.swing.JTextField telefonNoTextField;
-    // End of variables declaration
 }
