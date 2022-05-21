@@ -60,7 +60,7 @@ public class RecruitEmployee{
             e.setEmail(eMail);
             e.setGender(Gender);
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
            // java.util.Date date = formatter.parse();
             java.util.Date date = formatter.parse(BirthDate);
             java.sql.Date tmpDate = new java.sql.Date(date.getTime());
