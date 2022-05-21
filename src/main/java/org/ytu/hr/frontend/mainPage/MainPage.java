@@ -4,6 +4,10 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
+/* TODO: TextField'lerde değişiklik olup olmadığını kontrol edicez.
+         Değişiklik varsa hem listeye hem db'ye kaydedicez.
+ */
+
 import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
@@ -48,18 +52,18 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
 
-        jLabel1.addMouseListener(new MouseAdapter() {
+        jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
-                    int employeeID = target.getSelectedColumn();
+                    int employeeID = target.getSelectedRow();
                     System.out.println("EmployeeID = " + employeeID);
                     Employee employee = EmployeeUtil.getAllEmployees().get(employeeID);
-                     InformationPage informationPage = new InformationPage();
-                     informationPage.setEmployee(employee);
-                     informationPage.setVisible(true);
+                    System.out.println("Disaridaki employee = " + employee.getFirstName());
+                    InformationPage informationPage = new InformationPage(employee);
+                    informationPage.setVisible(true);
                 }
             }
         });

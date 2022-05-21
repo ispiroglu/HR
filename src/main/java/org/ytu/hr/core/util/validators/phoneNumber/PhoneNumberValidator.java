@@ -15,6 +15,6 @@ public class PhoneNumberValidator {
     {
         matcher = pattern.matcher(phoneNumber);
         System.out.println("Match sonucu -> " + matcher .matches());
-        return matcher.matches() && phoneNumber.length() == 10;
+        return matcher.matches() && phoneNumber.length() == 10 && phoneNumber.toCharArray()[0] == 5;
     }
 }

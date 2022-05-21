@@ -4,21 +4,27 @@ package org.ytu.hr.frontend.informationPage;/*
  */
 
 import org.ytu.hr.core.models.employee.Employee;
+import org.ytu.hr.core.util.validators.salary.SalaryValidator;
+
+import javax.swing.*;
 
 /**
  *
  * @author baselkelziye
  */
 public class InformationPage extends javax.swing.JFrame {
-    private Employee employee;
+    private static Employee employee;
     /**
      * Creates new form InformationPage
      */
-    public InformationPage() {
+    public InformationPage(Employee employee) {
+        setEmployee(employee);
         initComponents();
     }
     public void setEmployee(Employee employee) {
+        System.out.println("---------------------------------------------------------");
         this.employee = employee;
+        System.out.println("setleme yapildi + " + this.employee.getLastName());
     }
 
     /**
@@ -76,48 +82,50 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel1.setText("Isim:");
 
         isimLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        isimLabel.setText("Evren");
+        isimLabel.setText(employee.getFirstName());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(66, 76, 97));
         jLabel2.setText("Soyisim:");
 
         soyisimLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        soyisimLabel.setText("Ispiroğlu");
+        soyisimLabel.setText(employee.getLastName());
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(66, 76, 97));
         jLabel4.setText("TC Kimlik NO:");
 
         tcKimlikLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        tcKimlikLabel.setText("33333333333");
+        tcKimlikLabel.setText(String.valueOf(employee.getCitizenID()));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(66, 76, 97));
         jLabel6.setText("E-Posta:");
 
         epostaLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        epostaLabel.setText("evrenCrazyboy@hotmail.com");
+        epostaLabel.setText(employee.getEmail());
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(66, 76, 97));
         jLabel8.setText("Doğum Tarihi:");
 
-        cinsiyetLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        cinsiyetLabel.setText("Diğer");
+        dogumTarihiLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        dogumTarihiLabel.setText(String.valueOf(employee.getBirthDate()));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(66, 76, 97));
         jLabel10.setText("Cinsiyet:");
 
-        dogumTarihiLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        dogumTarihiLabel.setText("29/05/2002");
+        cinsiyetLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        cinsiyetLabel.setText(employee.getGender());
+
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(66, 76, 97));
         jLabel12.setText("Maaş:");
 
         maasTextField.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        maasTextField.setText(String.valueOf(employee.getSalary()));
         maasTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 maasTextFieldActionPerformed(evt);
@@ -129,18 +137,21 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel14.setText("Adress:");
 
         adressTextField.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        adressTextField.setText(employee.getDistrict() + "/" + employee.getProvince());
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(66, 76, 97));
         jLabel15.setText("Telefon No:");
 
         telefonNoTextField.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        telefonNoTextField.setText(String.valueOf(employee.getPhoneNumber()));
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(66, 76, 97));
         jLabel16.setText("Pozisyon:");
 
         pozisyonTextField.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        pozisyonTextField.setText(employee.getPosition());
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(66, 76, 97));
@@ -155,7 +166,7 @@ public class InformationPage extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(66, 76, 97));
-        jLabel21.setText("Kullanılan izin Sayısı:");
+        jLabel21.setText("Kullanılan izin Sayısı: " + employee.getPaidLeave() + "/30");
 
         jButton2.setBackground(new java.awt.Color(51, 67, 100));
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -348,9 +359,14 @@ public class InformationPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void maasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maasTextFieldActionPerformed
+        if (employee.getSalary() != Integer.parseInt(maasTextField.getText()))
+            if (new SalaryValidator().validate(maasTextField.getText()))
+                employee.setSalary(Integer.parseInt(maasTextField.getText()));
+            else {
+                JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
+            }
 
+    }//GEN-LAST:event_maasTextFieldActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -381,7 +397,7 @@ public class InformationPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InformationPage().setVisible(true);
+                new InformationPage(employee).setVisible(true);
             }
         });
     }
