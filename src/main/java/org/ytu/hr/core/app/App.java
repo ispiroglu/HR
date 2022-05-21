@@ -7,6 +7,7 @@ public class App {
     public static void main(String[] args) throws InterruptedException {
         HibernateUtil.setup();
         LoginPage frame = new LoginPage();
+
         frame.setVisible(true);
         Thread.sleep(8000);
 

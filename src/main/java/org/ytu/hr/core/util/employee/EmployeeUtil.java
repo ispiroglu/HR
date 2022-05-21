@@ -1,11 +1,8 @@
 package org.ytu.hr.core.util.employee;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.db.HibernateUtil;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class EmployeeUtil {
@@ -20,7 +17,6 @@ public class EmployeeUtil {
         return allEmployees;
     }
     public static Object[][] getAllEmployeesToSimpleMatrix() {
-        if (allEmployees == null)
             updateEmployeeList();
         Object[][] matrix = new Object[5][allEmployees.size()];
         for (int i = 0; i < allEmployees.size(); i++)
@@ -36,5 +32,8 @@ public class EmployeeUtil {
             matrix[i][4] = allEmployees.get(i).getSalary();
         }
         return matrix;
+    }
+    public static void addEmployeeToList(Employee employee) {
+        allEmployees.add(employee);
     }
 }

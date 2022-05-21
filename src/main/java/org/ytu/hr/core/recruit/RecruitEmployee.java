@@ -4,6 +4,7 @@ package org.ytu.hr.core.recruit;
 import org.hibernate.Session;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.db.HibernateUtil;
+import org.ytu.hr.core.util.employee.EmployeeUtil;
 
 
 import java.text.SimpleDateFormat;
@@ -38,7 +39,7 @@ public class RecruitEmployee{
         Employee e;
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
-        List<Employee> allEmployees = session.createQuery("select a FROM Employee a", Employee.class).getResultList();
+        List<Employee> allEmployees = EmployeeUtil.getAllEmployees();
         String employeeCount = Integer.toString(allEmployees.size());
          for (Employee a: allEmployees){
             if(Objects.equals(a.getCitizenID(), Long.parseLong(CitizenID)))
@@ -49,19 +50,17 @@ public class RecruitEmployee{
                 return 3;
             }
         }
+        e = new Employee();
+        e.setEmployeeID(Integer.parseInt(employeeCount));
+        e.setCitizenID(Long.parseLong(CitizenID));
+        e.setPhoneNumber(Long.parseLong(PhoneNumber));
+        e.setFirstName(FirstName);
+        e.setLastName(LastName);
+        e.setEmail(eMail);
+        e.setGender(Gender);
 
         try{
-            e = new Employee();
-            e.setEmployeeID(Integer.parseInt(employeeCount));
-            e.setCitizenID(Long.parseLong(CitizenID));
-            e.setPhoneNumber(Long.parseLong(PhoneNumber));
-            e.setFirstName(FirstName);
-            e.setLastName(LastName);
-            e.setEmail(eMail);
-            e.setGender(Gender);
-
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-           // java.util.Date date = formatter.parse();
             java.util.Date date = formatter.parse(BirthDate);
             java.sql.Date tmpDate = new java.sql.Date(date.getTime());
             e.setBirthDate(tmpDate);
@@ -76,15 +75,13 @@ public class RecruitEmployee{
             e.setPosition(Position);
             e.setProvince(Province);
             e.setDistrict(District);
-
-
             session.saveOrUpdate(e);
+            allEmployees.add(e);
             session.getTransaction().commit();
             session.close();
-
         }
         catch (java.text.ParseException exception){
-            System.out.println("Data format not valid, valid format:dd-MMM-yyyy \n");
+            System.out.println("Data format not valid, valid format: dd-MMM-yyyy \n");
             exception.printStackTrace();
         }
 
