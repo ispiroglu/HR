@@ -63,7 +63,7 @@ public class RecruitEmployee{
         e.setGender(Gender);
 
         try{
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             java.util.Date date = formatter.parse(BirthDate);
             java.sql.Date tmpDate = new java.sql.Date(date.getTime());
             e.setBirthDate(tmpDate);
@@ -80,6 +80,7 @@ public class RecruitEmployee{
             e.setDistrict(District);
 
             session.saveOrUpdate(e);
+            allEmployees.add(e);
             session.getTransaction().commit();
             session.close();
         }

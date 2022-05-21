@@ -22,7 +22,6 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-//        EmployeeUtil.adar();
     }
 
     /**
@@ -188,7 +187,7 @@ public class MainPage extends javax.swing.JFrame {
         });
     }
 
-    public void updatejTable1() {
+    public static void updatejTable1() {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 EmployeeUtil.getAllEmployeesToSimpleMatrix(),
                 new String [] {
@@ -205,13 +204,12 @@ public class MainPage extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calisanEkleButonu;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

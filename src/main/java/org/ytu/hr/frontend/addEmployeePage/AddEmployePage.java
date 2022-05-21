@@ -9,6 +9,7 @@ import org.ytu.hr.core.util.validators.name.NameValidator;
 import org.ytu.hr.core.util.validators.TCKN.TCKNValidator;
 import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
 import org.ytu.hr.core.util.validators.salary.SalaryValidator;
+import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
 import java.sql.Date;
@@ -443,7 +444,8 @@ public class AddEmployePage extends javax.swing.JFrame {
             if(evt.getSource() == this.onaylaButonu){
                 int res = RecruitEmployee.RecordEmployeeToDB(citizenID, phoneNumber, name, surname, email, gender, birthDateText,
                         new Date(System.currentTimeMillis()).toString(), salary, position, province, district);
-                System.out.println("RES = " + res);
+                if (res == -1)
+                    MainPage.updatejTable1();
                 this.setVisible(false);
             }
         }
