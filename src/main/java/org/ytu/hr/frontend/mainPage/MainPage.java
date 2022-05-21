@@ -4,18 +4,11 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
-import org.hibernate.resource.transaction.backend.jta.internal.JtaIsolationDelegate;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
-/**int printNodesAtDistance(struct Bstnode*, int);
+/**
  *
  * @author baselkelziye
  */
@@ -26,12 +19,7 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-
 //        EmployeeUtil.adar();
-
     }
 
     /**
@@ -54,30 +42,16 @@ public class MainPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
-    jTable1.addMouseListener(new MouseAdapter() {
-        public void mouseClicked(MouseEvent e){
-            if(e.getClickCount() == 2){
-                JTable target = (JTable) e.getSource();
-                int row = target.getSelectedRow();
-                int column = target.getSelectedColumn();
-                System.out.println("Row -> "+ row + " column -> "+ column);
 
-                target.getValueAt(row,column).toString();
-            }
-        }
-    });
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-
-            EmployeeUtil.getAllEmployeesToSimpleMatrix(),
-
+             EmployeeUtil.getAllEmployeesToSimpleMatrix(),
 //                new Object[][]{},
-
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -90,8 +64,6 @@ public class MainPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setText("Çalışanlar");
 
-        calisanEkleButonu.setBorderPainted(false);
-        calisanEkleButonu.setOpaque(true);
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         calisanEkleButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -102,8 +74,6 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBorderPainted(false);
-        jButton1.setOpaque(true);
         jButton1.setBackground(new java.awt.Color(51, 67, 100));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));
@@ -176,7 +146,6 @@ public class MainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calisanEkleButonuActionPerformed
             // TODO add your handling code here:
         AddEmployePage addEmployee = new AddEmployePage();
@@ -190,7 +159,7 @@ public class MainPage extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
