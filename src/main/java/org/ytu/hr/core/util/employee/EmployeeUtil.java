@@ -5,6 +5,7 @@ import org.hibernate.query.Query;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.db.HibernateUtil;
 
+
 import java.util.Arrays;
 import java.util.List;
 
