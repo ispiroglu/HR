@@ -80,6 +80,7 @@ public class RecruitEmployee{
 
             session.saveOrUpdate(e);
             session.getTransaction().commit();
+            session.close();
 
         }
         catch (java.text.ParseException exception){
