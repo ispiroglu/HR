@@ -75,13 +75,10 @@ public class RecruitEmployee{
             e.setPosition(Position);
             e.setProvince(Province);
             e.setDistrict(District);
-
-
             session.saveOrUpdate(e);
             allEmployees.add(e);
             session.getTransaction().commit();
             session.close();
-
         }
         catch (java.text.ParseException exception){
             System.out.println("Data format not valid, valid format: dd-MMM-yyyy \n");

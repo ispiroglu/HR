@@ -8,8 +8,11 @@ import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
+import org.ytu.hr.frontend.informationPage.InformationPage;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -45,6 +48,21 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
 
+        jLabel1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (e.getClickCount() == 2) {
+                    JTable target = (JTable) e.getSource();
+                    int employeeID = target.getSelectedColumn();
+                    System.out.println("EmployeeID = " + employeeID);
+                    Employee employee = EmployeeUtil.getAllEmployees().get(employeeID);
+                     InformationPage informationPage = new InformationPage();
+                     informationPage.setEmployee(employee);
+                     informationPage.setVisible(true);
+                }
+            }
+        });
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
              EmployeeUtil.getAllEmployeesToSimpleMatrix(),
             new String [] {
@@ -62,8 +80,9 @@ public class MainPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setBackground(new java.awt.Color(67, 76, 97));
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14));
         jLabel1.setText("Çalışanlar");
+
 
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

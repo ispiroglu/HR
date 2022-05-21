@@ -3,17 +3,22 @@ package org.ytu.hr.frontend.informationPage;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import org.ytu.hr.core.models.employee.Employee;
+
 /**
  *
  * @author baselkelziye
  */
 public class InformationPage extends javax.swing.JFrame {
-
+    private Employee employee;
     /**
      * Creates new form InformationPage
      */
     public InformationPage() {
         initComponents();
+    }
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     /**
