@@ -15,6 +15,7 @@ import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 import org.ytu.hr.frontend.informationPage.InformationPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -30,7 +31,11 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,7 +91,8 @@ public class MainPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14));
         jLabel1.setText("Çalışanlar");
 
-
+        calisanEkleButonu.setBorderPainted(false);
+        calisanEkleButonu.setOpaque(true);
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         calisanEkleButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -96,7 +102,8 @@ public class MainPage extends javax.swing.JFrame {
                 calisanEkleButonuActionPerformed(evt);
             }
         });
-
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(true);
         jButton1.setBackground(new java.awt.Color(51, 67, 100));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));

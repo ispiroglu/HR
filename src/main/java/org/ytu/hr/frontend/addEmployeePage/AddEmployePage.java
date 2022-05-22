@@ -10,6 +10,7 @@ import org.ytu.hr.core.util.validators.salary.SalaryValidator;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.Enumeration;
@@ -26,6 +27,9 @@ public class AddEmployePage extends javax.swing.JFrame {
      */
     public AddEmployePage() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
         dogumTarihiTextField.setText("GG-AA-YYYY");
         ilComboBox.setSelectedItem("Adana");
     }
@@ -91,6 +95,8 @@ public class AddEmployePage extends javax.swing.JFrame {
             }
         });
 
+        onaylaButonu.setBorderPainted(false);
+        onaylaButonu.setOpaque(true);
         onaylaButonu.setBackground(new java.awt.Color(51, 67, 100));
         onaylaButonu.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         onaylaButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -101,6 +107,8 @@ public class AddEmployePage extends javax.swing.JFrame {
             }
         });
 
+        iptalButonu.setBorderPainted(false);
+        iptalButonu.setOpaque(true);
         iptalButonu.setBackground(new java.awt.Color(51, 67, 100));
         iptalButonu.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         iptalButonu.setForeground(new java.awt.Color(244, 244, 244));
