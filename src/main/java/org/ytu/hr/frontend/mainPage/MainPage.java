@@ -4,6 +4,10 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
+/* TODO: TextField'lerde değişiklik olup olmadığını kontrol edicez.
+         Değişiklik varsa hem listeye hem db'ye kaydedicez.
+ */
+
 import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
@@ -11,6 +15,7 @@ import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 import org.ytu.hr.frontend.informationPage.InformationPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,13 +24,18 @@ import java.awt.event.MouseEvent;
  * @author baselkelziye
  */
 public class MainPage extends javax.swing.JFrame {
+    public static Employee selectedEmployee;
 
     /**
      * Creates new form MainPage
      */
     public MainPage() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,18 +58,16 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
 
-        jLabel1.addMouseListener(new MouseAdapter() {
+        jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
-                    int employeeID = target.getSelectedColumn();
-                    System.out.println("EmployeeID = " + employeeID);
-                    Employee employee = EmployeeUtil.getAllEmployees().get(employeeID);
-                     InformationPage informationPage = new InformationPage();
-                     informationPage.setEmployee(employee);
-                     informationPage.setVisible(true);
+                    int selectedRow = target.getSelectedRow();
+                    selectedEmployee = EmployeeUtil.getAllEmployees().get(selectedRow);
+                    InformationPage informationPage = new InformationPage();
+                    informationPage.setVisible(true);
                 }
             }
         });
@@ -83,7 +91,8 @@ public class MainPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14));
         jLabel1.setText("Çalışanlar");
 
-
+        calisanEkleButonu.setBorderPainted(false);
+        calisanEkleButonu.setOpaque(true);
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         calisanEkleButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -93,7 +102,8 @@ public class MainPage extends javax.swing.JFrame {
                 calisanEkleButonuActionPerformed(evt);
             }
         });
-
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(true);
         jButton1.setBackground(new java.awt.Color(51, 67, 100));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));

@@ -5,36 +5,15 @@ import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
 import org.ytu.hr.core.util.validators.email.EmailValidator;
 import org.ytu.hr.core.util.validators.name.NameValidator;
 import org.ytu.hr.core.util.validators.TCKN.TCKNValidator;
+import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
 import org.ytu.hr.core.util.validators.salary.SalaryValidator;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.Enumeration;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author baselkelziye
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author baselkelziye
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -48,6 +27,9 @@ public class AddEmployePage extends javax.swing.JFrame {
      */
     public AddEmployePage() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
         dogumTarihiTextField.setText("GG-AA-YYYY");
         ilComboBox.setSelectedItem("Adana");
     }
@@ -101,8 +83,6 @@ public class AddEmployePage extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(236, 254, 255));
 
         jPanel2.setBackground(new java.awt.Color(246, 250, 255));
@@ -113,6 +93,8 @@ public class AddEmployePage extends javax.swing.JFrame {
             }
         });
 
+        onaylaButonu.setBorderPainted(false);
+        onaylaButonu.setOpaque(true);
         onaylaButonu.setBackground(new java.awt.Color(51, 67, 100));
         onaylaButonu.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         onaylaButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -123,6 +105,8 @@ public class AddEmployePage extends javax.swing.JFrame {
             }
         });
 
+        iptalButonu.setBorderPainted(false);
+        iptalButonu.setOpaque(true);
         iptalButonu.setBackground(new java.awt.Color(51, 67, 100));
         iptalButonu.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
         iptalButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -1530,14 +1514,6 @@ public class AddEmployePage extends javax.swing.JFrame {
                 ilceComboBox.addItem(itm);
             }
         }
-
-
-
-
-
-
-
-
     }
 
     private void ilceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1596,10 +1572,10 @@ public class AddEmployePage extends javax.swing.JFrame {
             isCorrect = false;
         }
         String phoneNumber = telefonNoTextField.getText();
-       /* if (isCorrect) {
+       if (isCorrect && ! new PhoneNumberValidator().validate(phoneNumber)) {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
             isCorrect = false;
-        }*/
+        }
         String salary = maasTextField.getText();
         if (isCorrect &&! new SalaryValidator().validate(salary)) {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);

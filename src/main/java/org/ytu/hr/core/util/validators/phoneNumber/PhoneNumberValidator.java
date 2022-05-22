@@ -6,15 +6,13 @@ import java.util.regex.Pattern;
 public class PhoneNumberValidator {
     private Pattern pattern;
     private Matcher matcher;
-    private final static String regex = "^\\\\d{10}$";
+    private final static String regex = "^/^(05)([0-9]{2})\\s?([0-9]{3})\\s?([0-9]{2})\\s?([0-9]{2})$/";
     public PhoneNumberValidator()
     {
         pattern = Pattern.compile(regex);
     }
     public boolean validate(String phoneNumber)
     {
-        matcher = pattern.matcher(phoneNumber);
-        System.out.println("Match sonucu -> " + matcher .matches());
-        return matcher.matches() && phoneNumber.length() == 10;
+        return phoneNumber.length() == 10 && phoneNumber.toCharArray()[0] == '5';
     }
 }
