@@ -17,14 +17,12 @@ public class LoginPage extends javax.swing.JFrame {
      * Creates new form MyFirstForm
      */
     
-    public LoginPage()
-    {
+    public LoginPage() throws InterruptedException {
         initComponents();
         setTitle("Giriş");
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-
     }
 
     private void initComponents() {
