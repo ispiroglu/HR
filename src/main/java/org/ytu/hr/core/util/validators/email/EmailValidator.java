@@ -1,4 +1,4 @@
-package org.ytu.hr.core.util.email;
+package org.ytu.hr.core.util.validators.email;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

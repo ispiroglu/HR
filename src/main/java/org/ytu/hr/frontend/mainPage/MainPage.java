@@ -4,23 +4,38 @@
  */
 package org.ytu.hr.frontend.mainPage;
 
+/* TODO: TextField'lerde değişiklik olup olmadığını kontrol edicez.
+         Değişiklik varsa hem listeye hem db'ye kaydedicez.
+ */
+
+import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
+import org.ytu.hr.frontend.informationPage.InformationPage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
  * @author baselkelziye
  */
 public class MainPage extends javax.swing.JFrame {
+    public static Employee selectedEmployee;
 
     /**
      * Creates new form MainPage
      */
     public MainPage() {
         initComponents();
-//        EmployeeUtil.adar();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,15 +58,27 @@ public class MainPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(236, 254, 255));
 
+        jTable1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (e.getClickCount() == 2) {
+                    JTable target = (JTable) e.getSource();
+                    int selectedRow = target.getSelectedRow();
+                    selectedEmployee = EmployeeUtil.getAllEmployees().get(selectedRow);
+                    InformationPage informationPage = new InformationPage();
+                    informationPage.setVisible(true);
+                }
+            }
+        });
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
              EmployeeUtil.getAllEmployeesToSimpleMatrix(),
-//                new Object[][]{},
             new String [] {
                 "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -61,9 +88,11 @@ public class MainPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setBackground(new java.awt.Color(67, 76, 97));
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14));
         jLabel1.setText("Çalışanlar");
 
+        calisanEkleButonu.setBorderPainted(false);
+        calisanEkleButonu.setOpaque(true);
         calisanEkleButonu.setBackground(new java.awt.Color(51, 67, 100));
         calisanEkleButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         calisanEkleButonu.setForeground(new java.awt.Color(244, 244, 244));
@@ -73,7 +102,8 @@ public class MainPage extends javax.swing.JFrame {
                 calisanEkleButonuActionPerformed(evt);
             }
         });
-
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(true);
         jButton1.setBackground(new java.awt.Color(51, 67, 100));
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));
@@ -146,11 +176,10 @@ public class MainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calisanEkleButonuActionPerformed
-            // TODO add your handling code here:
+    private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {
         AddEmployePage addEmployee = new AddEmployePage();
         addEmployee.setVisible(true);
-    }//GEN-LAST:event_calisanEkleButonuActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -187,13 +216,29 @@ public class MainPage extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static void updatejTable1() {
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                EmployeeUtil.getAllEmployeesToSimpleMatrix(),
+                new String [] {
+                        "İSİM", "SOYİSİM", "E-POSTA", "CİNSİYET", "MAAŞ"
+                }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                    false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }
+
     private javax.swing.JButton calisanEkleButonu;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
