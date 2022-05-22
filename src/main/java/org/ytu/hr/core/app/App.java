@@ -12,20 +12,19 @@ public class App {
         HibernateUtil.setup();
         LoginPage frame = new LoginPage();
         frame.setVisible(true);
-        Thread.sleep(10000);
+        Thread.sleep(8000);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
        // session.getTransaction().begin();
-        Employee testEmployee = session.get(Employee.class,1);
+        Employee testEmployee = session.get(Employee.class,8);
 
         addAbsentDay(testEmployee);
-        addPaidLeave(testEmployee,"12-JAN-2021","13-JAN-2021");
-
+        addPaidLeave(testEmployee,"20/05/2022","25/05/2022",true);
+        isAbsentToday(testEmployee);
+     //   addPaidLeave(testEmployee,"20/05/2022","25/05/2022",true);
 
 
         session.saveOrUpdate(testEmployee);
        // session.getTransaction().commit();
-
-
     }
 }

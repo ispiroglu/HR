@@ -41,6 +41,19 @@ public class Employee {
     private Date paid_leave_start;
     @Column(name = "paid_leave_end")
     private Date paid_leave_end;
+    @Column(name = "is_absent")
+    private boolean is_absent;
+
+
+
+    public boolean isIs_absent() {
+        return is_absent;
+    }
+
+    public void setIs_absent(boolean is_absent) {
+        this.is_absent = is_absent;
+    }
+
 
 
 
@@ -163,6 +176,23 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    public Date getPaid_leave_start() {
+        return paid_leave_start;
+    }
+    public Date getPaid_leave_end() {
+        return paid_leave_end;
+    }
+
+
+    public void setPaid_leave_start(Date paid_leave_start) {
+        this.paid_leave_start = paid_leave_start;
+    }
+
+    public void setPaid_leave_end(Date paid_leave_end) {
+        this.paid_leave_end = paid_leave_end;
+    }
+
 
     @Override
     public String toString() {
