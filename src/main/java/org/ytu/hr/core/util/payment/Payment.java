@@ -1,4 +1,4 @@
-package org.ytu.hr.core.util.monetary;
+package org.ytu.hr.core.util.payment;
 
 import org.ytu.hr.core.models.employee.Employee;
 
@@ -8,7 +8,7 @@ import java.util.Date;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-public class Monetary {
+public class Payment {
     // Calcualtes the compensation that should be giving to the employee upon firing
     public Integer compensation(Employee emp) {
         int compensationLimit = 10596;
