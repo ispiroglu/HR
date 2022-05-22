@@ -7,7 +7,7 @@ import org.hibernate.query.Query;
 import org.ytu.hr.core.models.account.Account;
 import org.ytu.hr.core.services.ILoginService;
 import org.ytu.hr.core.util.db.HibernateUtil;
-import org.ytu.hr.core.util.stringUtil.Hash;
+
 
 public class Login implements ILoginService {
     private final String username;
