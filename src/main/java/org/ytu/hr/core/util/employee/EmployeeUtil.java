@@ -28,8 +28,6 @@ public class EmployeeUtil {
             matrix[i] = new Object[15];
 
         for(int i = 0; i < allEmployees.size(); i++) {
-
-            System.out.println(i + " + " + allEmployees.get(i));
             matrix[i][0] = allEmployees.get(i).getFirstName();
             matrix[i][1] = allEmployees.get(i).getLastName();
             matrix[i][2] = allEmployees.get(i).getEmail();

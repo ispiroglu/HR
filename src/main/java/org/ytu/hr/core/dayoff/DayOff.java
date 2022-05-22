@@ -35,17 +35,17 @@ public class DayOff {
             session.getTransaction().begin();
             //Employee employee = session.get(Employee.class, EmployeeID);
 
-            java.util.Date dateStart =new SimpleDateFormat("dd/MM/yyyy").parse(startDateStr);
-            java.util.Date dateEnd =new SimpleDateFormat("dd/MM/yyyy").parse(endDateStr);
+            java.util.Date dateStart =new SimpleDateFormat("dd-MM-yyyy").parse(startDateStr);
+            java.util.Date dateEnd =new SimpleDateFormat("dd-MM-yyyy").parse(endDateStr);
            // long daysBetween = Duration.between((Temporal) dateStart, (Temporal) dateEnd).toDays();
             long daysBetween = ChronoUnit.DAYS.between(dateStart.toInstant(), dateEnd.toInstant());
-            if(employee.isIs_absent()){        /** KULLANICI ZATEN ŞU AN İZİNDE   */
+            if(employee.isIs_absent()){        /* KULLANICI ZATEN ŞU AN İZİNDE   */
                 session.getTransaction().commit();
                 session.close();
 
                 return 2;
             }
-            if(employee.getPaidLeave()+ daysBetween<= maxPaidLeave && withReport == false ){       /** RAPORSUZ İZİN EKLENDİ */
+            if(employee.getPaidLeave()+ daysBetween<= maxPaidLeave && !withReport){       /* RAPORSUZ İZİN EKLENDİ */
                 employee.setPaidLeave(employee.getPaidLeave()+(int)daysBetween);
                 java.sql.Date tmpStart = new java.sql.Date(dateStart.getTime());
                 java.sql.Date tmpEnd = new java.sql.Date(dateEnd.getTime());
@@ -56,9 +56,9 @@ public class DayOff {
                 session.getTransaction().commit();
                 session.close();
 
-                return 0; /** RAPORSUZ İZİN EKLENDİ */
+                return 0; /* RAPORSUZ İZİN EKLENDİ */
             }
-            else if(withReport){  /** RAPORLU İZİN VERİLDİ */
+            else if(withReport){  /* RAPORLU İZİN VERİLDİ */
                 java.sql.Date tmpStart = new java.sql.Date(dateStart.getTime());
                 java.sql.Date tmpEnd = new java.sql.Date(dateEnd.getTime());
                 employee.setPaid_leave_start(tmpStart);
@@ -67,18 +67,18 @@ public class DayOff {
                 session.saveOrUpdate(employee);
                 session.getTransaction().commit();
                 session.close();
-                return 1;    /** RAPORLU İZİN VERİLDİ */
+                return 1;    /* RAPORLU İZİN VERİLDİ */
         }
-            else{       /** GİRİLEN İZİN MAKSİMUM RAPORTSUZ İZİN HAKKINI AŞIYOR */
+            else{       /* GİRİLEN İZİN MAKSİMUM RAPORTSUZ İZİN HAKKINI AŞIYOR */
                 session.saveOrUpdate(employee);
                 session.getTransaction().commit();
                 session.close();
-                return 3;   /** GİRİLEN İZİN MAKSİMUM RAPORTSUZ İZİN HAKKINI AŞIYOR */
+                return 3;   /* GİRİLEN İZİN MAKSİMUM RAPORTSUZ İZİN HAKKINI AŞIYOR */
             }
 
         } catch (HibernateException e) {
             e.printStackTrace();
-            return -1;                  /** BİR HATA MEYDANA GELDİ */
+            return -1;                  /* BİR HATA MEYDANA GELDİ */
         } catch (ParseException e) {
             e.printStackTrace();
             return -1;
@@ -93,8 +93,7 @@ public class DayOff {
             if(employee.isIs_absent()){
                 session.getTransaction().commit();
                 session.close();
-                return 1; /** kullanıcı izinde olduğu için gelmedi işaretlenemez */
-
+                return 1; /* kullanıcı izinde olduğu için gelmedi işaretlenemez */
             }
 
             employee.setAbsentDay(employee.getAbsentDay()+1);
@@ -102,13 +101,12 @@ public class DayOff {
             session.getTransaction().commit();
             session.close();
 
-            return 0;      /** kullanıcı gelmedi işaretlendi */
+            return 0;      /* kullanıcı gelmedi işaretlendi */
 
         } catch (HibernateException e) {
             e.printStackTrace();
-            return -1;  /** bir hata meydana geldi */
+            return -1;  /* bir hata meydana geldi */
         }
-
     }
 
     public static boolean isAbsentToday(Employee employee){
@@ -126,23 +124,13 @@ public class DayOff {
                 employee.setIs_absent(true);
            }
            else employee.setIs_absent(false);
-
-
             session.saveOrUpdate(employee);
             session.getTransaction().commit();
             session.close();
-
             return true;
-
         } catch (HibernateException e) {
             e.printStackTrace();
             return false;
         }
-
     }
-
-
-
-
-
 }

@@ -1584,14 +1584,14 @@ public class AddEmployePage extends javax.swing.JFrame {
         // District province position will turn into combo box;
 
 
-        String position = pozisyonLabel.getText(); // Validation req
+        String position = pozisyonTextField.getText(); // Validation req
         String district = (String) ilceComboBox.getSelectedItem();
         String province = (String) ilComboBox.getSelectedItem();
         if (isCorrect)
         {
             if(evt.getSource() == this.onaylaButonu){
                 int res = RecruitEmployee.RecordEmployeeToDB(citizenID, phoneNumber, name, surname, email, gender, birthDateText,
-                        new Date(System.currentTimeMillis()).toString(), salary, position, province, district);
+                        new java.sql.Date(System.currentTimeMillis()).toString(), salary, position, province, district);
                 if (res == -1)
                     MainPage.updatejTable1();
                 this.setVisible(false);

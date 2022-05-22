@@ -4,6 +4,10 @@ package org.ytu.hr.frontend.dayOutPage;/*
  */
 
 import org.ytu.hr.core.dayoff.DayOff;
+import org.ytu.hr.core.models.employee.Employee;
+import org.ytu.hr.core.util.employee.EmployeeUtil;
+import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
+import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +17,13 @@ import java.awt.*;
  * @author baselkelziye
  */
 public class DayOutFrame extends javax.swing.JFrame {
+    private Employee employee;
 
     /**
      * Creates new form DayOutFrame
      */
     public DayOutFrame() {
+        employee = MainPage.selectedEmployee;
         initComponents();
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
@@ -201,10 +207,28 @@ public class DayOutFrame extends javax.swing.JFrame {
     }
 
     private void tanimlaButonuActionPerformed(java.awt.event.ActionEvent evt) {
+        if (employee.isIs_absent()) {
+            JOptionPane.showMessageDialog(null, "Bu kişi zaten şu anda şirkette değildir.", "Hata", JOptionPane.ERROR_MESSAGE);
+            this.setVisible(false);
+            return;
+        }
+        boolean isCorrect = true;
+        BornDateValidator validator = new BornDateValidator();
         String startingDateText = baslangicTextField.getText();
         String endingDateText = bitisTextField.getText();
 
+        if (! validator.validate(startingDateText))
+            isCorrect = false;
+        if (isCorrect && ! validator.validate(endingDateText))
+            isCorrect = false;
 
+        if (isCorrect) {
+            DayOff.addPaidLeave(employee ,startingDateText, endingDateText, saglikRaporuButonu.isSelected());
+            EmployeeUtil.saveEmployee(employee);
+            EmployeeUtil.updateEmployeeList(employee);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir tarih giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

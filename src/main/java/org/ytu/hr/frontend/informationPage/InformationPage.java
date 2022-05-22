@@ -5,6 +5,7 @@ package org.ytu.hr.frontend.informationPage;/*
 
 import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
+import org.ytu.hr.core.recruit.RemoveEmployee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.core.util.validators.name.NameValidator;
 import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
@@ -15,6 +16,8 @@ import org.ytu.hr.frontend.mainPage.MainPage;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Objects;
 
 /**
@@ -45,6 +48,7 @@ public class InformationPage extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    /*
     private void initComponents() {
 
         jLabel13 = new javax.swing.JLabel();
@@ -413,6 +417,452 @@ public class InformationPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+*/
+    private void initComponents() {
+
+        jLabel13 = new JLabel();
+        jPanel1 = new JPanel();
+        jPanel2 = new JPanel();
+        jLabel1 = new JLabel();
+        isimLabel = new JLabel();
+        jLabel2 = new JLabel();
+        soyisimLabel = new JLabel();
+        jLabel4 = new JLabel();
+        tcKimlikLabel = new JLabel();
+        jLabel6 = new JLabel();
+        epostaLabel = new JLabel();
+        jLabel8 = new JLabel();
+        cinsiyetLabel = new JLabel();
+        jLabel10 = new JLabel();
+        dogumTarihiLabel = new JLabel();
+        jLabel12 = new JLabel();
+        maasTextField = new JTextField();
+        jLabel14 = new JLabel();
+        adressTextField = new JTextField();
+        jLabel15 = new JLabel();
+        telefonNoTextField = new JTextField();
+        jLabel16 = new JLabel();
+        pozisyonTextField = new JTextField();
+        jLabel18 = new JLabel();
+        izinBaslangicTarihi = new JTextField();
+        bugunIseGelmediButonu = new JButton();
+        jLabel21 = new JLabel();
+        izinOlusturButonu = new JButton();
+        jTextField1 = new JTextField();
+        kaydetButonu = new JButton();
+        calisanSilButonu = new JButton();
+        jLabel3 = new JLabel();
+        jLabel5 = new JLabel();
+        izinBaslangicTextField = new JTextField();
+        izinBitisiTextField = new JTextField();
+        jLabel20 = new JLabel();
+        jButton3 = new JButton();
+
+        jLabel13.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel13.setForeground(new Color(66, 76, 97));
+        jLabel13.setText("Maaş:");
+
+        jPanel1.setBackground(new Color(236, 254, 255));
+
+        jPanel2.setBackground(new Color(246, 250, 255));
+
+        jLabel1.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new Color(66, 76, 97));
+        jLabel1.setText("Isim:");
+
+        isimLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        isimLabel.setText(employee.getFirstName());
+
+        jLabel2.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new Color(66, 76, 97));
+        jLabel2.setText("Soyisim:");
+
+        soyisimLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        soyisimLabel.setText(employee.getLastName());
+
+        jLabel4.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setForeground(new Color(66, 76, 97));
+        jLabel4.setText("TC Kimlik NO:");
+
+        tcKimlikLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        tcKimlikLabel.setText(String.valueOf(employee.getCitizenID()));
+
+        jLabel6.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new Color(66, 76, 97));
+        jLabel6.setText("E-Posta:");
+
+        epostaLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        epostaLabel.setText(employee.getEmail());
+
+        jLabel8.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new Color(66, 76, 97));
+        jLabel8.setText("Doğum Tarihi:");
+
+        dogumTarihiLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        dogumTarihiLabel.setText(employee.getBirthDate().toString());
+
+
+        jLabel10.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel10.setForeground(new Color(66, 76, 97));
+        jLabel10.setText("Cinsiyet:");
+
+        cinsiyetLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        cinsiyetLabel.setText(employee.getGender());
+
+        jLabel12.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel12.setForeground(new Color(66, 76, 97));
+        jLabel12.setText("Maaş:");
+
+        maasTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        maasTextField.setText(String.valueOf(employee.getSalary()));
+        maasTextField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                maasTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel14.setForeground(new Color(66, 76, 97));
+        jLabel14.setText("Adress:");
+
+        adressTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        adressTextField.setText(employee.getDistrict() + "/" + employee.getProvince());
+        adressTextField.setEditable(false);
+
+        jLabel15.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel15.setForeground(new Color(66, 76, 97));
+        jLabel15.setText("Telefon No:");
+
+        telefonNoTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        telefonNoTextField.setText("" + employee.getPhoneNumber());
+        telefonNoTextField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                telefonNoTexfFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel16.setForeground(new Color(66, 76, 97));
+        jLabel16.setText("Pozisyon:");
+
+        pozisyonTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        pozisyonTextField.setText(employee.getPosition());
+        pozisyonTextField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                pozisyonTextFieldActionFormed(evt);
+            }
+        });
+
+        jLabel18.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel18.setForeground(new Color(66, 76, 97));
+        jLabel18.setText("Gelmediği Gün Sayısı:");
+
+        izinBaslangicTarihi.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        izinBaslangicTarihi.setText("" + employee.getAbsentDay());
+        izinBaslangicTarihi.setEditable(false);
+
+        bugunIseGelmediButonu.setBackground(new Color(51, 67, 100));
+        bugunIseGelmediButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        bugunIseGelmediButonu.setForeground(new Color(244, 244, 244));
+        bugunIseGelmediButonu.setText("Bugün İşe Gelmedi");
+        bugunIseGelmediButonu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton1ActionPerfomed(evt);
+            }
+        });
+        izinOlusturButonu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton2ActionPerfomed(evt);
+            }
+        });
+
+
+        jLabel21.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel21.setForeground(new Color(66, 76, 97));
+        jLabel21.setText("Kullanılan izin Sayısı:");
+
+        izinOlusturButonu.setBackground(new Color(51, 67, 100));
+        izinOlusturButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        izinOlusturButonu.setForeground(new Color(244, 244, 244));
+        izinOlusturButonu.setText("İzin Oluştur");
+
+        jTextField1.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        jTextField1.setText(employee.getPaidLeave() + "/30");  // Izin Sayisi
+        jTextField1.setEditable(false);
+
+        kaydetButonu.setBackground(new Color(51, 67, 100));
+        kaydetButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        kaydetButonu.setForeground(new Color(244, 244, 244));
+        kaydetButonu.setText("Kaydet");
+
+        kaydetButonu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                kaydetButonuActionPerfomed(evt);
+            }
+        });
+
+        calisanSilButonu.setBackground(new Color(200, 67, 50));
+        calisanSilButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        calisanSilButonu.setForeground(new Color(244, 244, 244));
+        calisanSilButonu.setText("Bu Çalışanı Sil");
+        calisanSilButonu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                calisanSilButonuActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new Color(66, 76, 97));
+        jLabel3.setText("İzin Başlangıcı:");
+
+        jLabel5.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new Color(66, 76, 97));
+        jLabel5.setText("İzin Bitişi:");
+
+        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(kaydetButonu, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(calisanSilButonu, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                        .addComponent(jLabel21)
+                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(izinOlusturButonu, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(bugunIseGelmediButonu, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel8)
+                                                                        .addComponent(jLabel3)
+                                                                        .addComponent(izinBaslangicTextField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addGap(36, 36, 36)
+                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                        .addComponent(izinBitisiTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(jLabel5)))
+                                                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addComponent(dogumTarihiLabel)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel16)
+                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                                .addComponent(pozisyonTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel18)
+                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                                .addComponent(izinBaslangicTarihi, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel4)
+                                                                                .addGap(6, 6, 6)
+                                                                                .addComponent(tcKimlikLabel))
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel10)
+                                                                                .addGap(6, 6, 6)
+                                                                                .addComponent(cinsiyetLabel))
+                                                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel6)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(epostaLabel))
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel2)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(soyisimLabel))
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel1)
+                                                                                                .addGap(18, 18, 18)
+                                                                                                .addComponent(isimLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+                                                                                .addGap(79, 79, 79)
+                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addComponent(jLabel15)
+                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                                                .addComponent(telefonNoTextField, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                                        .addComponent(jLabel14)
+                                                                                                        .addComponent(jLabel12))
+                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                                        .addComponent(maasTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(adressTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))))))
+                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                                .addGap(9, 9, 9)))
+                                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel4)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(1, 1, 1)
+                                                                .addComponent(tcKimlikLabel)))
+                                                .addGap(5, 5, 5)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(8, 8, 8)
+                                                                .addComponent(jLabel1))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(9, 9, 9)
+                                                                .addComponent(isimLabel)))
+                                                .addGap(3, 3, 3))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel12)
+                                                        .addComponent(maasTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(12, 12, 12)))
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(14, 14, 14)
+                                                                .addComponent(jLabel2))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(15, 15, 15)
+                                                                .addComponent(soyisimLabel)))
+                                                .addGap(3, 3, 3)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(14, 14, 14)
+                                                                .addComponent(jLabel6))
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(15, 15, 15)
+                                                                .addComponent(epostaLabel)))
+                                                .addGap(3, 3, 3))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel14)
+                                                        .addComponent(adressTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel15)
+                                                        .addComponent(telefonNoTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(2, 2, 2)))
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(14, 14, 14)
+                                                .addComponent(jLabel10))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(cinsiyetLabel)
+                                                        .addComponent(jLabel16)
+                                                        .addComponent(pozisyonTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel8)
+                                        .addComponent(dogumTarihiLabel)
+                                        .addComponent(jLabel18)
+                                        .addComponent(izinBaslangicTarihi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(bugunIseGelmediButonu)
+                                                .addGap(9, 9, 9))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel3)
+                                                        .addComponent(jLabel5))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(izinBitisiTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(izinBaslangicTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel21))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(calisanSilButonu)
+                                        .addComponent(izinOlusturButonu))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(kaydetButonu, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))
+        );
+
+        jLabel20.setFont(new Font("SansSerif", 1, 16)); // NOI18N
+        jLabel20.setText("ÇALIŞAN BİLGİLERİ");
+
+        jButton3.setBackground(new Color(51, 67, 100));
+        jButton3.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jButton3.setForeground(new Color(244, 244, 244));
+        jButton3.setText("İzin Oluştur");
+        jButton3.setVisible(false);
+
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(78, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel20)
+                                                .addGap(337, 337, 337))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(73, 73, 73))))
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(286, 286, 286)
+                                        .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(287, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(185, 185, 185)
+                                        .addComponent(jButton3)
+                                        .addContainerGap(185, Short.MAX_VALUE)))
+        );
+
+        GroupLayout layout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>
+    private void calisanSilButonuActionPerformed(ActionEvent evt) {
+        RemoveEmployee.RemoveEmployeeFromDB(employee.getEmployeeID());
+        EmployeeUtil.getAllEmployees().remove(employee);
+        MainPage.updatejTable1();
+        this.setVisible(false);
+    }
+
 
     private void maasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
         int salary = Integer.parseInt(maasTextField.getText());
@@ -503,14 +953,19 @@ public class InformationPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private javax.swing.JTextField adressTextField;
+    private javax.swing.JButton bugunIseGelmediButonu;
+    private javax.swing.JButton calisanSilButonu;
     private javax.swing.JLabel cinsiyetLabel;
     private javax.swing.JLabel dogumTarihiLabel;
     private javax.swing.JLabel epostaLabel;
     private javax.swing.JLabel isimLabel;
     private javax.swing.JTextField izinBaslangicTarihi;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField izinBaslangicTextField;
+    private javax.swing.JTextField izinBitisiTextField;
+    private javax.swing.JButton izinOlusturButonu;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -522,7 +977,9 @@ public class InformationPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -534,6 +991,7 @@ public class InformationPage extends javax.swing.JFrame {
     private javax.swing.JLabel soyisimLabel;
     private javax.swing.JLabel tcKimlikLabel;
     private javax.swing.JTextField telefonNoTextField;
+    // End of variables declaration
     // End of variables declaration
     // End of variables declaration//GEN-END:variables
 }
