@@ -38,6 +38,9 @@ public class Employee {
     @Column(name = "position")
     private String position;
 
+//    @Column(name = "is_absent")
+//    private boolean isAbsent;
+
 
     public Integer getEmployeeID() {
         return employeeID;

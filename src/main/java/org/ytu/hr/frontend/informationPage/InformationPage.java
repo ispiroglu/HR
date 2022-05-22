@@ -9,6 +9,7 @@ import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.core.util.validators.name.NameValidator;
 import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
 import org.ytu.hr.core.util.validators.salary.SalaryValidator;
+import org.ytu.hr.frontend.dayOutPage.DayOutFrame;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
@@ -81,8 +82,6 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(66, 76, 97));
         jLabel13.setText("Maaş:");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(236, 254, 255));
 
@@ -464,7 +463,8 @@ public class InformationPage extends javax.swing.JFrame {
     }
     private void jButton2ActionPerfomed(java.awt.event.ActionEvent evt) {
         // İzin alma ekranının girilmesi.
-
+        DayOutFrame dayOutFrame = new DayOutFrame();
+        dayOutFrame.setVisible(true);
     }
 
 

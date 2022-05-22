@@ -3,6 +3,11 @@ package org.ytu.hr.frontend.dayOutPage;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import org.ytu.hr.core.dayoff.DayOff;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author baselkelziye
@@ -14,6 +19,9 @@ public class DayOutFrame extends javax.swing.JFrame {
      */
     public DayOutFrame() {
         initComponents();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
 
     /**
@@ -36,8 +44,6 @@ public class DayOutFrame extends javax.swing.JFrame {
         iptalButonu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(236, 254, 255));
 
         jPanel2.setBackground(new java.awt.Color(246, 250, 255));
@@ -46,9 +52,13 @@ public class DayOutFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(66, 76, 97));
         jLabel2.setText("Başlangıç Tarihi:");
 
+        baslangicTextField.setText("GG/AA/YYYY");
+
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(66, 76, 97));
         jLabel3.setText("Bitiş Tarihi:");
+
+        bitisTextField.setText("GG/AA/YYYY");
 
         saglikRaporuButonu.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         saglikRaporuButonu.setForeground(new java.awt.Color(66, 76, 97));
@@ -58,6 +68,11 @@ public class DayOutFrame extends javax.swing.JFrame {
         tanimlaButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         tanimlaButonu.setForeground(new java.awt.Color(244, 244, 244));
         tanimlaButonu.setText("Tanımla");
+        tanimlaButonu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tanimlaButonuActionPerformed(evt);
+            }
+        });
 
         iptalButonu.setBackground(new java.awt.Color(51, 67, 100));
         iptalButonu.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -183,6 +198,13 @@ public class DayOutFrame extends javax.swing.JFrame {
                 new DayOutFrame().setVisible(true);
             }
         });
+    }
+
+    private void tanimlaButonuActionPerformed(java.awt.event.ActionEvent evt) {
+        String startingDateText = baslangicTextField.getText();
+        String endingDateText = bitisTextField.getText();
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

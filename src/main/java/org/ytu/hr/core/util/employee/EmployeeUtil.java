@@ -23,7 +23,7 @@ public class EmployeeUtil {
     }
     public static Object[][] getAllEmployeesToSimpleMatrix() {
         updateEmployeeList();
-        Object[][] matrix = new Object[5][allEmployees.size()];
+        Object[][] matrix = new Object[allEmployees.size()][5];
         for (int i = 0; i < allEmployees.size(); i++)
             matrix[i] = new Object[15];
 

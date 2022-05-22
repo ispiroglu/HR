@@ -32,6 +32,9 @@ public class AddEmployePage extends javax.swing.JFrame {
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
         dogumTarihiTextField.setText("GG-AA-YYYY");
         ilComboBox.setSelectedItem("Adana");
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
 
     /**
@@ -82,8 +85,6 @@ public class AddEmployePage extends javax.swing.JFrame {
         jPasswordField1.setText("jPasswordField1");
 
         jTextField1.setText("jTextField1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(236, 254, 255));
 
