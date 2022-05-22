@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
  * @author baselkelziye
  */
 public class MainPage extends javax.swing.JFrame {
+    public static Employee selectedEmployee;
 
     /**
      * Creates new form MainPage
@@ -58,11 +59,9 @@ public class MainPage extends javax.swing.JFrame {
                 super.mouseClicked(e);
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
-                    int employeeID = target.getSelectedRow();
-                    System.out.println("EmployeeID = " + employeeID);
-                    Employee employee = EmployeeUtil.getAllEmployees().get(employeeID);
-                    System.out.println("Disaridaki employee = " + employee.getFirstName());
-                    InformationPage informationPage = new InformationPage(employee);
+                    int selectedRow = target.getSelectedRow();
+                    selectedEmployee = EmployeeUtil.getAllEmployees().get(selectedRow);
+                    InformationPage informationPage = new InformationPage();
                     informationPage.setVisible(true);
                 }
             }

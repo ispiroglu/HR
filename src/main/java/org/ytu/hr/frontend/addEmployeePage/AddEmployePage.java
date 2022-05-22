@@ -5,6 +5,7 @@ import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
 import org.ytu.hr.core.util.validators.email.EmailValidator;
 import org.ytu.hr.core.util.validators.name.NameValidator;
 import org.ytu.hr.core.util.validators.TCKN.TCKNValidator;
+import org.ytu.hr.core.util.validators.phoneNumber.PhoneNumberValidator;
 import org.ytu.hr.core.util.validators.salary.SalaryValidator;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
@@ -12,29 +13,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.util.Enumeration;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author baselkelziye
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author baselkelziye
- */
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -1530,14 +1508,6 @@ public class AddEmployePage extends javax.swing.JFrame {
                 ilceComboBox.addItem(itm);
             }
         }
-
-
-
-
-
-
-
-
     }
 
     private void ilceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1596,10 +1566,10 @@ public class AddEmployePage extends javax.swing.JFrame {
             isCorrect = false;
         }
         String phoneNumber = telefonNoTextField.getText();
-       /* if (isCorrect) {
+       if (isCorrect && ! new PhoneNumberValidator().validate(phoneNumber)) {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
             isCorrect = false;
-        }*/
+        }
         String salary = maasTextField.getText();
         if (isCorrect &&! new SalaryValidator().validate(salary)) {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
