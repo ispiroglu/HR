@@ -19,7 +19,8 @@ public class App {
         Employee testEmployee = session.get(Employee.class,1);
 
         addAbsentDay(testEmployee);
-        addPaidLeave(testEmployee);
+        addPaidLeave(testEmployee,"12-JAN-2021","13-JAN-2021");
+
 
 
         session.saveOrUpdate(testEmployee);

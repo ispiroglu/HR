@@ -37,6 +37,11 @@ public class Employee {
     private Integer absentDay;
     @Column(name = "position")
     private String position;
+    @Column(name = "paid_leave_start")
+    private Date paid_leave_start;
+    @Column(name = "paid_leave_end")
+    private Date paid_leave_end;
+
 
 
     public Integer getEmployeeID() {
