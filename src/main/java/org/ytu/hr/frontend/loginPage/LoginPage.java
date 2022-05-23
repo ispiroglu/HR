@@ -1,8 +1,11 @@
 
 package org.ytu.hr.frontend.loginPage;
 import org.ytu.hr.core.login.Login;
+import org.ytu.hr.core.util.payment.Payment;
+import org.ytu.hr.core.util.stringUtil.Hash;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
+import javax.swing.*;
 import java.awt.*;
 
 
@@ -162,17 +165,19 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
          if(evt.getSource() == this.loginButton){ // if statementine ihtiyac yoktur herhalde
-//             Login login = new Login(usernameTextField.getText(), new String(jPasswordField1.getPassword()));
+            Login login = new Login(usernameTextField.getText(), Hash.hashString(new String(passwordField.getPassword())));
+             System.out.println(usernameTextField.getX());
+             System.out.println(passwordField.getPassword());
 
-             Login login = new Login("Evren_Ispir","1234");
+             // Login login = new Login("Evren_Ispir","1234");
 
              if (login.isCorrectUser()) {
                  this.setVisible(false);
                  MainPage mainFrame = new MainPage();
                  mainFrame.setVisible(true);
              } else {
-                 System.out.println("Yanlis kullanici");
-                 // Tekrar deneyiniz uyarisi
+                 JOptionPane.showMessageDialog(null,  "Yanlış Kullanıcı",
+                         "Error", JOptionPane.ERROR_MESSAGE);
              }
 
         }
@@ -187,7 +192,6 @@ public class LoginPage extends javax.swing.JFrame {
             if(evt.getSource() == this.showPasswordButton){
                 if(this.showPasswordButton.isSelected()){
                     this.passwordField.setEchoChar('\0');
-                    
                 }
                 else{
                     this.passwordField.setEchoChar('*');
