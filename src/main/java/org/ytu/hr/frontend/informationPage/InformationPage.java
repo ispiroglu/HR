@@ -51,6 +51,7 @@ public class InformationPage extends javax.swing.JFrame {
 
     private void initComponents() {
 
+        monhtlyWage = new JTextField();
         jLabel13 = new JLabel();
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
@@ -88,6 +89,7 @@ public class InformationPage extends javax.swing.JFrame {
         dayOffStartingTextField = new JTextField();
         jLabel20 = new JLabel();
         jButton3 = new JButton();
+        jLabel17 = new JLabel();
 
         dayOffStartingTextField.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         dayOffStartingTextField.setForeground(new Color(66, 76, 97));
@@ -191,6 +193,10 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel16.setForeground(new Color(66, 76, 97));
         jLabel16.setText("Pozisyon:");
 
+        jLabel17.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jLabel17.setForeground(new Color(66, 76, 97));
+        jLabel17.setText("Bu Ayın Maaşı:");
+
         positionTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
         positionTextField.setText(employee.getPosition());
         positionTextField.addActionListener(new ActionListener() {
@@ -202,6 +208,11 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel18.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel18.setForeground(new Color(66, 76, 97));
         jLabel18.setText("Gelmediği Gün Sayısı:");
+
+        monhtlyWage.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        monhtlyWage.setForeground(new Color(66, 76, 97));
+        monhtlyWage.setText(new Payment().reducedSalary(employee) + "");
+        monhtlyWage.setEditable(false);
 
         absentDayTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
         absentDayTextField.setText("" + employee.getAbsentDay());
@@ -257,6 +268,15 @@ public class InformationPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel20.setFont(new Font("SansSerif", 1, 16)); // NOI18N
+        jLabel20.setText("ÇALIŞAN BİLGİLERİ");
+
+        jButton3.setBackground(new Color(51, 67, 100));
+        jButton3.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        jButton3.setForeground(new Color(244, 244, 244));
+        jButton3.setText("İzin Oluştur");
+        jButton3.setVisible(false);
+
         jLabel3.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new Color(66, 76, 97));
         jLabel3.setText("İzin Başlangıcı:");
@@ -272,56 +292,41 @@ public class InformationPage extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(confirmButton, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(removeEmployeeButton, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                        .addComponent(jLabel21)
-                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(dayOffTextField, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-                                                                .addComponent(dayOffButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(absentButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel8)
-                                                                        .addComponent(jLabel3)
-                                                                        .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addGap(36, 36, 36)
-                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(jLabel5)))
-                                                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(birthDateLabel)
-                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                .addComponent(jLabel16)
-                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addComponent(positionTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
-                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                .addComponent(jLabel18)
-                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addComponent(absentDayTextField, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))))
+                                                                .addComponent(jLabel8)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(birthDateLabel))
+                                                        .addComponent(jLabel3)
+                                                        .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addGap(0, 0, 0)
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel5)))
+                                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addComponent(jLabel4)
-                                                                                .addGap(6, 6, 6)
-                                                                                .addComponent(citizenIDLabel))
+                                                                                .addComponent(jLabel16)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addComponent(positionTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                .addComponent(jLabel10)
-                                                                                .addGap(6, 6, 6)
-                                                                                .addComponent(genderLabel))
+                                                                                .addComponent(jLabel18)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))))
+                                        .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(jLabel10)
+                                                                .addGap(6, 6, 6)
+                                                                .addComponent(genderLabel))
+                                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel6)
                                                                                                 .addGap(18, 18, 18)
@@ -333,29 +338,49 @@ public class InformationPage extends javax.swing.JFrame {
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel1)
                                                                                                 .addGap(18, 18, 18)
-                                                                                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
-                                                                                .addGap(79, 79, 79)
-                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                .addComponent(jLabel15)
-                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                .addComponent(phoneNumberTextField, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
-                                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                        .addComponent(jLabel14)
-                                                                                                        .addComponent(jLabel12))
-                                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                        .addComponent(salaryTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                                                                                        .addComponent(adressTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))))))
-                                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                                .addGap(9, 9, 9)))
-                                .addContainerGap(62, Short.MAX_VALUE))
+                                                                                                .addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                .addGap(71, 71, 71)))
+                                                                                .addGap(79, 79, 79))
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel4)
+                                                                                .addGap(6, 6, 6)
+                                                                                .addComponent(citizenIDLabel)
+                                                                                .addGap(150, 150, 150)))
+                                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel12)
+                                                                                .addGap(18, 18, 18)
+                                                                                .addComponent(salaryTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel15)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(phoneNumberTextField, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel14)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addComponent(adressTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                                .addComponent(jLabel17)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(monhtlyWage, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))))
+                                                .addGap(0, 127, Short.MAX_VALUE))
+                                        .addComponent(confirmButton, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(removeEmployeeButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(92, 92, 92)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                                .addComponent(jLabel21)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(dayOffTextField, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(dayOffButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(absentButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))))
+                                .addGap(41, 41, 41))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(30, 30, 30)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -372,12 +397,15 @@ public class InformationPage extends javax.swing.JFrame {
                                                                 .addGap(9, 9, 9)
                                                                 .addComponent(nameLabel)))
                                                 .addGap(3, 3, 3))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addContainerGap()
+                                        .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addGap(13, 13, 13)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel12)
                                                         .addComponent(salaryTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(12, 12, 12)))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel17)
+                                                        .addComponent(monhtlyWage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -420,8 +448,8 @@ public class InformationPage extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addComponent(birthDateLabel)
                                         .addComponent(jLabel18)
-                                        .addComponent(absentDayTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                        .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addComponent(absentButton)
@@ -434,8 +462,8 @@ public class InformationPage extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(dayOffTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel21))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -446,64 +474,44 @@ public class InformationPage extends javax.swing.JFrame {
                                 .addGap(16, 16, 16))
         );
 
-        jLabel20.setFont(new Font("SansSerif", 1, 16)); // NOI18N
-        jLabel20.setText("ÇALIŞAN BİLGİLERİ");
-
-        jButton3.setBackground(new Color(51, 67, 100));
-        jButton3.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        jButton3.setForeground(new Color(244, 244, 244));
-        jButton3.setText("İzin Oluştur");
-        jButton3.setVisible(false);
-
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(78, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel20)
-                                                .addGap(337, 337, 337))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(73, 73, 73))))
-                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(286, 286, 286)
-                                        .addComponent(jButton3, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(287, Short.MAX_VALUE)))
+                                .addGap(237, 237, 237)
+                                .addComponent(jLabel20)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(29, Short.MAX_VALUE)
+                                .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel20)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(185, 185, 185)
-                                        .addComponent(jButton3)
-                                        .addContainerGap(185, Short.MAX_VALUE)))
+                                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>
     private void removeEmployeeButtonActionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(null,  new Payment().compensation(employee) +"kadar tazminat ödenecektir.",
+        JOptionPane.showMessageDialog(null,  new Payment().compensation(employee) +" TL tazminat ödenecektir.",
                 "Bilgi", JOptionPane.INFORMATION_MESSAGE);
         RemoveEmployee.RemoveEmployeeFromDB(employee.getEmployeeID());
         EmployeeUtil.getAllEmployees().remove(employee);
@@ -515,8 +523,11 @@ public class InformationPage extends javax.swing.JFrame {
     private void salaryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
         int salary = Integer.parseInt(salaryTextField.getText());
         if (employee.getSalary() != salary)
-        if (new SalaryValidator().validate("" + salary))
+        if (new SalaryValidator().validate("" + salary)) {
             employee.setSalary(salary);
+            monhtlyWage.setText(new Payment().reducedSalary(employee) + "");
+        }
+
         else {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
         }
@@ -606,6 +617,7 @@ public class InformationPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // Variables declaration - do not modify
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JTextField adressTextField;
     private javax.swing.JButton absentButton;
     private javax.swing.JButton removeEmployeeButton;
@@ -643,6 +655,7 @@ public class InformationPage extends javax.swing.JFrame {
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JLabel citizenIDLabel;
     private javax.swing.JTextField phoneNumberTextField;
+    private javax.swing.JTextField monhtlyWage;
     // End of variables declaration
     // End of variables declaration
     // End of variables declaration//GEN-END:variables
