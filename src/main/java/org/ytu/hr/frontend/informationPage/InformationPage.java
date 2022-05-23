@@ -36,7 +36,7 @@ public class InformationPage extends javax.swing.JFrame {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-        // setSize(new Dimension());
+        setTitle("ORAKLI");
     }
     public void setEmployee(Employee employee) {
         this.employee = employee;
@@ -480,13 +480,18 @@ public class InformationPage extends javax.swing.JFrame {
 
 
     private void salaryTextFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
-        int salary = Integer.parseInt(salaryTextField.getText());
-        if (employee.getSalary() != salary)
-        if (new SalaryValidator().validate("" + salary)) {
-            employee.setSalary(salary);
-            thisMonthSalaryTextField.setText(new Payment().reducedSalary(employee) + "");
+        int salary;
+        try {
+            salary = Integer.parseInt(salaryTextField.getText());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
+        if (employee.getSalary() != salary)
+            if (new SalaryValidator().validate(salaryTextField.getText())) {
+                employee.setSalary(salary);
+                thisMonthSalaryTextField.setText(new Payment().reducedSalary(employee) + "");
+            }
         else {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
         }
