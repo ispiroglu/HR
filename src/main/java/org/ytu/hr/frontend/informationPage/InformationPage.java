@@ -19,7 +19,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
 /**
  *
@@ -56,54 +55,54 @@ public class InformationPage extends javax.swing.JFrame {
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
         jLabel1 = new JLabel();
-        isimLabel = new JLabel();
+        nameLabel = new JLabel();
         jLabel2 = new JLabel();
-        soyisimLabel = new JLabel();
+        surnameLabel = new JLabel();
         jLabel4 = new JLabel();
-        tcKimlikLabel = new JLabel();
+        citizenIDLabel = new JLabel();
         jLabel6 = new JLabel();
-        epostaLabel = new JLabel();
+        emailLabel = new JLabel();
         jLabel8 = new JLabel();
-        cinsiyetLabel = new JLabel();
+        genderLabel = new JLabel();
         jLabel10 = new JLabel();
-        dogumTarihiLabel = new JLabel();
+        birthDateLabel = new JLabel();
         jLabel12 = new JLabel();
-        maasTextField = new JTextField();
+        salaryTextField = new JTextField();
         jLabel14 = new JLabel();
         adressTextField = new JTextField();
         jLabel15 = new JLabel();
-        telefonNoTextField = new JTextField();
+        phoneNumberTextField = new JTextField();
         jLabel16 = new JLabel();
-        pozisyonTextField = new JTextField();
+        positionTextField = new JTextField();
         jLabel18 = new JLabel();
-        izinBaslangicTarihi = new JTextField();
-        bugunIseGelmediButonu = new JButton();
+        absentDayTextField = new JTextField();
+        absentButton = new JButton();
         jLabel21 = new JLabel();
-        izinOlusturButonu = new JButton();
-        jTextField1 = new JTextField();
-        kaydetButonu = new JButton();
-        calisanSilButonu = new JButton();
+        dayOffButton = new JButton();
+        dayOffTextField = new JTextField();
+        confirmButton = new JButton();
+        removeEmployeeButton = new JButton();
         jLabel3 = new JLabel();
         jLabel5 = new JLabel();
-        izinBaslangicTextField = new JTextField();
-        izinBitisiTextField = new JTextField();
+        dayoffEndingTextField = new JTextField();
+        dayOffStartingTextField = new JTextField();
         jLabel20 = new JLabel();
         jButton3 = new JButton();
 
-        izinBitisiTextField.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        izinBitisiTextField.setForeground(new Color(66, 76, 97));
+        dayOffStartingTextField.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        dayOffStartingTextField.setForeground(new Color(66, 76, 97));
         String tmp;
         if (employee.getPaid_leave_end() != null) {
-            izinBitisiTextField.setText(employee.getPaid_leave_end().toString());
+            dayOffStartingTextField.setText(employee.getPaid_leave_end().toString());
         }
-        izinBitisiTextField.setEditable(false);
+        dayOffStartingTextField.setEditable(false);
 
-        izinBaslangicTextField.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        izinBaslangicTextField.setForeground(new Color(66, 76, 97));
+        dayoffEndingTextField.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        dayoffEndingTextField.setForeground(new Color(66, 76, 97));
         if (employee.getPaid_leave_start() != null) {
-            izinBaslangicTextField.setText(employee.getPaid_leave_start().toString());
+            dayoffEndingTextField.setText(employee.getPaid_leave_start().toString());
         }
-        izinBaslangicTextField.setEditable(false);
+        dayoffEndingTextField.setEditable(false);
 
         jLabel13.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel13.setForeground(new Color(66, 76, 97));
@@ -117,54 +116,54 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel1.setForeground(new Color(66, 76, 97));
         jLabel1.setText("Isim:");
 
-        isimLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        isimLabel.setText(employee.getFirstName());
+        nameLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        nameLabel.setText(employee.getFirstName());
 
         jLabel2.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new Color(66, 76, 97));
         jLabel2.setText("Soyisim:");
 
-        soyisimLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        soyisimLabel.setText(employee.getLastName());
+        surnameLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        surnameLabel.setText(employee.getLastName());
 
         jLabel4.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new Color(66, 76, 97));
         jLabel4.setText("TC Kimlik NO:");
 
-        tcKimlikLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        tcKimlikLabel.setText(String.valueOf(employee.getCitizenID()));
+        citizenIDLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        citizenIDLabel.setText(String.valueOf(employee.getCitizenID()));
 
         jLabel6.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new Color(66, 76, 97));
         jLabel6.setText("E-Posta:");
 
-        epostaLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        epostaLabel.setText(employee.getEmail());
+        emailLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        emailLabel.setText(employee.getEmail());
 
         jLabel8.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setForeground(new Color(66, 76, 97));
         jLabel8.setText("Doğum Tarihi:");
 
-        dogumTarihiLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        dogumTarihiLabel.setText(employee.getBirthDate().toString());
+        birthDateLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        birthDateLabel.setText(employee.getBirthDate().toString());
 
 
         jLabel10.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel10.setForeground(new Color(66, 76, 97));
         jLabel10.setText("Cinsiyet:");
 
-        cinsiyetLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        cinsiyetLabel.setText(employee.getGender());
+        genderLabel.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        genderLabel.setText(employee.getGender());
 
         jLabel12.setFont(new Font("SansSerif", 1, 14)); // NOI18N
         jLabel12.setForeground(new Color(66, 76, 97));
         jLabel12.setText("Maaş:");
 
-        maasTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        maasTextField.setText(String.valueOf(employee.getSalary()));
-        maasTextField.addActionListener(new ActionListener() {
+        salaryTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        salaryTextField.setText(String.valueOf(employee.getSalary()));
+        salaryTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                maasTextFieldActionPerformed(evt);
+                salaryTextFieldActionPerformed(evt);
             }
         });
 
@@ -180,11 +179,11 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel15.setForeground(new Color(66, 76, 97));
         jLabel15.setText("Telefon No:");
 
-        telefonNoTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        telefonNoTextField.setText("" + employee.getPhoneNumber());
-        telefonNoTextField.addActionListener(new ActionListener() {
+        phoneNumberTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        phoneNumberTextField.setText("" + employee.getPhoneNumber());
+        phoneNumberTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                telefonNoTexfFieldActionPerformed(evt);
+                phoneNumberTextFieldActionPerformed(evt);
             }
         });
 
@@ -192,11 +191,11 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel16.setForeground(new Color(66, 76, 97));
         jLabel16.setText("Pozisyon:");
 
-        pozisyonTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        pozisyonTextField.setText(employee.getPosition());
-        pozisyonTextField.addActionListener(new ActionListener() {
+        positionTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        positionTextField.setText(employee.getPosition());
+        positionTextField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                pozisyonTextFieldActionFormed(evt);
+                positionTextFieldActionPerformed(evt);
             }
         });
 
@@ -204,22 +203,22 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel18.setForeground(new Color(66, 76, 97));
         jLabel18.setText("Gelmediği Gün Sayısı:");
 
-        izinBaslangicTarihi.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        izinBaslangicTarihi.setText("" + employee.getAbsentDay());
-        izinBaslangicTarihi.setEditable(false);
+        absentDayTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        absentDayTextField.setText("" + employee.getAbsentDay());
+        absentDayTextField.setEditable(false);
 
-        bugunIseGelmediButonu.setBackground(new Color(51, 67, 100));
-        bugunIseGelmediButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        bugunIseGelmediButonu.setForeground(new Color(244, 244, 244));
-        bugunIseGelmediButonu.setText("Bugün İşe Gelmedi");
-        bugunIseGelmediButonu.addActionListener(new ActionListener() {
+        absentButton.setBackground(new Color(51, 67, 100));
+        absentButton.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        absentButton.setForeground(new Color(244, 244, 244));
+        absentButton.setText("Bugün İşe Gelmedi");
+        absentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1ActionPerfomed(evt);
+                absentButtonActionPerformed(evt);
             }
         });
-        izinOlusturButonu.addActionListener(new ActionListener() {
+        dayOffButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2ActionPerfomed(evt);
+                dayOutActionPerformed(evt);
             }
         });
 
@@ -228,33 +227,33 @@ public class InformationPage extends javax.swing.JFrame {
         jLabel21.setForeground(new Color(66, 76, 97));
         jLabel21.setText("Kullanılan izin Sayısı:");
 
-        izinOlusturButonu.setBackground(new Color(51, 67, 100));
-        izinOlusturButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        izinOlusturButonu.setForeground(new Color(244, 244, 244));
-        izinOlusturButonu.setText("İzin Oluştur");
+        dayOffButton.setBackground(new Color(51, 67, 100));
+        dayOffButton.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        dayOffButton.setForeground(new Color(244, 244, 244));
+        dayOffButton.setText("İzin Oluştur");
 
-        jTextField1.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField1.setText(employee.getPaidLeave() + "/30");  // Izin Sayisi
-        jTextField1.setEditable(false);
+        dayOffTextField.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        dayOffTextField.setText(employee.getPaidLeave() + "/30");  // Izin Sayisi
+        dayOffTextField.setEditable(false);
 
-        kaydetButonu.setBackground(new Color(51, 67, 100));
-        kaydetButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        kaydetButonu.setForeground(new Color(244, 244, 244));
-        kaydetButonu.setText("Kaydet");
+        confirmButton.setBackground(new Color(51, 67, 100));
+        confirmButton.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        confirmButton.setForeground(new Color(244, 244, 244));
+        confirmButton.setText("Kaydet");
 
-        kaydetButonu.addActionListener(new ActionListener() {
+        confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                kaydetButonuActionPerfomed(evt);
+                confirmButtonActionPerformed(evt);
             }
         });
 
-        calisanSilButonu.setBackground(new Color(200, 67, 50));
-        calisanSilButonu.setFont(new Font("SansSerif", 1, 14)); // NOI18N
-        calisanSilButonu.setForeground(new Color(244, 244, 244));
-        calisanSilButonu.setText("Bu Çalışanı Sil");
-        calisanSilButonu.addActionListener(new ActionListener() {
+        removeEmployeeButton.setBackground(new Color(200, 67, 50));
+        removeEmployeeButton.setFont(new Font("SansSerif", 1, 14)); // NOI18N
+        removeEmployeeButton.setForeground(new Color(244, 244, 244));
+        removeEmployeeButton.setText("Bu Çalışanı Sil");
+        removeEmployeeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                calisanSilButonuActionPerformed(evt);
+                removeEmployeeButtonActionPerformed(evt);
             }
         });
 
@@ -274,80 +273,80 @@ public class InformationPage extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(kaydetButonu, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(confirmButton, GroupLayout.PREFERRED_SIZE, 614, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(calisanSilButonu, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(removeEmployeeButton, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                                         .addComponent(jLabel21)
                                                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
-                                                                .addComponent(izinOlusturButonu, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(bugunIseGelmediButonu, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))))
+                                                                        .addComponent(dayOffTextField, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(dayOffButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(absentButton, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel8)
                                                                         .addComponent(jLabel3)
-                                                                        .addComponent(izinBaslangicTextField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                 .addGap(36, 36, 36)
                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(izinBitisiTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
                                                                                         .addComponent(jLabel5)))
                                                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(dogumTarihiLabel)
+                                                                                .addComponent(birthDateLabel)
                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel16)
                                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addComponent(pozisyonTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+                                                                                                .addComponent(positionTextField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel18)
                                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                .addComponent(izinBaslangicTarihi, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))))
+                                                                                                .addComponent(absentDayTextField, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                 .addComponent(jLabel4)
                                                                                 .addGap(6, 6, 6)
-                                                                                .addComponent(tcKimlikLabel))
+                                                                                .addComponent(citizenIDLabel))
                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                 .addComponent(jLabel10)
                                                                                 .addGap(6, 6, 6)
-                                                                                .addComponent(cinsiyetLabel))
+                                                                                .addComponent(genderLabel))
                                                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel6)
                                                                                                 .addGap(18, 18, 18)
-                                                                                                .addComponent(epostaLabel))
+                                                                                                .addComponent(emailLabel))
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel2)
                                                                                                 .addGap(18, 18, 18)
-                                                                                                .addComponent(soyisimLabel))
+                                                                                                .addComponent(surnameLabel))
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel1)
                                                                                                 .addGap(18, 18, 18)
-                                                                                                .addComponent(isimLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
+                                                                                                .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
                                                                                 .addGap(79, 79, 79)
                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addComponent(jLabel15)
                                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                                                .addComponent(telefonNoTextField, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+                                                                                                .addComponent(phoneNumberTextField, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
                                                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                                         .addComponent(jLabel14)
                                                                                                         .addComponent(jLabel12))
                                                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                                        .addComponent(maasTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                                                                                        .addComponent(salaryTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
                                                                                                         .addComponent(adressTextField, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))))))
                                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                                 .addGap(9, 9, 9)))
@@ -363,7 +362,7 @@ public class InformationPage extends javax.swing.JFrame {
                                                         .addComponent(jLabel4)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(1, 1, 1)
-                                                                .addComponent(tcKimlikLabel)))
+                                                                .addComponent(citizenIDLabel)))
                                                 .addGap(5, 5, 5)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -371,13 +370,13 @@ public class InformationPage extends javax.swing.JFrame {
                                                                 .addComponent(jLabel1))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(9, 9, 9)
-                                                                .addComponent(isimLabel)))
+                                                                .addComponent(nameLabel)))
                                                 .addGap(3, 3, 3))
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel12)
-                                                        .addComponent(maasTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(salaryTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(12, 12, 12)))
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -387,7 +386,7 @@ public class InformationPage extends javax.swing.JFrame {
                                                                 .addComponent(jLabel2))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(15, 15, 15)
-                                                                .addComponent(soyisimLabel)))
+                                                                .addComponent(surnameLabel)))
                                                 .addGap(3, 3, 3)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -395,7 +394,7 @@ public class InformationPage extends javax.swing.JFrame {
                                                                 .addComponent(jLabel6))
                                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                                 .addGap(15, 15, 15)
-                                                                .addComponent(epostaLabel)))
+                                                                .addComponent(emailLabel)))
                                                 .addGap(3, 3, 3))
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -404,7 +403,7 @@ public class InformationPage extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel15)
-                                                        .addComponent(telefonNoTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(phoneNumberTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(2, 2, 2)))
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -413,19 +412,19 @@ public class InformationPage extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(12, 12, 12)
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(cinsiyetLabel)
+                                                        .addComponent(genderLabel)
                                                         .addComponent(jLabel16)
-                                                        .addComponent(pozisyonTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(positionTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel8)
-                                        .addComponent(dogumTarihiLabel)
+                                        .addComponent(birthDateLabel)
                                         .addComponent(jLabel18)
-                                        .addComponent(izinBaslangicTarihi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(absentDayTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(bugunIseGelmediButonu)
+                                                .addComponent(absentButton)
                                                 .addGap(9, 9, 9))
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -433,17 +432,17 @@ public class InformationPage extends javax.swing.JFrame {
                                                         .addComponent(jLabel5))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dayOffTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(izinBitisiTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(izinBaslangicTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(dayOffStartingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(dayoffEndingTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel21))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(calisanSilButonu)
-                                        .addComponent(izinOlusturButonu))
+                                        .addComponent(removeEmployeeButton)
+                                        .addComponent(dayOffButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(kaydetButonu, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(confirmButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16))
         );
 
@@ -503,7 +502,7 @@ public class InformationPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-    private void calisanSilButonuActionPerformed(ActionEvent evt) {
+    private void removeEmployeeButtonActionPerformed(ActionEvent evt) {
         JOptionPane.showMessageDialog(null,  new Payment().compensation(employee) +"kadar tazminat ödenecektir.",
                 "Bilgi", JOptionPane.INFORMATION_MESSAGE);
         RemoveEmployee.RemoveEmployeeFromDB(employee.getEmployeeID());
@@ -513,8 +512,8 @@ public class InformationPage extends javax.swing.JFrame {
     }
 
 
-    private void maasTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
-        int salary = Integer.parseInt(maasTextField.getText());
+    private void salaryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
+        int salary = Integer.parseInt(salaryTextField.getText());
         if (employee.getSalary() != salary)
         if (new SalaryValidator().validate("" + salary))
             employee.setSalary(salary);
@@ -522,8 +521,8 @@ public class InformationPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void telefonNoTexfFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
-        long phoneNumber = Long.parseLong(telefonNoTextField.getText());
+    private void phoneNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
+        long phoneNumber = Long.parseLong(phoneNumberTextField.getText());
         if (employee.getPhoneNumber() != phoneNumber)
             if (new PhoneNumberValidator().validate("" + phoneNumber))
                 employee.setPhoneNumber(phoneNumber);
@@ -531,8 +530,8 @@ public class InformationPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz", "Hata", JOptionPane.ERROR_MESSAGE);
             }
     }
-    private void pozisyonTextFieldActionFormed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
-        String position = pozisyonTextField.getText();
+    private void positionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maasTextFieldActionPerformed
+        String position = positionTextField.getText();
         if ((!employee.getPosition().equals(position))) {
             if (new NameValidator().validate(position))
                 employee.setPosition(position);
@@ -542,7 +541,7 @@ public class InformationPage extends javax.swing.JFrame {
         }
     }
 
-    private void kaydetButonuActionPerfomed(java.awt.event.ActionEvent evt) {
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // Ekrandaki bilgilerin sisteme kaydedilmesi
         System.out.println();
         EmployeeUtil.saveEmployee(employee);
@@ -551,28 +550,26 @@ public class InformationPage extends javax.swing.JFrame {
 
         this.setVisible(false);
     }
-    private void jButton1ActionPerfomed(java.awt.event.ActionEvent evt) { // AbssnetDay
+    private void absentButtonActionPerformed(java.awt.event.ActionEvent evt) { // AbssnetDay
         if (!isAbsent) {
             DayOff.addAbsentDay(employee);
-            izinBaslangicTarihi.setText("" + employee.getAbsentDay());
+            absentDayTextField.setText("" + employee.getAbsentDay());
             isAbsent = true;
         } else {
             JOptionPane.showMessageDialog(null, "Bugün bu kişinin işe gelmediğini belirttiniz.", "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void jButton2ActionPerfomed(java.awt.event.ActionEvent evt) {
+    private void dayOutActionPerformed(java.awt.event.ActionEvent evt) {
         // İzin alma ekranının girilmesi.
         DayOutFrame dayOutFrame = new DayOutFrame();
         dayOutFrame.setInfoPage(this);
         dayOutFrame.setVisible(true);
     }
     public void updateDayOffs() {
-        izinBaslangicTextField.setText(employee.getPaid_leave_start().toString());
-        izinBitisiTextField.setText(employee.getPaid_leave_end().toString());
-        jTextField1.setText(employee.getPaidLeave() + "/30");
+        dayoffEndingTextField.setText(employee.getPaid_leave_start().toString());
+        dayOffStartingTextField.setText(employee.getPaid_leave_end().toString());
+        dayOffTextField.setText(employee.getPaidLeave() + "/30");
     }
-
-
 
 
     public static void main(String args[]) {
@@ -610,16 +607,16 @@ public class InformationPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // Variables declaration - do not modify
     private javax.swing.JTextField adressTextField;
-    private javax.swing.JButton bugunIseGelmediButonu;
-    private javax.swing.JButton calisanSilButonu;
-    private javax.swing.JLabel cinsiyetLabel;
-    private javax.swing.JLabel dogumTarihiLabel;
-    private javax.swing.JLabel epostaLabel;
-    private javax.swing.JLabel isimLabel;
-    private javax.swing.JTextField izinBaslangicTarihi;
-    private javax.swing.JTextField izinBaslangicTextField;
-    private javax.swing.JTextField izinBitisiTextField;
-    private javax.swing.JButton izinOlusturButonu;
+    private javax.swing.JButton absentButton;
+    private javax.swing.JButton removeEmployeeButton;
+    private javax.swing.JLabel genderLabel;
+    private javax.swing.JLabel birthDateLabel;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField absentDayTextField;
+    private javax.swing.JTextField dayoffEndingTextField;
+    private javax.swing.JTextField dayOffStartingTextField;
+    private javax.swing.JButton dayOffButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -639,13 +636,13 @@ public class InformationPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton kaydetButonu;
-    private javax.swing.JTextField maasTextField;
-    private javax.swing.JTextField pozisyonTextField;
-    private javax.swing.JLabel soyisimLabel;
-    private javax.swing.JLabel tcKimlikLabel;
-    private javax.swing.JTextField telefonNoTextField;
+    private javax.swing.JTextField dayOffTextField;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JTextField salaryTextField;
+    private javax.swing.JTextField positionTextField;
+    private javax.swing.JLabel surnameLabel;
+    private javax.swing.JLabel citizenIDLabel;
+    private javax.swing.JTextField phoneNumberTextField;
     // End of variables declaration
     // End of variables declaration
     // End of variables declaration//GEN-END:variables
