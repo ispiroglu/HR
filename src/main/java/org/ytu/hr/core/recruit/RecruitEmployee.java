@@ -65,8 +65,8 @@ public class RecruitEmployee{
             java.sql.Date tmpDate = new java.sql.Date(date.getTime());
             e.setBirthDate(tmpDate);
 
-            date = formatter.parse(ApplicationDate);
-            tmpDate =  new java.sql.Date(date.getTime());
+
+            tmpDate =  new java.sql.Date(System.currentTimeMillis());
             e.setApplicationDate(tmpDate);
 
             e.setAbsentDay(0);

@@ -2,22 +2,32 @@ package org.ytu.hr.core.util.payment;
 
 import org.ytu.hr.core.models.employee.Employee;
 
-import java.time.temporal.Temporal;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
-import java.util.Date;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Payment {
     // Calcualtes the compensation that should be giving to the employee upon firing
-    public Integer compensation(Employee emp) {
-        int compensationLimit = 10596;
-        int compensation;
+    public long compensation(Employee emp) {
+        long compensationLimit = 10596;
+        long compensation;
 
-        Date today = Calendar.getInstance().getTime();
-        int daysBetween = (int) DAYS.between((Temporal) emp.getApplicationDate(), (Temporal) today);
 
-        compensation = (daysBetween / 365) * emp.getSalary();
+        java.util.Date today = Calendar.getInstance().getTime();
+        java.util.Date applicationDate = new java.util.Date(emp.getApplicationDate().getTime());
+
+        double daysBetween = (double) ChronoUnit.DAYS.between(applicationDate.toInstant(), today.toInstant());
+        //long timeBetween = today.getTime() - applicationDate.getTime();
+        //daysBetween = (timeBetween / (1000 * 60 * 60 * 24)) % 365;
+
+
+        compensation = (long)((daysBetween / 365) * (emp.getSalary()));
+
+        /*
+        System.out.println("Days: " + daysBetween);
+        System.out.println("Salary: " + emp.getSalary());
+        System.out.println("Compensation: " + compensation);
+        */
 
         return Math.min(compensation, compensationLimit);
     }
