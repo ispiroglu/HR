@@ -231,6 +231,10 @@ public class DayOutFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "İzin bitiş tarihi, başlangıç tarihinden önce olamaz.", "Hata", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (d1.equals(d2)) {
+                JOptionPane.showMessageDialog(null, "İzin bitiş tarihi, başlangıç tarihiyle aynı olamaz.", "Hata", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
         } catch (ParseException e) {
             throw new RuntimeException(e);

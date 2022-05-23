@@ -166,10 +166,6 @@ public class LoginPage extends javax.swing.JFrame {
         
          if(evt.getSource() == this.loginButton){ // if statementine ihtiyac yoktur herhalde
             Login login = new Login(usernameTextField.getText(), Hash.hashString(new String(passwordField.getPassword())));
-             System.out.println(usernameTextField.getX());
-             System.out.println(passwordField.getPassword());
-
-             // Login login = new Login("Evren_Ispir","1234");
 
              if (login.isCorrectUser()) {
                  this.setVisible(false);
@@ -179,13 +175,12 @@ public class LoginPage extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null,  "Yanlış Kullanıcı",
                          "Error", JOptionPane.ERROR_MESSAGE);
              }
-
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameTextFieldActionPerformed
+    }
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
        
