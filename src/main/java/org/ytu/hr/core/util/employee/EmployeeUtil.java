@@ -48,7 +48,11 @@ public class EmployeeUtil {
         allEmployees.add(employee);
     }
     public static void updateEmployeeList(Employee employee) {
-        allEmployees.set(employee.getEmployeeID(), employee);
+        for (Employee emp : allEmployees) {
+            if (emp.getCitizenID() == employee.getCitizenID()) {
+                emp = employee;
+            }
+        }
     }
     public static void updateDayOffs() {
         for (Employee employee : allEmployees) {

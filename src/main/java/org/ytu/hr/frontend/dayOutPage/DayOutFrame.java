@@ -13,6 +13,10 @@ import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -228,6 +232,21 @@ public class DayOutFrame extends javax.swing.JFrame {
         TodaysDate validator = new TodaysDate();
         String startingDateText = baslangicTextField.getText();
         String endingDateText = bitisTextField.getText();
+
+        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date d1 = sdf.parse(startingDateText);
+            Date d2 = sdf.parse(endingDateText);
+
+            if (d1.after(d2)) {
+                JOptionPane.showMessageDialog(null, "İzin bitiş tarihi, başlangıç tarihinden önce olamaz.", "Hata", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
 
         if (! validator.validate(startingDateText))
             isCorrect = false;

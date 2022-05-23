@@ -1580,8 +1580,6 @@ public class AddEmployePage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
             isCorrect = false;
         }
-        // District province position will turn into combo box;
-
 
         String position = pozisyonTextField.getText(); // Validation req
         if (isCorrect && ! new NameValidator().validate(position)) {
@@ -1598,6 +1596,9 @@ public class AddEmployePage extends javax.swing.JFrame {
                         new java.sql.Date(System.currentTimeMillis()).toString(), salary, position, province, district);
                 if (res == -1)
                     MainPage.updatejTable1();
+                else {
+                    JOptionPane.showMessageDialog(null, "Eleman önceden sisteme eklenmiştir.", "Hata", JOptionPane.ERROR_MESSAGE);
+                }
                 this.setVisible(false);
             }
         }
