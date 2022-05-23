@@ -57,7 +57,7 @@ public class RaporFrame extends javax.swing.JFrame {
         int brutGider = 0;
         Payment payment = new Payment();
         for (Employee employee : EmployeeUtil.getAllEmployees()) {
-            if (DayOff.isAbsentToday(employee))
+            if (employee.isIs_absent())
                 count++;
             brutGider += employee.getSalary();
             netGider += payment.reducedSalary(employee);
