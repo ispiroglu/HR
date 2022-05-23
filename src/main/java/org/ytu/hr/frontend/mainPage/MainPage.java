@@ -13,6 +13,7 @@ import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.frontend.addEmployeePage.AddEmployePage;
 import org.ytu.hr.frontend.informationPage.InformationPage;
+import org.ytu.hr.frontend.reportPage.RaporFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -108,6 +109,11 @@ public class MainPage extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(244, 244, 244));
         jButton1.setText("Rapor");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1AddActionListener(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -175,6 +181,11 @@ public class MainPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1AddActionListener(java.awt.event.ActionEvent evt) {
+        RaporFrame raporFrame = new RaporFrame();
+        raporFrame.setVisible(true);
+    }
 
     private void calisanEkleButonuActionPerformed(java.awt.event.ActionEvent evt) {
         AddEmployePage addEmployee = new AddEmployePage();
