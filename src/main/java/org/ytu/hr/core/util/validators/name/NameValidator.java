@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class NameValidator {
     private Pattern pattern;
     private Matcher matcher;
-    private final static String regex = "(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$";
+    private final static String regex = "^[a-zA-Z0-9ğüşöçıİĞÜŞÖÇ ]+$";
 
     public NameValidator() {
         pattern = Pattern.compile(regex);

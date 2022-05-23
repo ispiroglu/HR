@@ -16,6 +16,8 @@ public class EmailValidator {
         pattern = Pattern.compile(EMAIL_PATTERN);
     }
     public boolean validate(final String hex) {
+        if (hex.equals(""))
+            return false;
         matcher = pattern.matcher(hex);
         return matcher.matches();
     }

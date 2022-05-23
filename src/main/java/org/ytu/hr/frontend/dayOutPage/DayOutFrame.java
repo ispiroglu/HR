@@ -7,6 +7,8 @@ import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.employee.EmployeeUtil;
 import org.ytu.hr.core.util.validators.bornDate.BornDateValidator;
+import org.ytu.hr.core.util.validators.todayDate.TodaysDate;
+import org.ytu.hr.frontend.informationPage.InformationPage;
 import org.ytu.hr.frontend.mainPage.MainPage;
 
 import javax.swing.*;
@@ -18,6 +20,7 @@ import java.awt.*;
  */
 public class DayOutFrame extends javax.swing.JFrame {
     private Employee employee;
+    private InformationPage infoPage;
 
     /**
      * Creates new form DayOutFrame
@@ -58,13 +61,13 @@ public class DayOutFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(66, 76, 97));
         jLabel2.setText("Başlangıç Tarihi:");
 
-        baslangicTextField.setText("GG/AA/YYYY");
+        baslangicTextField.setText("GG-AA-YYYY");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(66, 76, 97));
         jLabel3.setText("Bitiş Tarihi:");
 
-        bitisTextField.setText("GG/AA/YYYY");
+        bitisTextField.setText("GG-AA-YYYY");
 
         saglikRaporuButonu.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         saglikRaporuButonu.setForeground(new java.awt.Color(66, 76, 97));
@@ -77,6 +80,12 @@ public class DayOutFrame extends javax.swing.JFrame {
         tanimlaButonu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tanimlaButonuActionPerformed(evt);
+            }
+        });
+
+        iptalButonu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iptalButonuActionPerformed(evt);
             }
         });
 
@@ -206,6 +215,9 @@ public class DayOutFrame extends javax.swing.JFrame {
         });
     }
 
+    private void iptalButonuActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setVisible(false);
+    }
     private void tanimlaButonuActionPerformed(java.awt.event.ActionEvent evt) {
         if (employee.isIs_absent()) {
             JOptionPane.showMessageDialog(null, "Bu kişi zaten şu anda şirkette değildir.", "Hata", JOptionPane.ERROR_MESSAGE);
@@ -213,7 +225,7 @@ public class DayOutFrame extends javax.swing.JFrame {
             return;
         }
         boolean isCorrect = true;
-        BornDateValidator validator = new BornDateValidator();
+        TodaysDate validator = new TodaysDate();
         String startingDateText = baslangicTextField.getText();
         String endingDateText = bitisTextField.getText();
 
@@ -223,12 +235,21 @@ public class DayOutFrame extends javax.swing.JFrame {
             isCorrect = false;
 
         if (isCorrect) {
-            DayOff.addPaidLeave(employee ,startingDateText, endingDateText, saglikRaporuButonu.isSelected());
-            EmployeeUtil.saveEmployee(employee);
-            EmployeeUtil.updateEmployeeList(employee);
+            int res = DayOff.addPaidLeave(employee ,startingDateText, endingDateText, saglikRaporuButonu.isSelected());
+            if (res == 2)
+                JOptionPane.showMessageDialog(null, "Kullanici zaten izinde.", "Hata", JOptionPane.ERROR_MESSAGE);
+            else if (res == 3)
+                JOptionPane.showMessageDialog(null, "Maksimum izin hakkını aşıyorsunuz.", "Hata", JOptionPane.ERROR_MESSAGE);
+
+            infoPage.updateDayOffs();
+            this.setVisible(false);
         }
         else
             JOptionPane.showMessageDialog(null, "Lütfen geçerli bir tarih giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void setInfoPage(InformationPage infoPage) {
+        this.infoPage = infoPage;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

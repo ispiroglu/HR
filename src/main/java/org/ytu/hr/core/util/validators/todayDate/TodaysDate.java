@@ -1,4 +1,4 @@
-package org.ytu.hr.core.util.validators.bornDate;
+package org.ytu.hr.core.util.validators.todayDate;
 
 import javassist.Loader;
 
@@ -8,22 +8,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class BornDateValidator {
+public class TodaysDate {
     private SimpleDateFormat spf;
     private java.sql.Date date;
-    public BornDateValidator()
-    {
-    }
 
     public boolean validate(String dateStr)
     {
-        if (dateStr.equals(""))
-            return false;
-
         DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         sdf.setLenient(false);
         try {
-            sdf.parse(dateStr);
+            java.util.Date d = sdf.parse(dateStr);
+            java.sql.Date tempDate = new java.sql.Date(d.getTime());
+            Date date = new Date(System.currentTimeMillis());
+            if (tempDate.before(date))
+                return false;
         } catch (ParseException e) {
             e.printStackTrace();
             return false;

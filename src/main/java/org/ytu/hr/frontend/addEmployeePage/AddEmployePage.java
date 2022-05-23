@@ -1561,7 +1561,6 @@ public class AddEmployePage extends javax.swing.JFrame {
 
         }
         String gender = getSelectedButtonText(group);
-        System.out.println("Gender = " + gender);
         if (isCorrect && gender == null) {
             JOptionPane.showMessageDialog(null, "Lütfen bir cinsiyet seçiniz.", "Hata", JOptionPane.ERROR_MESSAGE);
             isCorrect = false;
@@ -1578,13 +1577,18 @@ public class AddEmployePage extends javax.swing.JFrame {
         }
         String salary = maasTextField.getText();
         if (isCorrect &&! new SalaryValidator().validate(salary)) {
-            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir telefon numarası giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir maaş giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
             isCorrect = false;
         }
         // District province position will turn into combo box;
 
 
         String position = pozisyonTextField.getText(); // Validation req
+        if (isCorrect && ! new NameValidator().validate(position)) {
+            JOptionPane.showMessageDialog(null, "Lütfen geçerli bir pozisyon giriniz.", "Hata", JOptionPane.ERROR_MESSAGE);
+            isCorrect = false;
+        }
+
         String district = (String) ilceComboBox.getSelectedItem();
         String province = (String) ilComboBox.getSelectedItem();
         if (isCorrect)

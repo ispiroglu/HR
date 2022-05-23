@@ -118,12 +118,20 @@ public class DayOff {
             today.set(Calendar.HOUR_OF_DAY, 0);
             today.getTime();
             if(employee.getPaid_leave_start()==null){
-                return true;
+                session.close();
+                return false;
             }
-           if((today.getTime().after(employee.getPaid_leave_start()) && today.getTime().before(employee.getPaid_leave_end()))){
+            if((today.getTime().after(employee.getPaid_leave_start()) && today.getTime().before(employee.getPaid_leave_end()))){
                 employee.setIs_absent(true);
-           }
-           else employee.setIs_absent(false);
+            }
+            else if ((today.getTime().after(employee.getPaid_leave_end()))){
+               employee.setIs_absent(false);
+               employee.setPaid_leave_start(null);
+               employee.setPaid_leave_end(null);
+            }
+            else {
+                employee.setIs_absent(false);
+            }
             session.saveOrUpdate(employee);
             session.getTransaction().commit();
             session.close();

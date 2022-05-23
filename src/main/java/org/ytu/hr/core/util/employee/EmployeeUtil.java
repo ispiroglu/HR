@@ -1,6 +1,7 @@
 package org.ytu.hr.core.util.employee;
 
 import org.hibernate.Session;
+import org.ytu.hr.core.dayoff.DayOff;
 import org.ytu.hr.core.models.employee.Employee;
 import org.ytu.hr.core.util.db.HibernateUtil;
 import java.util.List;
@@ -48,5 +49,10 @@ public class EmployeeUtil {
     }
     public static void updateEmployeeList(Employee employee) {
         allEmployees.set(employee.getEmployeeID(), employee);
+    }
+    public static void updateDayOffs() {
+        for (Employee employee : allEmployees) {
+            DayOff.isAbsentToday(employee);
+        }
     }
 }
